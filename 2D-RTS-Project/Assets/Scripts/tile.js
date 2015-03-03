@@ -1,6 +1,7 @@
 ﻿
 
 var team1Mat: Material;
+var mapType: Material;
 var whichTeam: int;
 var thisTile: GameObject;
 //We'll think of some fancy way to ID teams, 
@@ -42,6 +43,7 @@ function Update () {
 	 {
 		thisTile.renderer.material.color=Color.blue;
 		thisTile.tag="test1";
+		
 		
 	 }
 	

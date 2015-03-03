@@ -48,12 +48,6 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\gameMaster.js" />
      <Compile Include="Assets\Scripts\tile.js" />
-     <Compile Include="Assets\WIP\Chris\Scripts\gameMaster.js" />
-     <Compile Include="Assets\WIP\Chris\Scripts\tile.js" />
-     <Compile Include="Assets\WIP\Jonathan\Scripts\gameMaster.js" />
-     <Compile Include="Assets\WIP\Jonathan\Scripts\tile.js" />
-     <Compile Include="Assets\WIP\Matt\Scripts\gameMaster.js" />
-     <Compile Include="Assets\WIP\Matt\Scripts\tile.js" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

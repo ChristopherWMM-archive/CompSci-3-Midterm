@@ -13,16 +13,11 @@ aniPlay.aniSprite(4,4,0,1,1,12,false);
 }
 
 function Update () {
-<<<<<<< HEAD
 	if(isSelected)
 		GameObject.FindWithTag("hud").GetComponent(guiOverlay).infoScreen = true;
 
-
- 	
-=======
 	var aniPlay = GetComponent("aniSprite");
  	aniPlay.aniSprite(4,4,0,2,4,8,false);
->>>>>>> origin/master
  	
  	
 }

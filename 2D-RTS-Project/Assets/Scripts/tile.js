@@ -85,7 +85,7 @@ UnitArray=GameObject.FindGameObjectsWithTag("selectedUnit");
 	if(whichTeam==-1) 
 	{
 			thisTile.renderer.material.color=Color.red;
-			thisTile.tag="test2";
+			
 		 	
 	}
 	
@@ -116,5 +116,11 @@ function OnMouseExit()
 
 isSelected=false;
 
+
 }
 
+function setSend(isSel: boolean)
+{
+
+ sendUnit=isSel;
+} 

@@ -4,16 +4,17 @@ var thisUnit : GameObject;
 var tilesArray;
 var tileTargetScript;
 var HoverOver;
+//var aniPlay = GetComponent("aniSprite");
 function Start () {
+var aniPlay = GetComponent("aniSprite");
 isSelected=false;
 thisUnit.tag="selectedUnit";
-
+aniPlay.aniSprite(4,4,0,1,1,12,false);
 }
 
 function Update () {
-
-
- 	
+	var aniPlay = GetComponent("aniSprite");
+ 	aniPlay.aniSprite(4,4,0,2,4,8,false);
  	
  	
 }
@@ -45,7 +46,6 @@ tilesArray=GameObject.FindGameObjectsWithTag("test1");
 		{
 		 
 		  tileTargetScript=(tilesArray[zi].GetComponent("tile"));
-		   
 	      
 	     
 	      tileTargetScript.setSend(false);

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:2D-RTS-Project/Assets/Prefab/Materials.meta
+guid: 1b6f1cfa8a85d4a43b5853002f1ade0c
+=======
 guid: a49169d42e0fb03469d4472d69c6c20f
+>>>>>>> a8ac72a6d9150f0f2fbd49e6959dbcd8ed8cb6e8:2D-RTS-Project/2D-RTS-Project/Assets/Materials.meta
 folderAsset: yes
 DefaultImporter:
   userData: 

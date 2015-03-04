@@ -17,7 +17,15 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																					GlobalSection(MonoDevelopProperties) = preSolution
+<<<<<<< HEAD:2D-RTS-Project/2D-RTS-Project.sln
+																				GlobalSection(MonoDevelopProperties) = preSolution
+=======
+<<<<<<< HEAD
+																								GlobalSection(MonoDevelopProperties) = preSolution
+=======
+																			GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> origin/master
+>>>>>>> a8ac72a6d9150f0f2fbd49e6959dbcd8ed8cb6e8:2D-RTS-Project/2D-RTS-Project/2D-RTS-Project.sln
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

@@ -13,36 +13,45 @@ aniPlay.aniSprite(4,4,0,1,1,12,false);
 }
 
 function Update () {
+<<<<<<< HEAD
+	if(isSelected)
+		GameObject.FindWithTag("hud").GetComponent(guiOverlay).infoScreen = true;
+
+
+ 	
+=======
 	var aniPlay = GetComponent("aniSprite");
  	aniPlay.aniSprite(4,4,0,2,4,8,false);
+>>>>>>> origin/master
  	
  	
 }
 
 function OnMouseDown() {
-isSelected=!isSelected;
-
+	isSelected=!isSelected;
+	
 }
 function OnMouseEnter() 
 {
-wipeSelections();
-
+	wipeSelections();
+	
 }
 function getSelected() {
 
-return(isSelected);
+	return(isSelected);
 }
+
 function setSelected(isSel: boolean)
 {
-
- isSelected=isSel;
+ 	isSelected=isSel;
+ 	
 } 
 
 function wipeSelections()
 {
-tilesArray=GameObject.FindGameObjectsWithTag("test1");
+	tilesArray=GameObject.FindGameObjectsWithTag("test1");
 	
-	for(  var zi=0;zi<tilesArray.length;zi++)
+	for(var zi=0;zi<tilesArray.length;zi++)
 		{
 		 
 		  tileTargetScript=(tilesArray[zi].GetComponent("tile"));

@@ -1,5 +1,4 @@
 ﻿
-
 var team1Mat: Material;
 var mapType: Material;
 var whichTeam: int;
@@ -11,6 +10,12 @@ var targetUnitScript;
 // Team 1=1
 // Team 2=-1;
 var isSelected: boolean;
+var oneTime:boolean;
+var HUD:GameObject;
+var redTiles:int;
+var blueTiles:int;
+var numTiles;
+var tileColor:boolean;
 
 var FortLevel: int;
 var UnitsStored :int;
@@ -29,23 +34,28 @@ function Start () {
  isSelected=false;
  inYield=false;
  sendUnit=false;
+ oneTime = false;
+ redTiles = 0;
+ blueTiles = 0;
 }
 
 function Update () {
 // Lol I'll look at the project I have that we made for this feature...later
 // if(Time.timeSinceLevelLoad % 60==59)
 
-UnitArray=GameObject.FindGameObjectsWithTag("selectedUnit");
- 
+UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
+numTiles = GameObject.FindGameObjectsWithTag("test1");
+blueTiles = numTiles.length;
+numTiles = GameObject.FindGameObjectsWithTag("test2");
+redTiles = numTiles.length;
  
 	if(!inYield && UnitsStored<maxUnits) 
 		{
 			 addTroops(); 	 
-		}
-  
+	}
 	if(isSelected)
 	{
-	
+		GameObject.FindWithTag("hud").GetComponent(guiOverlay).currentTile(this.gameObject);
 		if(Input.GetKeyDown(KeyCode.F))
 		{
 		  // morale=morale-0.5;
@@ -55,40 +65,40 @@ UnitArray=GameObject.FindGameObjectsWithTag("selectedUnit");
 		}
 		if(Input.GetKeyDown(KeyCode.G))
 		{
-		
-		whichTeam=-whichTeam;
+			whichTeam=-whichTeam;
+			GameObject.FindWithTag("hud").GetComponent(guiOverlay).updateTilesTaken();
 		}
-		var zi: int;
 		for( zi=0;zi<UnitArray.length;zi++)
 		{
-		 targetUnit=UnitArray[zi];
+		 	targetUnit=UnitArray[zi];
 		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
 		   
 	      if(sendUnit && targetUnitScript.getSelected())
 	      {
-	      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
-	      sendUnit=false;
-	      targetUnitScript.setSelected(false);
+		      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
+		      sendUnit=false;
+	      	
+	      	targetUnitScript.setSelected(false);
 	      }
 	     }
 	     
 	}
-	
+//	else
+//		GameObject.FindWithTag("hud").GetComponent(guiOverlay).closeInfo();
+		
 	if(whichTeam==1)
 	 {
 		thisTile.renderer.material.color=Color.blue;
 		thisTile.tag="test1";
-		
-		
+		tileColor = true;
 	 }
 	
 	if(whichTeam==-1) 
 	{
-			thisTile.renderer.material.color=Color.red;
-			
-		 	
+		thisTile.renderer.material.color=Color.red;
+		thisTile.tag="test2";
+		tileColor = false;
 	}
-	
 	
 }
 
@@ -102,25 +112,41 @@ yield WaitForSeconds(3);
 function OnMouseDown()
 {
 	sendUnit=true;
-	//No If tests in this function
-	
+	GameObject.FindWithTag("hud").GetComponent(guiOverlay).newPiece = true;
+	//No "If" tests in this function
 	
 }
 function OnMouseEnter()
 {
-
-isSelected=true;
+	isSelected=true;
 }
 function OnMouseExit()
 {
-
-isSelected=false;
-
-
+	isSelected=false;
 }
 
 function setSend(isSel: boolean)
 {
-
- sendUnit=isSel;
+ 	sendUnit=isSel;
 } 
+function getFortLevel(){
+	return FortLevel;
+}
+function getUnitsStored(){
+	return UnitsStored;
+}
+function getMorale(){
+	return morale;
+}
+function getMaxUnits(){
+	return maxUnits;
+}
+function getRedTiles(){
+	return redTiles;
+}
+function getBlueTiles(){
+	return blueTiles;
+}
+function getTileColor(){
+	return tileColor;
+}

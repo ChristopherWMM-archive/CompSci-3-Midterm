@@ -11,11 +11,11 @@ var targetUnitScript;
 // Team 2=-1;
 var isSelected: boolean;
 var oneTime:boolean;
-var HUD:GameObject;
 var redTiles:int;
-var blueTiles:int;
-var numTiles;
+//var blueTiles:int;
+//var numTiles;
 var tileColor:boolean;
+var provinceID:int;
 
 var FortLevel: int;
 var UnitsStored :int;
@@ -35,8 +35,8 @@ function Start () {
  inYield=false;
  sendUnit=false;
  oneTime = false;
- redTiles = 0;
- blueTiles = 0;
+// redTiles = 0;
+// blueTiles = 0;
 }
 
 function Update () {
@@ -44,10 +44,6 @@ function Update () {
 // if(Time.timeSinceLevelLoad % 60==59)
 
 UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
-numTiles = GameObject.FindGameObjectsWithTag("test1");
-blueTiles = numTiles.length;
-numTiles = GameObject.FindGameObjectsWithTag("test2");
-redTiles = numTiles.length;
  
 	if(!inYield && UnitsStored<maxUnits) 
 		{
@@ -83,8 +79,8 @@ redTiles = numTiles.length;
 	     }
 	     
 	}
-//	else
-//		GameObject.FindWithTag("hud").GetComponent(guiOverlay).closeInfo();
+	//else
+	//	GameObject.FindWithTag("hud").GetComponent(guiOverlay).closeInfo();
 		
 	if(whichTeam==1)
 	 {
@@ -113,6 +109,8 @@ function OnMouseDown()
 {
 	sendUnit=true;
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).newPiece = true;
+	GameObject.FindWithTag("hud").GetComponent(guiOverlay).infoScreenActive = true;
+	GameObject.FindWithTag("hud").GetComponent(guiOverlay).unitScreenActive = false;
 	//No "If" tests in this function
 	
 }
@@ -142,10 +140,10 @@ function getMaxUnits(){
 	return maxUnits;
 }
 function getRedTiles(){
-	return redTiles;
+	//return redTiles;
 }
 function getBlueTiles(){
-	return blueTiles;
+	//return blueTiles;
 }
 function getTileColor(){
 	return tileColor;

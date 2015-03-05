@@ -14,7 +14,7 @@ aniPlay.aniSprite(4,4,0,1,1,12,false);
 
 function Update () {
 	if(isSelected)
-		GameObject.FindWithTag("hud").GetComponent(guiOverlay).infoScreen = true;
+		GameObject.FindWithTag("hud").GetComponent(guiOverlay).infoScreenActive = true;
 
 	var aniPlay = GetComponent("aniSprite");
  	aniPlay.aniSprite(4,4,0,2,4,8,false);
@@ -24,7 +24,7 @@ function Update () {
 
 function OnMouseDown() {
 	isSelected=!isSelected;
-	
+	GameObject.FindWithTag("hud").GetComponent(guiOverlay).newPiece = true;
 }
 function OnMouseEnter() 
 {

@@ -47,7 +47,7 @@ UnitArray=GameObject.FindGameObjectsWithTag("selectedUnit");
 	}
 	if(isSelected)
 	{
-		GameObject.FindWithTag("hud").GetComponent(guiOverlay).currentTile(gameObject);
+		GameObject.FindWithTag("hud").GetComponent(guiOverlay).currentTile(this.gameObject);
 		if(Input.GetKeyDown(KeyCode.F))
 		{
 		  // morale=morale-0.5;
@@ -104,6 +104,7 @@ yield WaitForSeconds(3);
 function OnMouseDown()
 {
 	sendUnit=true;
+	GameObject.FindWithTag("hud").GetComponent(guiOverlay).newPiece = true;
 	//No "If" tests in this function
 	
 }
@@ -118,6 +119,14 @@ function OnMouseExit()
 
 function setSend(isSel: boolean)
 {
-
- sendUnit=isSel;
+ 	sendUnit=isSel;
 } 
+function getFortLevel(){
+	return FortLevel;
+}
+function getUnitsStored(){
+	return UnitsStored;
+}
+function getMorale(){
+	return morale;
+}

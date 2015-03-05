@@ -44,12 +44,12 @@ function setSelected(isSel: boolean)
 
 function wipeSelections()
 {
-	tilesArray=GameObject.FindGameObjectsWithTag("test1");
+	tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2");
 	
 	for(var zi=0;zi<tilesArray.length;zi++)
 		{
 		 
-		  tileTargetScript=(tilesArray[zi].GetComponent("tile"));
+		  tileTargetScript=(tilesArray[zi].GetComponent("tileScript"));
 	      
 	     
 	      tileTargetScript.setSend(false);

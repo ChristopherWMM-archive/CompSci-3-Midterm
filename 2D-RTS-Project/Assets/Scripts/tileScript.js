@@ -1,5 +1,4 @@
 ﻿
-
 var team1Mat: Material;
 var mapType: Material;
 var whichTeam: int;
@@ -13,6 +12,10 @@ var targetUnitScript;
 var isSelected: boolean;
 var oneTime:boolean;
 var HUD:GameObject;
+var redTiles:int;
+var blueTiles:int;
+var numTiles;
+var tileColor:boolean;
 
 var FortLevel: int;
 var UnitsStored :int;
@@ -32,14 +35,19 @@ function Start () {
  inYield=false;
  sendUnit=false;
  oneTime = false;
+ redTiles = 0;
+ blueTiles = 0;
 }
 
 function Update () {
 // Lol I'll look at the project I have that we made for this feature...later
 // if(Time.timeSinceLevelLoad % 60==59)
 
-UnitArray=GameObject.FindGameObjectsWithTag("selectedUnit");
- 
+UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
+numTiles = GameObject.FindGameObjectsWithTag("test1");
+blueTiles = numTiles.length;
+numTiles = GameObject.FindGameObjectsWithTag("test2");
+redTiles = numTiles.length;
  
 	if(!inYield && UnitsStored<maxUnits) 
 		{
@@ -58,8 +66,8 @@ UnitArray=GameObject.FindGameObjectsWithTag("selectedUnit");
 		if(Input.GetKeyDown(KeyCode.G))
 		{
 			whichTeam=-whichTeam;
+			GameObject.FindWithTag("hud").GetComponent(guiOverlay).updateTilesTaken();
 		}
-		var zi: int;
 		for( zi=0;zi<UnitArray.length;zi++)
 		{
 		 	targetUnit=UnitArray[zi];
@@ -75,22 +83,22 @@ UnitArray=GameObject.FindGameObjectsWithTag("selectedUnit");
 	     }
 	     
 	}
-	
+//	else
+//		GameObject.FindWithTag("hud").GetComponent(guiOverlay).closeInfo();
+		
 	if(whichTeam==1)
 	 {
 		thisTile.renderer.material.color=Color.blue;
 		thisTile.tag="test1";
-		
-		
+		tileColor = true;
 	 }
 	
 	if(whichTeam==-1) 
 	{
 		thisTile.renderer.material.color=Color.red;
-			
-		 	
+		thisTile.tag="test2";
+		tileColor = false;
 	}
-	
 	
 }
 
@@ -129,4 +137,16 @@ function getUnitsStored(){
 }
 function getMorale(){
 	return morale;
+}
+function getMaxUnits(){
+	return maxUnits;
+}
+function getRedTiles(){
+	return redTiles;
+}
+function getBlueTiles(){
+	return blueTiles;
+}
+function getTileColor(){
+	return tileColor;
 }

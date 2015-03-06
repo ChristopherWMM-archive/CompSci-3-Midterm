@@ -1,4 +1,4 @@
-﻿
+
 var infoScreenActive:boolean;
 var newPiece:boolean;
 var newUnit: boolean;
@@ -26,6 +26,7 @@ var unitsArray;
 var unitTargetScript;
 
 var unitScreenActive;
+var HUDwidth;
 function Start () {
 	infoScreenActive = false;
 	infoPopUp();
@@ -47,7 +48,7 @@ function Update () {
       			if(unitTargetScript.getSelected())
       				currentUnit(unitsArray[zx]);	
 			}
-	    
+	   HUDwidth = (Screen.width/7)*5;
 	
 }
 function OnGUI() {
@@ -131,21 +132,21 @@ function OnGUI() {
 	}
 	GUI.EndGroup();
 	//Top HUD Items
-	GUI.BeginGroup(Rect(150,0,Screen.width-150,35));
-	GUI.Box(Rect(0,0,Screen.width-300,35),"");
-	if(GUI.Button(Rect(10,5,80,25),"Add Units"))
+	GUI.BeginGroup(Rect((HUDwidth/7)*2,0,HUDwidth,35));
+	GUI.Box(Rect(0,0,HUDwidth,35),"");
+	if(GUI.Button(Rect((HUDwidth/5)*0,5,HUDwidth/5,25),"Add Units"))
 	{
 	}
-	if(GUI.Button(Rect(90,5,90,25),"Upgrade Unit"))
+	if(GUI.Button(Rect((HUDwidth/5)*1,5,HUDwidth/5,25),"Upgrade Unit"))
 	{
 	}
-	if(GUI.Button(Rect(180,5,90,25),"Upgrade Fort"))
+	if(GUI.Button(Rect((HUDwidth/5)*2,5,HUDwidth/5,25),"Upgrade Fort"))
 	{
 	}
-	if(GUI.Button(Rect(270,5,90,25),"Violate"))
+	if(GUI.Button(Rect((HUDwidth/5)*3,5,HUDwidth/5,25),"Violate"))
 	{
 	}
-	if(GUI.Button(Rect(360,5,90,25),"Surrender"))
+	if(GUI.Button(Rect((HUDwidth/5)*4,5,HUDwidth/5,25),"Surrender"))
 	{
 	}
 	GUI.EndGroup();
@@ -156,8 +157,8 @@ function OnGUI() {
 	else if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1)
 		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayBlueInfo();
 	GUI.BeginGroup(Rect(0,0,150,Screen.height));
-	GUI.Box(Rect(0,0,150,Screen.height-150),"");
-	GUI.Box(Rect(0,30,100,30)," "+ vec2);
+	GUI.Box(Rect(0,0,(HUDwidth/7)*2,Screen.height-150),"");
+	GUI.Box(Rect(0,30,HUDwidth/8,30)," "+ vec2);
 	//total number of tiles
 	//total number of units
 	//flag

@@ -84,6 +84,9 @@ function getUnitsStored(){
 function getMorale(){
 	return morale;
 }
+function setMorale(mor: float) {
+morale=mor;
+}
 function getUnitColor(){
 	return UnitColor;
 }

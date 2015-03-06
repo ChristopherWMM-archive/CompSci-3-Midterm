@@ -28,7 +28,7 @@ function Start () {
  whichTeam=1;
  FortLevel=1;
  UnitsStored=1000;
- //morale=10.0;
+ morale=10.0;
  //Morale is defunct for now
  maxUnits=1000*FortLevel;
  isSelected=false;
@@ -69,9 +69,19 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 		 	targetUnit=UnitArray[zi];
 		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
 		   
-	      if(sendUnit && targetUnitScript.getSelected() &&((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && GameObject.FindWithTag("Master").GetComponent(gameMaster).UnitColor) || (!(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1) && !GameObject.FindWithTag("Master").GetComponent(gameMaster).UnitColor)))
-	      {
+	      if(sendUnit && targetUnitScript.getSelected() &&((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && UnitArray[zi].UnitColor) || (!(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1) && !UnitArray[zi].UnitColor)))
+	      {	
+	      		
+	      		 print(" 1 if statement reached");
 		      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
+		      if((targetUnitScript.UnitColor) && (whichTeam==-1))
+	      		{
+	      		
+	      		  print("if statement reached");
+	      		var battleMethod=GameObject.FindWithTag("Master").GetComponent(gameMaster);
+	      		battleMethod.battle(UnitArray[zi],thisTile,true);
+	      		
+	      		}
 		      sendUnit=false;
 	      	
 	      	targetUnitScript.setSelected(false);

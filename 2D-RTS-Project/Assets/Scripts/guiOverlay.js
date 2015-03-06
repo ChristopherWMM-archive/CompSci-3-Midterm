@@ -1,6 +1,7 @@
 ﻿
 var infoScreenActive:boolean;
 var newPiece:boolean;
+var newUnit: boolean;
 var infoPos:Vector2;
 
 var FortLevel;
@@ -8,10 +9,16 @@ var morale;
 var UnitsStored;
 var maxUnits;
 
+var moraleUnit: float;
+var UnitsStoredInUnit : int;
+
+
 var tile:GameObject;
+var unitVar:GameObject;
 var redTiles;
 var blueTiles;
 var tileColor:boolean;
+var unitColor: boolean;
 var tilesArray;
 var targetTileScript;
 
@@ -23,12 +30,25 @@ function Start () {
 	infoScreenActive = false;
 	infoPopUp();
 	newPiece = true;
+	newUnit=true;
+	unitVar=null;
 }
 
 function Update () {
 	if(infoScreenActive || newPiece)
 		infoPopUp();
-	unitsArray = GameObject.FindGameObjectsWithTag("selectedUnit");
+	if(infoScreenActive && newUnit)
+	    unitPopUp();
+	    
+	    unitsArray = GameObject.FindGameObjectsWithTag("selectedUnit");
+	    for(zx=0;zx<unitsArray.length;zx++)
+			{
+				unitTargetScript=(unitsArray[zx].GetComponent("unit"));
+      			if(unitTargetScript.getSelected())
+      				currentUnit(unitsArray[zx]);	
+			}
+	    
+	
 }
 function OnGUI() {
 	if(infoScreenActive)
@@ -71,7 +91,7 @@ function OnGUI() {
 	if(unitScreenActive)
 	{
 		GUI.BeginGroup(Rect(Screen.width-150,0,150,Screen.height*2));
-		if(tileColor)
+		if(unitColor)
 		{
 			GUI.Box(Rect(0,0,150,240),"Blue Team Unit");
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles);
@@ -82,8 +102,8 @@ function OnGUI() {
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles);
 		}
 		GUI.Label(Rect(65,25,150,30),"Info");
-		GUI.Label(Rect(10,80,150,30),"Morale = "+morale);
-		GUI.Label(Rect(10,110,150,30),"Number of Units = "+UnitsStored);
+		GUI.Label(Rect(10,80,150,30),"Morale = "+moraleUnit);
+		GUI.Label(Rect(10,110,150,30),"Number of Units = "+UnitsStoredInUnit);
 		
 		if(GUI.Button(Rect(35,170,80,30),"Close"))
 		{
@@ -130,8 +150,11 @@ function OnGUI() {
 	}
 	GUI.EndGroup();
 	//Country Display
+	var vec2: Vector2;
+	vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayRedInfo();
 	GUI.BeginGroup(Rect(0,0,150,Screen.height));
 	GUI.Box(Rect(0,0,150,Screen.height-150),"");
+	GUI.Box(Rect(0,30,100,30)," "+ vec2);
 	//total number of tiles
 	//total number of units
 	//flag
@@ -152,6 +175,21 @@ function infoPopUp() {
 	//infoPos.x = Input.mousePosition.x;
 	//infoPos.y = Input.mousePosition.y;
 }
+
+
+function unitPopUp() {
+
+if(newUnit)
+{
+if(unitVar!=null) {
+ moraleUnit = unitVar.GetComponent(unit).getMorale();
+ UnitsStoredInUnit = unitVar.GetComponent(unit).getUnitsStored();
+ unitColor = unitVar.GetComponent(unit).getUnitColor();
+ }
+
+}
+
+}
 function updateTilesTaken(){
 	//redTiles = tile.GetComponent(tileScript).getRedTiles();
 	//blueTiles = tile.GetComponent(tileScript).getBlueTiles();
@@ -161,6 +199,10 @@ function closeInfo(){
 }
 function currentTile(tileObj:GameObject) {
 	tile = tileObj;
+}
+
+function currentUnit(UnitObj:GameObject) {
+	unitVar=UnitObj;
 }
 function wipeTileSelections()
 {

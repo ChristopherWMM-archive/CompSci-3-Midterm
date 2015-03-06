@@ -139,12 +139,7 @@ function getMorale(){
 function getMaxUnits(){
 	return maxUnits;
 }
-function getRedTiles(){
-	//return redTiles;
-}
-function getBlueTiles(){
-	//return blueTiles;
-}
+
 function getTileColor(){
 	return tileColor;
 }

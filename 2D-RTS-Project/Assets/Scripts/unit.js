@@ -5,6 +5,9 @@ var tilesArray;
 var tileTargetScript;
 var HoverOver;
 var overrideInfo;
+var morale: float;
+var UnitsStored : int;
+var UnitColor : boolean;
 
 //var aniPlay = GetComponent("aniSprite");
 function Start () {
@@ -12,10 +15,15 @@ var aniPlay = GetComponent("aniSprite");
 isSelected=false;
 thisUnit.tag="selectedUnit";
 aniPlay.aniSprite(4,4,0,1,1,12,false);
-
+morale=10.0;
+UnitsStored=1000;
+UnitColor=true;
+//Change color with turn
 }
 
 function Update () {
+
+
 	if(isSelected && overrideInfo)
 	{
 		GameObject.FindWithTag("hud").GetComponent(guiOverlay).unitScreenActive = true;
@@ -65,4 +73,13 @@ function wipeSelections()
       
      }
 
+}
+function getUnitsStored(){
+	return UnitsStored;
+}
+function getMorale(){
+	return morale;
+}
+function getUnitColor(){
+	return UnitColor;
 }

@@ -91,7 +91,7 @@ function OnGUI() {
 	if(unitScreenActive)
 	{
 		GUI.BeginGroup(Rect(Screen.width-150,0,150,Screen.height*2));
-		if(unitColor)
+		if(unitVar.GetComponent(unit).getUnitColor())
 		{
 			GUI.Box(Rect(0,0,150,240),"Blue Team Unit");
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles);
@@ -151,7 +151,10 @@ function OnGUI() {
 	GUI.EndGroup();
 	//Country Display
 	var vec2: Vector2;
-	vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayRedInfo();
+	if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1)
+		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayRedInfo();
+	else if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1)
+		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayBlueInfo();
 	GUI.BeginGroup(Rect(0,0,150,Screen.height));
 	GUI.Box(Rect(0,0,150,Screen.height-150),"");
 	GUI.Box(Rect(0,30,100,30)," "+ vec2);

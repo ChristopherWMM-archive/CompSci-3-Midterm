@@ -25,9 +25,12 @@ function Update () {
 
 
 	if(isSelected && overrideInfo)
-	{
+	{ 
+		
 		GameObject.FindWithTag("hud").GetComponent(guiOverlay).unitScreenActive = true;
 		GameObject.FindWithTag("hud").GetComponent(guiOverlay).infoScreenActive = false;
+		
+		
 		overrideInfo = false;
 	}
 	

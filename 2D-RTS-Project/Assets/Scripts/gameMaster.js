@@ -10,6 +10,26 @@ function Start () {
 function Update () {
 
 }
+function battle (attk: GameObject, def: GameObject,defIsTile: boolean)
+{
+var attkScript;
+var DefScript;
+attkScript=	attk.GetComponent("unit");
+if(defIsTile)
+		DefScript=def.GetComponent("tileScript");
+else 
+	DefScript=def.GetComponent("unit");
+	
+//var noVictory=true;
+//while(victory)
+//{
+	
+
+
+
+//}
+
+}
 function displayRedInfo()
 	{	
 	var  numTiles :int;
@@ -32,10 +52,10 @@ var numUnits : int;
 	for(zz=0;zz<unitsArray.length;zz++)
 			{
 				unitTargetScript=(unitsArray[zz].GetComponent("unit"));
-      			   if(unitTargetScript.whichTeam==-1)
+      			   if(unitTargetScript.UnitColor)
 				      {
 				      
-				       numTiles++;
+				       numUnits++;
 				      } 
 			}
 	      
@@ -67,10 +87,10 @@ var numUnits : int;
 	for(zz=0;zz<unitsArray.length;zz++)
 			{
 				unitTargetScript=(unitsArray[zz].GetComponent("unit"));
-      			   if(unitTargetScript.whichTeam==1)
+      			   if(unitTargetScript.UnitColor)
 				      {
 				      
-				       numTiles++;
+				       numUnits++;
 				      } 
 			}
 	      

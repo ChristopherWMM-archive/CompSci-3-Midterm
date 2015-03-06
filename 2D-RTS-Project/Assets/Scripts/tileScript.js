@@ -69,7 +69,7 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 		 	targetUnit=UnitArray[zi];
 		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
 		   
-	      if(sendUnit && targetUnitScript.getSelected())
+	      if(sendUnit && targetUnitScript.getSelected() &&((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && GameObject.FindWithTag("Master").GetComponent(gameMaster).UnitColor) || (!(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1) && !GameObject.FindWithTag("Master").GetComponent(gameMaster).UnitColor)))
 	      {
 		      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
 		      sendUnit=false;

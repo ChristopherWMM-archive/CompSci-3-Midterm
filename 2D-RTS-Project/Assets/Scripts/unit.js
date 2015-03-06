@@ -14,7 +14,7 @@ function Start () {
 var aniPlay = GetComponent("aniSprite");
 isSelected=false;
 thisUnit.tag="selectedUnit";
-aniPlay.aniSprite(4,4,0,1,1,12,false);
+aniPlay.aniSprite(4,4,0,2,4,8,false);
 morale=10.0;
 UnitsStored=1000;
 UnitColor=true;
@@ -34,6 +34,7 @@ function Update () {
 
 	var aniPlay = GetComponent("aniSprite");
  	aniPlay.aniSprite(4,4,0,2,4,8,false);
+ 	//aniPlay.aniSprite(8,1,0,0,8,8,false);
  	
  	
 }

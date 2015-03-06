@@ -1,19 +1,23 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-
+Project("{23895028-9B50-EB0F-0BBE-7849DCB57770}") = "2D-RTS-Project", "Assembly-CSharp-vs.csproj", "{3D22E0FD-DC09-6931-9D31-29F43EDBCAFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-
+		{3D22E0FD-DC09-6931-9D31-29F43EDBCAFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D22E0FD-DC09-6931-9D31-29F43EDBCAFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D22E0FD-DC09-6931-9D31-29F43EDBCAFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D22E0FD-DC09-6931-9D31-29F43EDBCAFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																														GlobalSection(MonoDevelopProperties) = preSolution
+																																			GlobalSection(MonoDevelopProperties) = preSolution
 =======
 <<<<<<< HEAD
 																								GlobalSection(MonoDevelopProperties) = preSolution

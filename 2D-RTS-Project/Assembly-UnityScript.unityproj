@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\cameraPan.js" />
      <Compile Include="Assets\Scripts\gameMaster.js" />
      <Compile Include="Assets\Scripts\guiOverlay.js" />
+     <Compile Include="Assets\Scripts\startScreenScript.js" />
      <Compile Include="Assets\Scripts\tileScript.js" />
      <Compile Include="Assets\Scripts\unit.js" />
  <Reference Include="UnityEngine.UI">

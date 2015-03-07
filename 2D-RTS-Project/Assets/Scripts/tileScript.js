@@ -153,3 +153,5 @@ function getMaxUnits(){
 function getTileColor(){
 	return tileColor;
 }
+function upgradeFort() {
+}

@@ -8,6 +8,7 @@ var overrideInfo;
 var morale: float;
 var UnitsStored : int;
 var UnitColor : boolean;
+var addUnits = 100;
 
 //var aniPlay = GetComponent("aniSprite");
 function Start () {
@@ -89,4 +90,9 @@ morale=mor;
 }
 function getUnitColor(){
 	return UnitColor;
+}
+function addUnitsGUI() {
+	UnitsStored += addUnits;
+}
+function upgradeUnit() {
 }

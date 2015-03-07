@@ -12,7 +12,6 @@ var maxUnits;
 var moraleUnit: float;
 var UnitsStoredInUnit : int;
 
-
 var tile:GameObject;
 var unitVar:GameObject;
 var redTiles;
@@ -27,6 +26,9 @@ var unitTargetScript;
 
 var unitScreenActive;
 var HUDwidth;
+var HUDheight;
+
+var whichTurn;
 function Start () {
 	infoScreenActive = false;
 	infoPopUp();
@@ -48,35 +50,36 @@ function Update () {
       			if(unitTargetScript.getSelected())
       				currentUnit(unitsArray[zx]);	
 			}
-	   HUDwidth = (Screen.width/7)*5;
-	
+	   HUDwidth = (Screen.width/9)*6;
+	   HUDheight = (Screen.height/5)*3;
+	   whichTurn = GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn;
 }
 function OnGUI() {
 	if(infoScreenActive)
 	{
-		GUI.BeginGroup(Rect(Screen.width-150,0,150,Screen.height*2));
+		GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.15,HUDheight+5));
 		if(tileColor)
 		{
-			GUI.Box(Rect(0,0,150,240),"Blue Team Tile");
+			GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2.15,HUDheight+5),"Blue Team Tile");
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles);
 		}
 		else
 		{
-			GUI.Box(Rect(0,0,150,240),"Red Team Tile");
+			GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2.15,HUDheight+5),"Red Team Tile");
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles);
 		}
-		GUI.Label(Rect(65,25,150,30),"Info");
-		GUI.Label(Rect(10,50,150,30),"Fort Level = "+FortLevel);
-		GUI.Label(Rect(10,80,150,30),"Morale = "+morale);
-		GUI.Label(Rect(10,110,150,30),"Units Stored = "+UnitsStored);
-		GUI.Label(Rect(10,140,150,30),"Max Units = "+maxUnits);
+		GUI.Label(Rect(65,(HUDheight/8)*1,(HUDwidth/8)*2.15,30),"Info");
+		GUI.Label(Rect(10,(HUDheight/8)*2,(HUDwidth/8)*2.15,30),"Fort Level = "+FortLevel);
+		GUI.Label(Rect(10,(HUDheight/8)*3,(HUDwidth/8)*2.15,30),"Morale = "+morale);
+		GUI.Label(Rect(10,(HUDheight/8)*4,(HUDwidth/8)*2.15,30),"Units Stored = "+UnitsStored);
+		GUI.Label(Rect(10,(HUDheight/8)*5,(HUDwidth/8)*2.15,30),"Max Units = "+maxUnits);
 		
-		if(GUI.Button(Rect(35,170,80,30),"Close"))
+		if(GUI.Button(Rect(35,(HUDheight/8)*6,((HUDwidth/8)*2.15)/2,25),"Close"))
 		{
 			infoScreenActive = false;
 			wipeTileSelections();
 		}
-		if(GUI.Button(Rect(35,200,80,30),"Deselect"))
+		if(GUI.Button(Rect(35,(HUDheight/8)*7,((HUDwidth/8)*2.15)/2,25),"Deselect"))
 		{
 			infoScreenActive = false;
 			wipeTileSelections();
@@ -91,27 +94,27 @@ function OnGUI() {
 	}
 	if(unitScreenActive)
 	{
-		GUI.BeginGroup(Rect(Screen.width-150,0,150,Screen.height*2));
+		GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.15,HUDheight+5));
 		if(unitVar.GetComponent(unit).getUnitColor())
 		{
-			GUI.Box(Rect(0,0,150,240),"Blue Team Unit");
+			GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),"Blue Team Unit");
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles);
 		}
 		else
 		{
-			GUI.Box(Rect(0,0,150,240),"Red Team Unit");
+			GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),"Red Team Unit");
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles);
 		}
-		GUI.Label(Rect(65,25,150,30),"Info");
-		GUI.Label(Rect(10,80,150,30),"Morale = "+moraleUnit);
-		GUI.Label(Rect(10,110,150,30),"Number of Units = "+UnitsStoredInUnit);
+		GUI.Label(Rect(65,(HUDheight/8)*1,(HUDwidth/8)*2.15,30),"Info");
+		GUI.Label(Rect(10,(HUDheight/6)*2,(HUDwidth/8)*2.15,30),"Morale = "+moraleUnit);
+		GUI.Label(Rect(10,(HUDheight/6)*3,(HUDwidth/8)*2.15,30),"Number of Units = "+UnitsStoredInUnit);
 		
-		if(GUI.Button(Rect(35,170,80,30),"Close"))
+		if(GUI.Button(Rect(35,(HUDheight/8)*6,((HUDwidth/8)*2.15)/2,25),"Close"))
 		{
 			unitScreenActive = false;
 			wipeTileSelections();
 		}
-		if(GUI.Button(Rect(35,200,80,30),"Deselect"))
+		if(GUI.Button(Rect(35,(HUDheight/8)*7,((HUDwidth/8)*2.15)/2,25),"Deselect"))
 		{
 			unitScreenActive = false;
 			wipeTileSelections();
@@ -132,7 +135,7 @@ function OnGUI() {
 	}
 	GUI.EndGroup();
 	//Top HUD Items
-	GUI.BeginGroup(Rect((HUDwidth/7)*2,0,HUDwidth,35));
+	GUI.BeginGroup(Rect((HUDwidth/8)*2,0,HUDwidth,35));
 	GUI.Box(Rect(0,0,HUDwidth,35),"");
 	if(GUI.Button(Rect((HUDwidth/5)*0,5,HUDwidth/5,25),"Add Units"))
 	{
@@ -152,15 +155,17 @@ function OnGUI() {
 	GUI.EndGroup();
 	//Country Display
 	var vec2: Vector2;
-	if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1)
+	if(whichTurn==-1)
 		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayRedInfo();
-	else if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1)
+	else if(whichTurn==1)
 		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayBlueInfo();
 	GUI.BeginGroup(Rect(0,0,150,Screen.height));
-	GUI.Box(Rect(0,0,(HUDwidth/7)*2,Screen.height-150),"");
-	GUI.Box(Rect(0,30,HUDwidth/8,30)," "+ vec2);
-	//total number of tiles
-	//total number of units
+	if(whichTurn == 1)
+		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,Screen.height-150),"Blue Team");
+	else
+		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,Screen.height-150),"Red Team");
+	GUI.Label(Rect(10,(HUDheight/8)*4,HUDwidth/8*2,30),"Total Troops = "+ vec2.x);
+	GUI.Label(Rect(10,(HUDheight/8)*5,HUDwidth/8*2,30),"Total Tiles = "+ vec2.y);
 	//flag
 	GUI.EndGroup();
 }

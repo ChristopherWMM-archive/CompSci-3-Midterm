@@ -1,10 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\startScreenScript.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\guiOverlay.js">
     <Files>
-      <File FileName="Assets\Scripts\guiOverlay.js" Line="33" Column="6" />
-      <File FileName="Assets\Scripts\unit.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\tileScript.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\guiOverlay.js" Line="227" Column="18" />
+      <File FileName="Assets\Scripts\unit.js" Line="52" Column="84" />
+      <File FileName="Assets\Scripts\tileScript.js" Line="40" Column="17" />
       <File FileName="Assets\Scripts\gameMaster.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\startScreenScript.js" Line="21" Column="1" />
     </Files>

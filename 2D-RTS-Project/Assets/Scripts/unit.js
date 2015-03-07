@@ -8,7 +8,8 @@ var overrideInfo;
 var morale: float;
 var UnitsStored : int;
 var UnitColor : boolean;
-var addUnits = 100;
+var addUnits;
+var unitLevel;
 
 //var aniPlay = GetComponent("aniSprite");
 function Start () {
@@ -19,6 +20,8 @@ aniPlay.aniSprite(4,4,0,2,4,8,false);
 morale=10.0;
 UnitsStored=1000;
 UnitColor=true;
+unitLevel = 1;
+addUnits = 100;
 //Change color with turn
 }
 
@@ -46,7 +49,8 @@ function Update () {
 function OnMouseDown() {
 	isSelected=!isSelected;
 	overrideInfo = true;
-	GameObject.FindWithTag("hud").GetComponent(guiOverlay).newPiece = true;
+	GameObject.FindWithTag("hud").GetComponent(guiOverlay).currentUnit(this.gameObject);
+	GameObject.FindWithTag("hud").GetComponent(guiOverlay).newUnit = true;
 }
 function OnMouseEnter() 
 {
@@ -86,13 +90,17 @@ function getMorale(){
 	return morale;
 }
 function setMorale(mor: float) {
-morale=mor;
+	morale=mor;
 }
 function getUnitColor(){
 	return UnitColor;
+}
+function getUnitLevel(){
+	return unitLevel;
 }
 function addUnitsGUI() {
 	UnitsStored += addUnits;
 }
 function upgradeUnit() {
+	unitLevel+=1;
 }

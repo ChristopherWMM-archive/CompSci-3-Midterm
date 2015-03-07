@@ -23,6 +23,8 @@ var morale: int;
 var maxUnits: int;
 var sendUnit: boolean;
 var UnitArray;
+var addUnits;
+
 function Start () {
 //All this will be pulled from a database later on. 
  whichTeam=1;
@@ -35,6 +37,7 @@ function Start () {
  inYield=false;
  sendUnit=false;
  oneTime = false;
+ addUnits = 100;
 // redTiles = 0;
 // blueTiles = 0;
 }
@@ -154,4 +157,8 @@ function getTileColor(){
 	return tileColor;
 }
 function upgradeFort() {
+	FortLevel+=1;
+}
+function addUnitsGUI() {
+	UnitsStored += addUnits;
 }

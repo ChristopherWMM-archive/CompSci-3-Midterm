@@ -14,8 +14,10 @@ var UnitsStoredInUnit : int;
 
 var tile:GameObject;
 var unitVar:GameObject;
+var lastTile:GameObject;
 var tileColor:boolean;
 var unitColor: boolean;
+var unitLevel;
 var tilesArray;
 var targetTileScript;
 
@@ -40,6 +42,7 @@ function Start () {
 	unitVar=null;
 	Team1 = PlayerPrefs.GetString("Team1");
 	Team2 = PlayerPrefs.GetString("Team2");
+	unitLevel = 1;
 }
 
 function Update () {
@@ -108,12 +111,13 @@ function OnGUI() {
 		}
 		else
 		{
-			GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),Team1 + " Unit");
+			GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),Team2 + " Unit");
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles);
 		}
 		GUI.Label(Rect(65,(HUDheight/8)*1,(HUDwidth/8)*2.15,30),"Info");
-		GUI.Label(Rect(10,(HUDheight/6)*2,(HUDwidth/8)*2.15,30),"Morale = "+moraleUnit);
-		GUI.Label(Rect(10,(HUDheight/6)*3,(HUDwidth/8)*2.15,30),"Number of Units = "+UnitsStoredInUnit);
+		GUI.Label(Rect(10,(HUDheight/7)*2,(HUDwidth/8)*2.15,30),"Level "+unitLevel+" Unit");
+		GUI.Label(Rect(10,(HUDheight/7)*3,(HUDwidth/8)*2.15,30),"Morale = "+moraleUnit);
+		GUI.Label(Rect(10,(HUDheight/7)*4,(HUDwidth/8)*2.15,30),"Number of Units = "+UnitsStoredInUnit);
 		
 		if(GUI.Button(Rect(35,(HUDheight/8)*6,((HUDwidth/8)*2.12)/2,25),"Close"))
 		{
@@ -145,15 +149,28 @@ function OnGUI() {
 	GUI.Box(Rect(0,0,HUDwidth,35),"");
 	if(GUI.Button(Rect((HUDwidth/5)*0,5,HUDwidth/5,25),"Add Units"))
 	{
-		unit.FindWithTag("selectedUnit").GetComponent("unit").addUnitsGUI();
+		if(unitVar!= null)
+		{
+			unitVar.GetComponent("unit").addUnitsGUI();
+			UnitsStored = unitVar.GetComponent(unit).getUnitsStored();
+		}
 	}
 	if(GUI.Button(Rect((HUDwidth/5)*1,5,HUDwidth/5,25),"Upgrade Unit"))
 	{
-		 unit.FindWithTag("selectedUnit").GetComponent("unit").upgradeUnit();
+		if(unitVar != null)
+		{
+		 	unitVar.GetComponent("unit").upgradeUnit();
+			unitLevel = unitVar.GetComponent(unit).getUnitLevel();
+		}
 	}
 	if(GUI.Button(Rect((HUDwidth/5)*2,5,HUDwidth/5,25),"Upgrade Fort"))
 	{
-		tile.GetComponent(tileScript).upgradeFort();
+		if(infoScreenActive)
+		{
+			lastTile.GetComponent(tileScript).upgradeFort();
+			FortLevel = lastTile.GetComponent(tileScript).getFortLevel();
+		}
+		
 	}
 	if(GUI.Button(Rect((HUDwidth/5)*3,5,HUDwidth/5,25),"Violate"))
 	{
@@ -191,6 +208,7 @@ function infoPopUp() {
 		UnitsStored = tile.GetComponent(tileScript).getUnitsStored();
 		maxUnits = tile.GetComponent(tileScript).getMaxUnits();
 		tileColor = tile.GetComponent(tileScript).getTileColor();
+		lastTile = tile;
 	}
 	newPiece = false;
 }
@@ -200,11 +218,13 @@ function unitPopUp() {
 
 if(newUnit)
 {
-if(unitVar!=null) {
-	 moraleUnit = unitVar.GetComponent(unit).getMorale();
-	 UnitsStoredInUnit = unitVar.GetComponent(unit).getUnitsStored();
-	 unitColor = unitVar.GetComponent(unit).getUnitColor();
+	if(unitVar!=null) {
+		 moraleUnit = unitVar.GetComponent(unit).getMorale();
+		 UnitsStoredInUnit = unitVar.GetComponent(unit).getUnitsStored();
+		 unitColor = unitVar.GetComponent(unit).getUnitColor();
+		 unitLevel = unitVar.GetComponent(unit).getUnitLevel();
  }
+ newUnit = false;
 
 }
 

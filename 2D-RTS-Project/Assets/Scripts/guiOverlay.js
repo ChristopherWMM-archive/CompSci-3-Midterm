@@ -79,11 +79,11 @@ function OnGUI() {
 			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team2 + " Tile",style);
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles,style);
 		}
-		GUI.Label(Rect(65,(HUDheight/8)*1,(HUDwidth/8)*2.15,30),"Info",style);
-		GUI.Label(Rect(10,(HUDheight/8)*2,(HUDwidth/8)*2.15,30),"Fort Level = "+FortLevel,style);
-		GUI.Label(Rect(10,(HUDheight/8)*3,(HUDwidth/8)*2.15,30),"Morale = "+morale,style);
-		GUI.Label(Rect(10,(HUDheight/8)*4,(HUDwidth/8)*2.15,30),"Units Stored = "+UnitsStored,style);
-		GUI.Label(Rect(10,(HUDheight/8)*5,(HUDwidth/8)*2.15,30),"Max Units = "+maxUnits,style);
+		GUI.Label(Rect(10,(HUDheight/8)*1,(HUDwidth/8)*2.05,30),"Info",style);
+		GUI.Label(Rect(10,(HUDheight/8)*2,(HUDwidth/8)*2.05,30),"Fort Level = "+FortLevel,style);
+		GUI.Label(Rect(10,(HUDheight/8)*3,(HUDwidth/8)*2.05,30),"Morale = "+morale,style);
+		GUI.Label(Rect(10,(HUDheight/8)*4,(HUDwidth/8)*2.05,30),"Units Stored = "+UnitsStored,style);
+		GUI.Label(Rect(10,(HUDheight/8)*5,(HUDwidth/8)*2.05,30),"Max Units = "+maxUnits,style);
 		
 		if(GUI.Button(Rect(35,(HUDheight/8)*6,((HUDwidth/8)*2.15)/2,25),"Close",buttonStyle))
 		{
@@ -117,10 +117,10 @@ function OnGUI() {
 			GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),Team2 + " Unit",style);
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles);
 		}
-		GUI.Label(Rect(65,(HUDheight/7)*1,(HUDwidth/8)*2.15,30),"Info",style);
-		GUI.Label(Rect(10,(HUDheight/7)*2,(HUDwidth/8)*2.15,30),"Level "+unitLevel+" Unit",style);
-		GUI.Label(Rect(10,(HUDheight/7)*3,(HUDwidth/8)*2.15,30),"Morale = "+moraleUnit,style);
-		GUI.Label(Rect(10,(HUDheight/7)*4,(HUDwidth/8)*2.15,30),"Number of Units = "+UnitsStoredInUnit,style);
+		GUI.Label(Rect(10,(HUDheight/7)*1,(HUDwidth/8)*2,30),"Info",style);
+		GUI.Label(Rect(10,(HUDheight/7)*2,(HUDwidth/8)*2,30),"Level "+unitLevel+" Unit",style);
+		GUI.Label(Rect(10,(HUDheight/7)*3,(HUDwidth/8)*2,30),"Morale = "+moraleUnit,style);
+		GUI.Label(Rect(10,(HUDheight/7)*4,(HUDwidth/8)*2,30),"Number of Units = "+UnitsStoredInUnit,style);
 		
 		if(GUI.Button(Rect(35,(HUDheight/8)*6,((HUDwidth/8)*2.12)/2,25),"Close",buttonStyle))
 		{
@@ -149,7 +149,7 @@ function OnGUI() {
 	GUI.EndGroup();
 	//Top HUD Items
 	GUI.BeginGroup(Rect((HUDwidth/8)*2,0,HUDwidth,35));
-	GUI.Box(Rect(0,0,HUDwidth,35),"",style);
+	GUI.Box(Rect(0,0,HUDwidth,35),"",buttonStyle);
 	if(GUI.Button(Rect((HUDwidth/5)*0,5,HUDwidth/5,25),"Add Units",buttonStyle))
 	{
 		if(unitVar!= null)

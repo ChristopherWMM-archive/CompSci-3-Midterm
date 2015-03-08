@@ -5,6 +5,10 @@ var titleHeight;
 private var Team1:String;
 private var Team2:String;
 private var lastWin:String;
+
+var style:GUIStyle;
+var buttonStyle:GUIStyle;
+
 function Start () {
 	whichMenu = 1;
 	Team1 = "Blue Team";
@@ -23,18 +27,18 @@ function OnGUI() {
 if(whichMenu == 1)
 {
 	GUI.BeginGroup(Rect((Screen.width/8)*3,Screen.height/4,titleWidth,titleHeight));
-	GUI.Box(Rect(0,(titleHeight/5)*0,titleWidth,titleHeight),"Menu");
-	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*1,titleWidth/2,titleHeight/5),"Start Game"))
+	GUI.Box(Rect(0,(titleHeight/5)*0,titleWidth,titleHeight),"Menu",style);
+	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*1,titleWidth/2,titleHeight/5),"Start Game",buttonStyle))
 	{
 		PlayerPrefs.SetString("Team1",Team1);
 		PlayerPrefs.SetString("Team2",Team2);
 		Application.LoadLevel("Main");
 	}
-	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*2,titleWidth/2,titleHeight/5),"Options"))
+	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*2,titleWidth/2,titleHeight/5),"Options",buttonStyle))
 		 whichMenu = 2;
-	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*3,titleWidth/2,titleHeight/5),"Instructions"))
+	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*3,titleWidth/2,titleHeight/5),"Instructions",buttonStyle))
 		whichMenu = 3;
-	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*4,titleWidth/2,titleHeight/5),"Exit"))
+	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*4,titleWidth/2,titleHeight/5),"Exit",buttonStyle))
 		Application.Quit();
 	GUI.EndGroup();
 }
@@ -42,10 +46,10 @@ if(whichMenu == 1)
 else if(whichMenu == 2)
 {
 	GUI.BeginGroup(Rect((Screen.width/8)*3,Screen.height/4,titleWidth,titleHeight));
-	GUI.Box(Rect(0,(titleHeight/5)*0,titleWidth,titleHeight),"Menu");
-	Team1 = GUI.TextField(Rect(titleWidth/4,(titleHeight/5)*1,titleWidth/2,titleHeight/7),Team1);
-	Team2 = GUI.TextField(Rect(titleWidth/4,(titleHeight/5)*2,titleWidth/2,titleHeight/7),Team2);
-	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*4,titleWidth/2,titleHeight/5),"Back"))
+	GUI.Box(Rect(0,(titleHeight/5)*0,titleWidth,titleHeight),"Menu",style);
+	Team1 = GUI.TextField(Rect(titleWidth/4,(titleHeight/5)*1,titleWidth/2,titleHeight/7),Team1,buttonStyle);
+	Team2 = GUI.TextField(Rect(titleWidth/4,(titleHeight/5)*2,titleWidth/2,titleHeight/7),Team2,buttonStyle);
+	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*4,titleWidth/2,titleHeight/5),"Back",buttonStyle))
 		whichMenu = 1;
 	GUI.EndGroup();
 }
@@ -53,14 +57,14 @@ else if(whichMenu == 2)
 else if(whichMenu == 3)
 {
 	GUI.BeginGroup(Rect((Screen.width/8)*3,Screen.height/4,titleWidth,titleHeight));
-	GUI.Box(Rect(0,(titleHeight/5)*0,titleWidth,titleHeight),"Menu");
-	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*1,titleWidth/2,titleHeight/5)," "))
+	GUI.Box(Rect(0,(titleHeight/5)*0,titleWidth,titleHeight),"Menu",style);
+	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*1,titleWidth/2,titleHeight/5)," ",buttonStyle))
 		Application.LoadLevel("titleScreen");
-	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*2,titleWidth/2,titleHeight/5)," "))
+	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*2,titleWidth/2,titleHeight/5)," ",buttonStyle))
 		 whichMenu = 2;
-	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*3,titleWidth/2,titleHeight/5)," "))
+	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*3,titleWidth/2,titleHeight/5)," ",buttonStyle))
 		whichMenu = 3;
-	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*4,titleWidth/2,titleHeight/5),"Back"))
+	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*4,titleWidth/2,titleHeight/5),"Back",buttonStyle))
 		whichMenu = 1;
 	GUI.EndGroup();
 }

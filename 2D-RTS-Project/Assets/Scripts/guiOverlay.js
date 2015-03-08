@@ -34,6 +34,9 @@ var Team1:String;
 var Team2:String;
 var lastWin:String;
 
+var style:GUIStyle;
+var buttonStyle:GUIStyle;
+
 function Start () {
 	infoScreenActive = false;
 	infoPopUp();
@@ -68,26 +71,26 @@ function OnGUI() {
 		GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.10,HUDheight+5));
 		if(tileColor)
 		{
-			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team1 + " Tile");
-		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles);
+			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team1 + " Tile",style);
+		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles,style);
 		}
 		else
 		{
-			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team2 + " Tile");
-		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles);
+			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team2 + " Tile",style);
+		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles,style);
 		}
-		GUI.Label(Rect(65,(HUDheight/8)*1,(HUDwidth/8)*2.15,30),"Info");
-		GUI.Label(Rect(10,(HUDheight/8)*2,(HUDwidth/8)*2.15,30),"Fort Level = "+FortLevel);
-		GUI.Label(Rect(10,(HUDheight/8)*3,(HUDwidth/8)*2.15,30),"Morale = "+morale);
-		GUI.Label(Rect(10,(HUDheight/8)*4,(HUDwidth/8)*2.15,30),"Units Stored = "+UnitsStored);
-		GUI.Label(Rect(10,(HUDheight/8)*5,(HUDwidth/8)*2.15,30),"Max Units = "+maxUnits);
+		GUI.Label(Rect(65,(HUDheight/8)*1,(HUDwidth/8)*2.15,30),"Info",style);
+		GUI.Label(Rect(10,(HUDheight/8)*2,(HUDwidth/8)*2.15,30),"Fort Level = "+FortLevel,style);
+		GUI.Label(Rect(10,(HUDheight/8)*3,(HUDwidth/8)*2.15,30),"Morale = "+morale,style);
+		GUI.Label(Rect(10,(HUDheight/8)*4,(HUDwidth/8)*2.15,30),"Units Stored = "+UnitsStored,style);
+		GUI.Label(Rect(10,(HUDheight/8)*5,(HUDwidth/8)*2.15,30),"Max Units = "+maxUnits,style);
 		
-		if(GUI.Button(Rect(35,(HUDheight/8)*6,((HUDwidth/8)*2.15)/2,25),"Close"))
+		if(GUI.Button(Rect(35,(HUDheight/8)*6,((HUDwidth/8)*2.15)/2,25),"Close",buttonStyle))
 		{
 			infoScreenActive = false;
 			wipeTileSelections();
 		}
-		if(GUI.Button(Rect(35,(HUDheight/8)*7,((HUDwidth/8)*2.15)/2,25),"Deselect"))
+		if(GUI.Button(Rect(35,(HUDheight/8)*7,((HUDwidth/8)*2.15)/2,25),"Deselect",buttonStyle))
 		{
 			infoScreenActive = false;
 			wipeTileSelections();
@@ -106,25 +109,25 @@ function OnGUI() {
 		GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.15,HUDheight+5));
 		if(unitVar.GetComponent(unit).getUnitColor())
 		{
-			GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),Team1 + " Unit");
-		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles);
+			GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),Team1 + " Unit",style);
+		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles,style);
 		}
 		else
 		{
-			GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),Team2 + " Unit");
+			GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),Team2 + " Unit",style);
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles);
 		}
-		GUI.Label(Rect(65,(HUDheight/8)*1,(HUDwidth/8)*2.15,30),"Info");
-		GUI.Label(Rect(10,(HUDheight/7)*2,(HUDwidth/8)*2.15,30),"Level "+unitLevel+" Unit");
-		GUI.Label(Rect(10,(HUDheight/7)*3,(HUDwidth/8)*2.15,30),"Morale = "+moraleUnit);
-		GUI.Label(Rect(10,(HUDheight/7)*4,(HUDwidth/8)*2.15,30),"Number of Units = "+UnitsStoredInUnit);
+		GUI.Label(Rect(65,(HUDheight/7)*1,(HUDwidth/8)*2.15,30),"Info",style);
+		GUI.Label(Rect(10,(HUDheight/7)*2,(HUDwidth/8)*2.15,30),"Level "+unitLevel+" Unit",style);
+		GUI.Label(Rect(10,(HUDheight/7)*3,(HUDwidth/8)*2.15,30),"Morale = "+moraleUnit,style);
+		GUI.Label(Rect(10,(HUDheight/7)*4,(HUDwidth/8)*2.15,30),"Number of Units = "+UnitsStoredInUnit,style);
 		
-		if(GUI.Button(Rect(35,(HUDheight/8)*6,((HUDwidth/8)*2.12)/2,25),"Close"))
+		if(GUI.Button(Rect(35,(HUDheight/8)*6,((HUDwidth/8)*2.12)/2,25),"Close",buttonStyle))
 		{
 			unitScreenActive = false;
 			wipeTileSelections();
 		}
-		if(GUI.Button(Rect(35,(HUDheight/8)*7,((HUDwidth/8)*2.12)/2,25),"Deselect"))
+		if(GUI.Button(Rect(35,(HUDheight/8)*7,((HUDwidth/8)*2.12)/2,25),"Deselect",buttonStyle))
 		{
 			unitScreenActive = false;
 			wipeTileSelections();
@@ -139,15 +142,15 @@ function OnGUI() {
 	}
 	//End Turn
 	GUI.BeginGroup(Rect(Screen.width-80,Screen.height-30,100,50));
-	if(GUI.Button(Rect(0,0,80,30),"End Turn"))
+	if(GUI.Button(Rect(0,0,80,30),"End Turn",buttonStyle))
 	{
 		GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn *= -1;
 	}
 	GUI.EndGroup();
 	//Top HUD Items
 	GUI.BeginGroup(Rect((HUDwidth/8)*2,0,HUDwidth,35));
-	GUI.Box(Rect(0,0,HUDwidth,35),"");
-	if(GUI.Button(Rect((HUDwidth/5)*0,5,HUDwidth/5,25),"Add Units"))
+	GUI.Box(Rect(0,0,HUDwidth,35),"",style);
+	if(GUI.Button(Rect((HUDwidth/5)*0,5,HUDwidth/5,25),"Add Units",buttonStyle))
 	{
 		if(unitVar!= null)
 		{
@@ -155,7 +158,7 @@ function OnGUI() {
 			UnitsStored = unitVar.GetComponent(unit).getUnitsStored();
 		}
 	}
-	if(GUI.Button(Rect((HUDwidth/5)*1,5,HUDwidth/5,25),"Upgrade Unit"))
+	if(GUI.Button(Rect((HUDwidth/5)*1,5,HUDwidth/5,25),"Upgrade Unit",buttonStyle))
 	{
 		if(unitVar != null)
 		{
@@ -163,7 +166,7 @@ function OnGUI() {
 			unitLevel = unitVar.GetComponent(unit).getUnitLevel();
 		}
 	}
-	if(GUI.Button(Rect((HUDwidth/5)*2,5,HUDwidth/5,25),"Upgrade Fort"))
+	if(GUI.Button(Rect((HUDwidth/5)*2,5,HUDwidth/5,25),"Upgrade Fort",buttonStyle))
 	{
 		if(infoScreenActive)
 		{
@@ -172,10 +175,10 @@ function OnGUI() {
 		}
 		
 	}
-	if(GUI.Button(Rect((HUDwidth/5)*3,5,HUDwidth/5,25),"Violate"))
+	if(GUI.Button(Rect((HUDwidth/5)*3,5,HUDwidth/5,25),"Violate",buttonStyle))
 	{
 	}
-	if(GUI.Button(Rect((HUDwidth/5)*4,5,HUDwidth/5,25),"Surrender"))
+	if(GUI.Button(Rect((HUDwidth/5)*4,5,HUDwidth/5,25),"Surrender",buttonStyle))
 	{
 		if(whichTurn == 1)
 			PlayerPrefs.SetString("LastWin",Team2);
@@ -192,11 +195,11 @@ function OnGUI() {
 		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayBlueInfo();
 	GUI.BeginGroup(Rect(0,0,(HUDwidth/8)*2,HUDheight+5));
 	if(whichTurn == 1)
-		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,HUDheight+5),Team1);
+		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,HUDheight+5),Team1,style);
 	else
-		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,HUDheight+5),Team2);
-	GUI.Label(Rect(10,(HUDheight/8)*4,HUDwidth/8*2,30),"Total Troops = "+ vec2.x);
-	GUI.Label(Rect(10,(HUDheight/8)*5,HUDwidth/8*2,30),"Total Tiles = "+ vec2.y);
+		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,HUDheight+5),Team2,style);
+	GUI.Label(Rect(10,(HUDheight/8)*4,HUDwidth/8*2,30),"Total Troops = "+ vec2.x,style);
+	GUI.Label(Rect(10,(HUDheight/8)*5,HUDwidth/8*2,30),"Total Tiles = "+ vec2.y,style);
 	//flag
 	GUI.EndGroup();
 }

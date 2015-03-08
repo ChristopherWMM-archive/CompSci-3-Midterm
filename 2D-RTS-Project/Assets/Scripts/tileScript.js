@@ -65,7 +65,7 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 		if(Input.GetKeyDown(KeyCode.G))
 		{
 			whichTeam=-whichTeam;
-			GameObject.FindWithTag("hud").GetComponent(guiOverlay).updateTilesTaken();
+			//GameObject.FindWithTag("hud").GetComponent(guiOverlay).updateTilesTaken();
 		}
 		for( zi=0;zi<UnitArray.length;zi++)
 		{

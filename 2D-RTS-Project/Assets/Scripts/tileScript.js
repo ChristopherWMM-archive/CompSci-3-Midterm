@@ -76,7 +76,15 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 	      {	
 	      		
 	      		 print(" 1 if statement reached");
+	      		 
+	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && 
+	      		(thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 ) {
 		      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
+		      }
+		      
+		     
+		      
+		      
 		      if((targetUnitScript.UnitColor) && (whichTeam==-1))
 	      		{
 	      		

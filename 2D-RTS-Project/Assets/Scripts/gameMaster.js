@@ -1,15 +1,126 @@
 ﻿
 var whichTurn:int;
-
+var redBank :float;
+var blueBank :float;
+var MoraleModifierB: float;
+var MoraleModifierR: float;
+var timeCount;
 function Start () {
 	whichTurn = 1;
 	
-	
+	redBank=10.0;
+	blueBank=10.0;
 }
 
 function Update () {
+timeCount+=Time.deltaTime;
+if(timeCount>= 5)
+{
+
+
+calculateFinances();
+timeCount=0;
+}
+
+ if(redBank<=0)
+ {
+ 
+ MoralemodifierR=.5;
+ 
+ }
+ else
+ 	MoralemodifierR=1;
+ 	
+ 	
+ 	
+ 	if(blueBank<=0)
+ {
+ 
+ MoralemodifierB=.5;
+ 
+ }
+ else
+ 	MoralemodifierB=1;
+ 	
+ 	
+}
+
+
+function calculateFinances()
+{
+var budget: float;
+var tilesArray;
+var unitsArray;
+if(whichTurn) {
+tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2");
+	unitsArray=GameObject.FindGameObjectsWithTag("selectedUnit");
+		for(var zi=0;zi<tilesArray.length;zi++)
+		{
+		 
+		var  tileTargetScript=(tilesArray[zi].GetComponent("tileScript"));
+	      if(tileTargetScript.whichTeam==1)
+	      {
+	      	budget+=(tileTargetScript.baseTax/10);
+	      	//10 will be changed to AdmEff
+	       
+	      } 
+	      
+	    }
+	    
+		 
+	for(zz=0;zz<unitsArray.length;zz++)
+			{
+				unitTargetScript=(unitsArray[zz].GetComponent("unit"));
+      			   if(unitTargetScript.UnitColor)
+				      {
+				       budget-= unitTargetScript.unitLevel/2;
+				       //10 will be changed to AdmEff
+				     
+				      
+				      } 
+			}
+
+blueBank+=budget;
 
 }
+
+
+if(whichTurn) {
+tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2");
+	unitsArray=GameObject.FindGameObjectsWithTag("selectedUnit");
+		for(var zp=0;zp<tilesArray.length;zp++)
+		{
+		 
+		  tileTargetScript=(tilesArray[zp].GetComponent("tileScript"));
+	      if(tileTargetScript.whichTeam==-1)
+	      {
+	      	budget+=(tileTargetScript.baseTax/10);
+	      	//10 will be changed to AdmEff
+	       
+	      } 
+	      
+	    }
+	    
+		 
+	for(zx=0;zx<unitsArray.length;zx++)
+			{
+				unitTargetScript=(unitsArray[zx].GetComponent("unit"));
+      			   if(!unitTargetScript.UnitColor)
+				      {
+				       budget-= unitTargetScript.unitLevel/50;
+				       //10 will be changed to MilEff
+				     
+				      
+				      } 
+			}
+
+redBank+=budget;
+
+}
+
+
+}
+
 function battle (attk: GameObject, def: GameObject,defIsTile: boolean)
 {
 
@@ -17,10 +128,26 @@ print("function Called");
 var baseEffective=1000;
 var attkScript;
 var DefScript;
+var moraleModiferAttk;
+var moraleModiferDef;
+
+
 
 	
 
 attkScript=	attk.GetComponent(unit);
+if(attkScript.whichTeam==1) {
+	moraleModiferAttk=MoraleModifierB;
+	moraleModiferDef=MoraleModifierR;
+	}
+	
+else 
+{
+
+moraleModiferAttk=MoraleModifierR;
+	moraleModiferDef=MoraleModifierB;
+
+}
 if(defIsTile)
 		DefScript=def.GetComponent(tileScript);
 else 
@@ -33,12 +160,12 @@ while(battleOn)
 	var defEffective=DefScript.UnitsStored/baseEffective; 
 	//var defUp=DefScript.getRollUp;
 	//var defDown=DefScript.getRollDown;
-	var defRoll=(Random.Range(DefScript.morale-3,DefScript.morale+3)*defEffective);
+	var defRoll=(Random.Range((DefScript.morale*moraleModiferDef-3),(DefScript.morale*moraleModiferDef+3))*defEffective);
 	//Attacker Vars
 	var attkEffective=attkScript.UnitsStored/baseEffective;
 	//var attkUp=attkScript.getRollUp;
 	//var attkDown=attkScript.getRollDown;
-	var attkRoll=Random.Range(attkScript.morale-3,attkScript.morale+3)*attkEffective;
+	var attkRoll=Random.Range((attkScript.morale*moraleModiferAttk-3),(attkScript.morale*moraleModiferAttk+3))*attkEffective;
 	
 	var totalRoll=defRoll-attkRoll;
 	
@@ -176,11 +303,7 @@ while(battleOn)
 
 }
   
-  	
-
-
-
-}
+  	}
 function displayRedInfo()
 	{	
 	var  numTiles :int;

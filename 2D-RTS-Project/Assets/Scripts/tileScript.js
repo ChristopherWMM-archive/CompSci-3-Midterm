@@ -12,6 +12,8 @@ var targetUnitScript;
 var isSelected: boolean;
 var oneTime:boolean;
 var redTiles:int;
+
+var baseTax: float;
 //var blueTiles:int;
 //var numTiles;
 var tileColor:boolean;
@@ -38,6 +40,8 @@ function Start () {
  sendUnit=false;
  oneTime = false;
  addUnits = 100;
+ 
+  baseTax=4.0;
 // redTiles = 0;
 // blueTiles = 0;
 }

@@ -16,7 +16,7 @@ function Start () {
 var aniPlay = GetComponent("aniSprite");
 isSelected=false;
 thisUnit.tag="selectedUnit";
-aniPlay.aniSprite(4,4,0,2,4,8,false);
+
 morale=10.0;
 UnitsStored=1000;
 UnitColor=true;
@@ -26,7 +26,8 @@ addUnits = 100;
 }
 
 function Update () {
-
+	var aniPlay = GetComponent("aniSprite");
+	aniPlay.aniSprite(4,4,0,0,4,8,false);
 
 	if(isSelected && overrideInfo)
 	{ 
@@ -34,13 +35,24 @@ function Update () {
 		GameObject.FindWithTag("hud").GetComponent(guiOverlay).unitScreenActive = true;
 		GameObject.FindWithTag("hud").GetComponent(guiOverlay).infoScreenActive = false;
 		
-		
 		overrideInfo = false;
+		
 	}
+	if(isSelected){
+		var screenPos = Camera.main.ScreenToWorldPoint (Vector3 (Input.mousePosition.x , Input.mousePosition.y , 0));
+			if(screenPos.x > transform.position.x){
+				aniPlay.aniSprite(4,4,0,2,4,8,false);
+			}
+			else if(screenPos.x < transform.position.x){
+				aniPlay.aniSprite(4,4,0,1,4,8,false);
+			}
+			
+		}
+		
 	
-
-	var aniPlay = GetComponent("aniSprite");
- 	aniPlay.aniSprite(4,4,0,2,4,8,false);
+	
+		
+ 	//aniPlay.aniSprite(4,4,0,2,4,8,false);
  	//aniPlay.aniSprite(8,1,0,0,8,8,false);
  	
  	

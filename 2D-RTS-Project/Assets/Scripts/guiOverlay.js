@@ -29,6 +29,7 @@ var HUDwidth;
 var HUDheight;
 
 var whichTurn;
+var gameOver;
 
 var Team1:String;
 var Team2:String;
@@ -185,7 +186,7 @@ function OnGUI() {
 			PlayerPrefs.SetString("LastWin",Team2);
 		else
 			PlayerPrefs.SetString("LastWin",Team1);
-		Application.LoadLevel("titleScreen");
+		gameOver = true;	
 	}
 	GUI.EndGroup();
 	//Country Display
@@ -203,6 +204,19 @@ function OnGUI() {
 	GUI.Label(Rect(20,(HUDheight/8)*5,HUDwidth/8*1.5,30),"Total Tiles = "+ vec2.y,inSetStyle);
 	//flag
 	GUI.EndGroup();
+	if(gameOver)
+	{
+		GUI.BeginGroup(Rect(0,0,(HUDwidth/8)*2,HUDheight+5));
+		if(whichTurn == 1)
+			GUI.Label(Rect(Screen.width/3,0,(Screen.width/8)*2,30),Team2 + "Wins",style);
+		else
+			GUI.Label(Rect(Screen.width/3,0,HUDwidth,30),Team1 + "Wins",style);
+		if(GUI.Button(Rect(Screen.width/3,(Screen.height/3)*25,HUDwidth,30),"Back to Menu",buttonStyle))
+			Application.LoadLevel("titleScreen");
+		if(GUI.Button(Rect((Screen.width/5)*1.85,(Screen.height/3)*5,HUDwidth,30),"Restart",buttonStyle))
+			Application.LoadLevel("Main");
+		GUI.EndGroup();
+	}
 }
 function infoPopUp() {
 	if(newPiece)

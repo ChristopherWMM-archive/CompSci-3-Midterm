@@ -182,10 +182,6 @@ function OnGUI() {
 	}
 	if(GUI.Button(Rect((HUDwidth/5)*4,5,HUDwidth/5,25),"Surrender",buttonStyle))
 	{
-		if(whichTurn == 1)
-			PlayerPrefs.SetString("LastWin",Team2);
-		else
-			PlayerPrefs.SetString("LastWin",Team1);
 		gameOver = true;	
 	}
 	GUI.EndGroup();
@@ -206,14 +202,14 @@ function OnGUI() {
 	GUI.EndGroup();
 	if(gameOver)
 	{
-		GUI.BeginGroup(Rect(0,0,(HUDwidth/8)*2,HUDheight+5));
+		GUI.BeginGroup(Rect(0,0,Screen.Width,Screen.height));
 		if(whichTurn == 1)
 			GUI.Label(Rect(Screen.width/3,0,(Screen.width/8)*2,30),Team2 + "Wins",style);
 		else
-			GUI.Label(Rect(Screen.width/3,0,HUDwidth,30),Team1 + "Wins",style);
-		if(GUI.Button(Rect(Screen.width/3,(Screen.height/3)*25,HUDwidth,30),"Back to Menu",buttonStyle))
+			GUI.Label(Rect(Screen.width/3,0,(Screen.width/8)*2,30),Team1 + "Wins",style);
+		if(GUI.Button(Rect(Screen.width/3,(Screen.height/3)*1.5,HUDwidth,30),"Back to Menu",buttonStyle))
 			Application.LoadLevel("titleScreen");
-		if(GUI.Button(Rect((Screen.width/5)*1.85,(Screen.height/3)*5,HUDwidth,30),"Restart",buttonStyle))
+		if(GUI.Button(Rect((Screen.width/5)*1.85,(Screen.height/3)*1.25,HUDwidth,30),"Restart",buttonStyle))
 			Application.LoadLevel("Main");
 		GUI.EndGroup();
 	}

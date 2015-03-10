@@ -29,7 +29,7 @@ addUnits = 100;
 function Update () {
 	var aniPlay = GetComponent("aniSprite");
 	aniPlay.aniSprite(4,4,0,0,4,8,false);
-
+     
 	if(isSelected && overrideInfo)
 	{ 
 		

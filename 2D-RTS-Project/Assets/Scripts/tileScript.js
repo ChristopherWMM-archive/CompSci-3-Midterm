@@ -77,7 +77,7 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 		 	targetUnit=UnitArray[zi];
 		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
 		   
-	      if(sendUnit && targetUnitScript.getSelected() &&((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && UnitArray[zi].UnitColor) || ((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1) && !UnitArray[zi].UnitColor)))
+	      if(sendUnit && targetUnitScript.getSelected() && ((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor)))
 	      {	
 	      		
 	      		 print(" 1 if statement reached");
@@ -101,6 +101,33 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 		      sendUnit=false;
 	      	
 	      	targetUnitScript.setSelected(false);
+	      }
+	      
+	      else if(sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1) && !targetUnitScript.UnitColor)
+	      {
+	       print(" 1 if statement reached");
+	      		 
+	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && 
+	      		(thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 ) {
+		      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
+		      }
+		      
+		     
+		      
+		      
+		      if((targetUnitScript.UnitColor) && (whichTeam==-1) || !(targetUnitScript.UnitColor) && (whichTeam==1))
+	      		{
+	      		
+	      		  print("if statement reached");
+	      		 battleMethod=GameObject.FindWithTag("Master").GetComponent(gameMaster);
+	      		battleMethod.battle(UnitArray[zi],thisTile,true);
+	      		
+	      		}
+		      sendUnit=false;
+	      	
+	      	targetUnitScript.setSelected(false);
+	      
+	      
 	      }
 	     }
 	     

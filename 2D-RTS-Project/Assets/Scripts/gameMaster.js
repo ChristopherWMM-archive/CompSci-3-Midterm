@@ -122,19 +122,21 @@ budget=0;
 }
 }
 function addUnitsGUI(tileTarg: GameObject) {
+	if(tileTarg != null)
+	{
+		var fixPos=  Vector3(tileTarg.transform.position.x,1,tileTarg.transform.position.z);
+		var spawnedUnit: GameObject;
 
-var fixPos=  Vector3(tileTarg.transform.position.x,1,tileTarg.transform.position.z);
-var spawnedUnit: GameObject;
+		spawnedUnit= Instantiate(thisUnit,fixPos,thisUnit.transform.rotation);
+		var spawnedScript=spawnedUnit.GetComponent("unit");
 
-spawnedUnit= Instantiate(thisUnit,fixPos,thisUnit.transform.rotation);
-var spawnedScript=spawnedUnit.GetComponent("unit");
-
-	print("went into addUnits");
-	
-	if(whichTurn==1)
-		spawnedScript.UnitColor=true;
-	if(whichTurn==-1)
-		spawnedScript.UnitColor=false;
+		print("went into addUnits");
+		
+		if(whichTurn==1)
+			spawnedScript.UnitColor=true;
+		if(whichTurn==-1)
+			spawnedScript.UnitColor=false;
+	}
 }
 
 

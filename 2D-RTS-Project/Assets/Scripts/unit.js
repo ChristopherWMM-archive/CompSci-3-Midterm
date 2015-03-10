@@ -8,7 +8,7 @@ var HoverOver;
 var overrideInfo;
 var morale: float;
 var UnitsStored : int;
-var UnitColor : boolean;
+var UnitColor : int;
 var addUnits;
 var unitLevel;
 
@@ -23,6 +23,7 @@ UnitsStored=1000;
 
 unitLevel = 1;
 addUnits = 100;
+allocateUnits();
 //Change color with turn
 }
 
@@ -55,7 +56,7 @@ function Update () {
 		
  	//aniPlay.aniSprite(4,4,0,2,4,8,false);
  	//aniPlay.aniSprite(8,1,0,0,8,8,false);
- 	
+ 	 
  	
 }
 
@@ -114,4 +115,21 @@ function getUnitLevel(){
 
 function upgradeUnit() {
 	unitLevel+=1;
+}
+function allocateUnits() {
+	unitsArray=GameObject.FindGameObjectsWithTag("selectedUnit");
+	
+	for(var zi=0;zi<unitsArray.length;zi++)
+	{
+	  unitTargetScript=(tilesArray[zi].GetComponent("unit"));
+	  var rand = Random.Range(0,4);
+	  if(rand < 1)
+      	unitTargetScript.unitColor = -1;
+      else if(rand >= 1 && rand < 2)
+      	unitTargetScript.unitColor = 0;
+      else if(rand >= 2 && rand < 3)
+      	unitTargetScript.unitColor = 1;
+      else if(rand >= 3 && rand < 4)
+      	unitTargetScript.unitColor = 2;
+    }
 }

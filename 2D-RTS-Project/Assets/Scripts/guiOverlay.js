@@ -16,7 +16,7 @@ var tile:GameObject;
 var unitVar:GameObject;
 var lastTile:GameObject;
 var tileColor:boolean;
-var unitColor: boolean;
+var unitColor: int;
 var unitLevel;
 var tilesArray;
 var targetTileScript;
@@ -33,6 +33,7 @@ var gameOver;
 
 var Team1:String;
 var Team2:String;
+var Ghandi:String;
 var lastWin:String;
 
 var style:GUIStyle;
@@ -47,6 +48,7 @@ function Start () {
 	unitVar=null;
 	Team1 = PlayerPrefs.GetString("Team1");
 	Team2 = PlayerPrefs.GetString("Team2");
+	Ghandi = "Ghandi";
 	unitLevel = 1;
 }
 
@@ -109,12 +111,12 @@ function OnGUI() {
 	if(unitScreenActive)
 	{
 		GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.15,HUDheight+5));
-		if(unitVar.GetComponent(unit).getUnitColor())
+		if(unitVar.GetComponent(unit).getUnitColor() == 2)
 		{
 			GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),Team1 + " Unit",style);
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles,style);
 		}
-		else
+		else if(unitVar.GetComponent(unit).getUnitColor() == 1)
 		{
 			GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),Team2 + " Unit",style);
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles);
@@ -154,36 +156,39 @@ function OnGUI() {
 	GUI.Box(Rect(0,0,HUDwidth,35),"",inSetStyle);
 	if(GUI.Button(Rect((HUDwidth/5)*0,5,HUDwidth/5,25),"Add Units",buttonStyle))
 	{
-	
-	var tilesArrayZ=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2");
-	var tileTarg;
-	
-	for(var zt=0;zt<tilesArrayZ.length;zt++)
-	{
-	 
-	   var tileTargetScriptZ=(tilesArrayZ[zt].GetComponent("tileScript"));
-       if(tileTargetScriptZ.spawnUnit) {
-     		tileTarg=tilesArrayZ[zt];
-      
-      tileTargetScriptZ.spawnUnit=false;
-      }
-     }
-	
-	
+		if(infoScreenActive)
+		{
+			var tilesArrayZ=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")
+			+GameObject.FindGameObjectsWithTag("test3")+GameObject.FindGameObjectsWithTag("test4");
+			var tileTarg;
+		
+			for(var zt=0;zt<tilesArrayZ.length;zt++)
+			{
+			 
+			   var tileTargetScriptZ=(tilesArrayZ[zt].GetComponent("tileScript"));
+		       if(tileTargetScriptZ.spawnUnit) 
+		       {
+		     		tileTarg=tilesArrayZ[zt];
+		      		tileTargetScriptZ.spawnUnit=false;
+		      	}
+		     }
+		
+		
 			var unitScript=GameObject.FindWithTag("Master").GetComponent("gameMaster");
 			 
 				
-				if(unitScript.whichTurn==1 && unitScript.blueBank>9) {
-					unitScript.blueBank-=10;
-					unitScript.addUnitsGUI(tileTarg);
-					
-					}
-				else if(unitScript.whichTurn==-1 && unitScript.redBank>9)
-				{
-					unitScript.redBank-=10;
-					unitScript.addUnitsGUI(tileTarg);
-					}
-					
+			if(unitScript.whichTurn==2 && unitScript.blueBank>9) 
+			{
+				unitScript.blueBank-=10;
+				unitScript.addUnitsGUI(tileTarg);
+				
+			}
+			else if(unitScript.whichTurn==1 && unitScript.redBank>9)
+			{
+				unitScript.redBank-=10;
+				unitScript.addUnitsGUI(tileTarg);
+			}
+		}
 				
 	}
 	if(GUI.Button(Rect((HUDwidth/5)*1,5,HUDwidth/5,25),"Upgrade Unit",buttonStyle))
@@ -200,6 +205,7 @@ function OnGUI() {
 		{
 			lastTile.GetComponent(tileScript).upgradeFort();
 			FortLevel = lastTile.GetComponent(tileScript).getFortLevel();
+			maxUnits = lastTile.GetComponent(tileScript).getMaxUnits();
 		}
 		
 	}
@@ -208,7 +214,7 @@ function OnGUI() {
 	}
 	if(GUI.Button(Rect((HUDwidth/5)*4,5,HUDwidth/5,25),"Surrender",buttonStyle))
 	{
-		//gameOver = true;	
+		gameOver = true;	
 	}
 	GUI.EndGroup();
 	//Country Display
@@ -219,17 +225,19 @@ function OnGUI() {
 		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayRedInfo();
 		bankInfo=GameObject.FindWithTag("Master").GetComponent(gameMaster).redBank;
 		}
-	else if(whichTurn==1) {
+	else {
 		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayBlueInfo();
 		bankInfo=GameObject.FindWithTag("Master").GetComponent(gameMaster).blueBank;
 		}
 	GUI.BeginGroup(Rect(0,0,(HUDwidth/8)*2,HUDheight+5));
+	
 	if(whichTurn == 1) {
 		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,HUDheight+5),Team1,style);
 		
 		}
 	else
 		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,HUDheight+5),Team2,style);
+		
 	GUI.Label(Rect(20,(HUDheight/8)*3,HUDwidth/8*1.5,30),"Ducats: "+ bankInfo,inSetStyle);
 	GUI.Label(Rect(20,(HUDheight/8)*4,HUDwidth/8*1.5,30),"Total Troops = "+ vec2.x,inSetStyle);
 	GUI.Label(Rect(20,(HUDheight/8)*5,HUDwidth/8*1.5,30),"Total Tiles = "+ vec2.y,inSetStyle);
@@ -237,14 +245,14 @@ function OnGUI() {
 	GUI.EndGroup();
 	if(gameOver)
 	{
-		GUI.BeginGroup(Rect(0,0,Screen.Width,Screen.height));
+		GUI.BeginGroup(Rect(0,0,Screen.width,Screen.height));
 		if(whichTurn == 1)
-			GUI.Label(Rect(Screen.width/3,0,(Screen.width/8)*2,30),Team2 + "Wins",style);
+			GUI.Label(Rect(Screen.width/3,(Screen.height/3),(Screen.width/8)*2,30),Team2 + "Wins",inSetStyle);
 		else
-			GUI.Label(Rect(Screen.width/3,0,(Screen.width/8)*2,30),Team1 + "Wins",style);
-		if(GUI.Button(Rect(Screen.width/3,(Screen.height/3)*1.5,HUDwidth,30),"Back to Menu",buttonStyle))
+			GUI.Label(Rect(Screen.width/3,(Screen.height/3),(Screen.width/8)*2,30),Team1 + " Wins",inSetStyle);
+		if(GUI.Button(Rect(Screen.width/3,(Screen.height/3)*1.2,(Screen.width/8)*2,30),"Back to Menu",buttonStyle))
 			Application.LoadLevel("titleScreen");
-		if(GUI.Button(Rect((Screen.width/5)*1.85,(Screen.height/3)*1.25,HUDwidth,30),"Restart",buttonStyle))
+		if(GUI.Button(Rect(Screen.width/3,(Screen.height/3)*1.4,(Screen.width/8)*2,30),"Restart",buttonStyle))
 			Application.LoadLevel("Main");
 		GUI.EndGroup();
 	}
@@ -290,7 +298,8 @@ function currentUnit(UnitObj:GameObject) {
 }
 function wipeTileSelections()
 {
-	tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2");
+	tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")
+	+GameObject.FindGameObjectsWithTag("test3")+GameObject.FindGameObjectsWithTag("test4");
 	
 	for(var zi=0;zi<tilesArray.length;zi++)
 	{

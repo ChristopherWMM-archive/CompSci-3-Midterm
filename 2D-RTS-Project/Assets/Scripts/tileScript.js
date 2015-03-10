@@ -30,7 +30,7 @@ var spawnUnit: boolean;
 
 function Start () {
 //All this will be pulled from a database later on. 
- whichTeam=1;
+ thisTile.tag = "test0";
  FortLevel=1;
  UnitsStored=1000;
  morale=10.0;
@@ -42,17 +42,19 @@ function Start () {
  oneTime = false;
  addUnits = 100;
  spawnUnit=false;
-  baseTax=4.0;
+ baseTax=4.0;
+ allocateTiles();
 // redTiles = 0;
 // blueTiles = 0;
 }
 
 function Update () {
+	
 // Lol I'll look at the project I have that we made for this feature...later
 // if(Time.timeSinceLevelLoad % 60==59)
 
-UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
- 
+	UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
+ 	maxUnits=1000*FortLevel;
 	if(!inYield && UnitsStored<maxUnits) 
 		{
 			 addTroops(); 	 
@@ -69,7 +71,11 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 		}
 		if(Input.GetKeyDown(KeyCode.G))
 		{
-			whichTeam=-whichTeam;
+			if(whichTeam == 1)
+				whichTeam = 2;
+			if(whichTeam == 2)
+				whichTeam = 1;
+			
 			//GameObject.FindWithTag("hud").GetComponent(guiOverlay).updateTilesTaken();
 		}
 		for( zi=0;zi<UnitArray.length;zi++)
@@ -77,7 +83,7 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 		 	targetUnit=UnitArray[zi];
 		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
 		   
-	      if(sendUnit && targetUnitScript.getSelected() && ((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor)))
+	      if(sendUnit && targetUnitScript.getSelected() && ((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor == 1)))
 	      {	
 	      		
 	      		 print(" 1 if statement reached");
@@ -90,7 +96,7 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 		     
 		      
 		      
-		      if((targetUnitScript.UnitColor) && (whichTeam==-1) || !(targetUnitScript.UnitColor) && (whichTeam==1))
+		      if((targetUnitScript.UnitColor == 1) && (whichTeam==1) || !(targetUnitScript.UnitColor == 2) && (whichTeam==2))
 	      		{
 	      		
 	      		  print("if statement reached");
@@ -108,14 +114,16 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 	       print(" 1 if statement reached");
 	      		 
 	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && 
-	      		(thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 ) {
-		      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
+	      		(thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 ) 
+	      		{
+	      		
+		      		targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
 		      }
 		      
 		     
 		      
 		      
-		      if((targetUnitScript.UnitColor) && (whichTeam==-1) || !(targetUnitScript.UnitColor) && (whichTeam==1))
+		      if((targetUnitScript.UnitColor == 1) && (whichTeam==2) || !(targetUnitScript.UnitColor == 2) && (whichTeam==2))
 	      		{
 	      		
 	      		  print("if statement reached");
@@ -135,17 +143,29 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 	//else
 	//	GameObject.FindWithTag("hud").GetComponent(guiOverlay).closeInfo();
 		
-	if(whichTeam==1)
+	if(whichTeam==2)
 	 {
 		thisTile.renderer.material.color=Color.blue;
 		thisTile.tag="test1";
 		tileColor = true;
 	 }
 	
-	if(whichTeam==-1) 
+	if(whichTeam==1) 
 	{
 		thisTile.renderer.material.color=Color.red;
 		thisTile.tag="test2";
+		tileColor = false;
+	}
+	if(whichTeam == 0)
+	{
+		thisTile.renderer.material.color=Color.yellow;
+		thisTile.tag="test3";
+		tileColor = false;
+	}
+	if(whichTeam == -1)
+	{
+		thisTile.renderer.material.color=Color.grey;
+		thisTile.tag="test4";
 		tileColor = false;
 	}
 	
@@ -177,20 +197,20 @@ function OnMouseExit()
 	isSelected=false;
 }
 
-function setSend(isSel: boolean)
-{
+function setSend(isSel: boolean) {
  	sendUnit=isSel;
 } 
-function getFortLevel(){
+function getFortLevel() {
 	return FortLevel;
 }
-function getUnitsStored(){
+function getUnitsStored() {
 	return UnitsStored;
 }
-function getMorale(){
+function getMorale() {
 	return morale;
 }
-function getMaxUnits(){
+function getMaxUnits() {
+	maxUnits = 1000 * FortLevel;
 	return maxUnits;
 }
 
@@ -202,4 +222,21 @@ function upgradeFort() {
 }
 function addUnitsGUI() {
 	UnitsStored += addUnits;
+}
+function allocateTiles() {
+	tilesArray=GameObject.FindGameObjectsWithTag("test0");
+	
+	for(var zi=0;zi<tilesArray.length;zi++)
+	{
+	  tileTargetScript=(tilesArray[zi].GetComponent("tileScript"));
+	  var rand = Random.Range(0,4);
+	  if(rand < 1)
+      	tileTargetScript.whichTeam = -1;
+      else if(rand >= 1 && rand < 2)
+      	tileTargetScript.whichTeam = 0;
+      else if(rand >= 2 && rand < 3)
+      	tileTargetScript.whichTeam = 1;
+      else if(rand >= 3 && rand < 4)
+      	tileTargetScript.whichTeam = 2;
+    }
 }

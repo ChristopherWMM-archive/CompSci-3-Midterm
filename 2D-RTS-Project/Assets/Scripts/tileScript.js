@@ -26,6 +26,7 @@ var maxUnits: int;
 var sendUnit: boolean;
 var UnitArray;
 var addUnits;
+var spawnUnit: boolean;
 
 function Start () {
 //All this will be pulled from a database later on. 
@@ -40,7 +41,7 @@ function Start () {
  sendUnit=false;
  oneTime = false;
  addUnits = 100;
- 
+ spawnUnit=false;
   baseTax=4.0;
 // redTiles = 0;
 // blueTiles = 0;
@@ -76,7 +77,7 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 		 	targetUnit=UnitArray[zi];
 		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
 		   
-	      if(sendUnit && targetUnitScript.getSelected() &&((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && UnitArray[zi].UnitColor) || (!(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1) && !UnitArray[zi].UnitColor)))
+	      if(sendUnit && targetUnitScript.getSelected() &&((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && UnitArray[zi].UnitColor) || ((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1) && !UnitArray[zi].UnitColor)))
 	      {	
 	      		
 	      		 print(" 1 if statement reached");
@@ -89,7 +90,7 @@ UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 		     
 		      
 		      
-		      if((targetUnitScript.UnitColor) && (whichTeam==-1))
+		      if((targetUnitScript.UnitColor) && (whichTeam==-1) || !(targetUnitScript.UnitColor) && (whichTeam==1))
 	      		{
 	      		
 	      		  print("if statement reached");
@@ -133,6 +134,7 @@ yield WaitForSeconds(3);
 function OnMouseDown()
 {
 	sendUnit=true;
+	spawnUnit=true;
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).newPiece = true;
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).infoScreenActive = true;
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).unitScreenActive = false;

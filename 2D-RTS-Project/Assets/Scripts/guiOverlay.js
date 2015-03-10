@@ -154,11 +154,37 @@ function OnGUI() {
 	GUI.Box(Rect(0,0,HUDwidth,35),"",inSetStyle);
 	if(GUI.Button(Rect((HUDwidth/5)*0,5,HUDwidth/5,25),"Add Units",buttonStyle))
 	{
-		if(unitVar!= null)
-		{
-			unitVar.GetComponent("unit").addUnitsGUI();
-			UnitsStored = unitVar.GetComponent(unit).getUnitsStored();
-		}
+	
+	var tilesArrayZ=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2");
+	var tileTarg;
+	
+	for(var zt=0;zt<tilesArrayZ.length;zt++)
+	{
+	 
+	   var tileTargetScriptZ=(tilesArrayZ[zt].GetComponent("tileScript"));
+       if(tileTargetScriptZ.spawnUnit) {
+     		tileTarg=tilesArrayZ[zt];
+      
+      tileTargetScriptZ.spawnUnit=false;
+      }
+     }
+	
+	
+			var unitScript=GameObject.FindWithTag("Master").GetComponent("gameMaster");
+			 
+				
+				if(unitScript.whichTurn==1 && unitScript.blueBank>9) {
+					unitScript.blueBank-=10;
+					unitScript.addUnitsGUI(tileTarg);
+					
+					}
+				else if(unitScript.whichTurn==-1 && unitScript.redBank>9)
+				{
+					unitScript.redBank-=10;
+					unitScript.addUnitsGUI(tileTarg);
+					}
+					
+				
 	}
 	if(GUI.Button(Rect((HUDwidth/5)*1,5,HUDwidth/5,25),"Upgrade Unit",buttonStyle))
 	{
@@ -182,20 +208,29 @@ function OnGUI() {
 	}
 	if(GUI.Button(Rect((HUDwidth/5)*4,5,HUDwidth/5,25),"Surrender",buttonStyle))
 	{
-		gameOver = true;	
+		//gameOver = true;	
 	}
 	GUI.EndGroup();
 	//Country Display
 	var vec2: Vector2;
-	if(whichTurn==-1)
+	var bankInfo;
+	
+	if(whichTurn==-1) {
 		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayRedInfo();
-	else if(whichTurn==1)
+		bankInfo=GameObject.FindWithTag("Master").GetComponent(gameMaster).redBank;
+		}
+	else if(whichTurn==1) {
 		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayBlueInfo();
+		bankInfo=GameObject.FindWithTag("Master").GetComponent(gameMaster).blueBank;
+		}
 	GUI.BeginGroup(Rect(0,0,(HUDwidth/8)*2,HUDheight+5));
-	if(whichTurn == 1)
+	if(whichTurn == 1) {
 		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,HUDheight+5),Team1,style);
+		
+		}
 	else
 		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,HUDheight+5),Team2,style);
+	GUI.Label(Rect(20,(HUDheight/8)*3,HUDwidth/8*1.5,30),"Ducats: "+ bankInfo,inSetStyle);
 	GUI.Label(Rect(20,(HUDheight/8)*4,HUDwidth/8*1.5,30),"Total Troops = "+ vec2.x,inSetStyle);
 	GUI.Label(Rect(20,(HUDheight/8)*5,HUDwidth/8*1.5,30),"Total Tiles = "+ vec2.y,inSetStyle);
 	//flag

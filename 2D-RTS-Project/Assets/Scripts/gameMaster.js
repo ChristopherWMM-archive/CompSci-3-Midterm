@@ -4,7 +4,8 @@ var redBank :float;
 var blueBank :float;
 var MoraleModifierB: float;
 var MoraleModifierR: float;
-var timeCount;
+var timeCount: float;
+var thisUnit: GameObject;
 function Start () {
 	whichTurn = 1;
 	
@@ -81,11 +82,12 @@ tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjects
 			}
 
 blueBank+=budget;
+budget=0;
 
 }
 
 
-if(whichTurn) {
+if(whichTurn==-1) {
 tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2");
 	unitsArray=GameObject.FindGameObjectsWithTag("selectedUnit");
 		for(var zp=0;zp<tilesArray.length;zp++)
@@ -115,11 +117,27 @@ tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjects
 			}
 
 redBank+=budget;
+budget=0;
 
+}
+}
+function addUnitsGUI(tileTarg: GameObject) {
+
+var fixPos=  Vector3(tileTarg.transform.position.x,1,tileTarg.transform.position.z);
+var spawnedUnit: GameObject;
+
+spawnedUnit= Instantiate(thisUnit,fixPos,thisUnit.transform.rotation);
+var spawnedScript=spawnedUnit.GetComponent("unit");
+
+	print("went into addUnits");
+	
+	if(whichTurn==1)
+		spawnedScript.UnitColor=true;
+	if(whichTurn==-1)
+		spawnedScript.UnitColor=false;
 }
 
 
-}
 
 function battle (attk: GameObject, def: GameObject,defIsTile: boolean)
 {

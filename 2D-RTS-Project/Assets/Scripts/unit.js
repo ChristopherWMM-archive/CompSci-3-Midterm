@@ -1,6 +1,7 @@
 ﻿
 var isSelected=true;
 var thisUnit : GameObject;
+
 var tilesArray;
 var tileTargetScript;
 var HoverOver;
@@ -19,7 +20,7 @@ thisUnit.tag="selectedUnit";
 
 morale=10.0;
 UnitsStored=1000;
-UnitColor=true;
+
 unitLevel = 1;
 addUnits = 100;
 //Change color with turn
@@ -110,9 +111,7 @@ function getUnitColor(){
 function getUnitLevel(){
 	return unitLevel;
 }
-function addUnitsGUI() {
-	UnitsStored += addUnits;
-}
+
 function upgradeUnit() {
 	unitLevel+=1;
 }

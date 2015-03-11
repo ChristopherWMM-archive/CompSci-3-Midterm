@@ -6,6 +6,9 @@ var MoraleModifierB: float;
 var MoraleModifierR: float;
 var timeCount: float;
 var thisUnit: GameObject;
+
+var troopBlue : Material;
+var troopRed : Material;
 function Start () {
 	whichTurn = 1;
 	
@@ -52,7 +55,7 @@ function calculateFinances()
 var budget: float;
 var tilesArray;
 var unitsArray;
-if(whichTurn) {
+if(whichTurn==1 ) {
 tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2");
 	unitsArray=GameObject.FindGameObjectsWithTag("selectedUnit");
 		for(var zi=0;zi<tilesArray.length;zi++)
@@ -132,10 +135,14 @@ function addUnitsGUI(tileTarg: GameObject) {
 
 		print("went into addUnits");
 		
-		if(whichTurn==1)
+		if(whichTurn==1){
+			spawnedUnit.renderer.material = troopBlue;
 			spawnedScript.UnitColor=true;
-		if(whichTurn==-1)
+		}
+		if(whichTurn==-1){
+			spawnedUnit.renderer.material = troopRed;
 			spawnedScript.UnitColor=false;
+		}
 	}
 }
 

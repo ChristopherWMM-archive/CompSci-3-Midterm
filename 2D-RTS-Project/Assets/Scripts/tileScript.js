@@ -96,7 +96,7 @@ function Update () {
 		     
 		      
 		      
-		      if((targetUnitScript.UnitColor == 1) && (whichTeam==1) || !(targetUnitScript.UnitColor == 2) && (whichTeam==2))
+		      if((targetUnitScript.UnitColor == 1) && (whichTeam==-1) || (targetUnitScript.UnitColor == -1) && (whichTeam==1) || (whichTeam==0 && (targetUnitScript.UnitColor == 1 || targetUnitScript.UnitColor==-1)))
 	      		{
 	      		
 	      		  print("if statement reached");
@@ -143,14 +143,14 @@ function Update () {
 	//else
 	//	GameObject.FindWithTag("hud").GetComponent(guiOverlay).closeInfo();
 		
-	if(whichTeam==2)
+	if(whichTeam==1)
 	 {
 		thisTile.renderer.material.color=Color.blue;
 		thisTile.tag="test1";
 		tileColor = true;
 	 }
 	
-	if(whichTeam==1) 
+	if(whichTeam==-1) 
 	{
 		thisTile.renderer.material.color=Color.red;
 		thisTile.tag="test2";
@@ -162,7 +162,7 @@ function Update () {
 		thisTile.tag="test3";
 		tileColor = false;
 	}
-	if(whichTeam == -1)
+	if(whichTeam == 2)
 	{
 		thisTile.renderer.material.color=Color.grey;
 		thisTile.tag="test4";

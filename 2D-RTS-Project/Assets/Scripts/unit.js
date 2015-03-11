@@ -118,18 +118,18 @@ function upgradeUnit() {
 }
 function allocateUnits() {
 	unitsArray=GameObject.FindGameObjectsWithTag("selectedUnit");
-	
+
 	for(var zi=0;zi<unitsArray.length;zi++)
 	{
-	  unitTargetScript=(tilesArray[zi].GetComponent("unit"));
+	  var unitTargetScript=(unitsArray[zi].GetComponent("unit"));
 	  var rand = Random.Range(0,4);
 	  if(rand < 1)
-      	unitTargetScript.unitColor = -1;
+      	unitTargetScript.UnitColor = -1;
       else if(rand >= 1 && rand < 2)
-      	unitTargetScript.unitColor = 0;
+      	unitTargetScript.UnitColor = 0;
       else if(rand >= 2 && rand < 3)
-      	unitTargetScript.unitColor = 1;
+      	unitTargetScript.UnitColor = 1;
       else if(rand >= 3 && rand < 4)
-      	unitTargetScript.unitColor = 2;
+      	unitTargetScript.UnitColor = 2;
     }
 }

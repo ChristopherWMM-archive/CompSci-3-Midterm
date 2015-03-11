@@ -84,7 +84,7 @@ function OnGUI() {
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles,style);
 		}
 		GUI.Label(Rect(25,(HUDheight/8)*1,(HUDwidth/8)*1.5,30),"Info",inSetStyle);
-		GUI.Label(Rect(25,(HUDheight/8)*2,(HUDwidth/8)*1.5,30),"Fort Level = "+FortLevel,inSetStyle);
+		//GUI.Label(Rect(25,(HUDheight/8)*2,(HUDwidth/8)*1.5,30),"Fort Level = "+FortLevel,inSetStyle);
 		GUI.Label(Rect(25,(HUDheight/8)*3,(HUDwidth/8)*1.5,30),"Morale = "+morale,inSetStyle);
 		GUI.Label(Rect(25,(HUDheight/8)*4,(HUDwidth/8)*1.5,30),"Units Stored = "+UnitsStored,inSetStyle);
 		GUI.Label(Rect(25,(HUDheight/8)*5,(HUDwidth/8)*1.5,30),"Max Units = "+maxUnits,inSetStyle);
@@ -177,13 +177,13 @@ function OnGUI() {
 			var unitScript=GameObject.FindWithTag("Master").GetComponent("gameMaster");
 			 
 				
-			if(unitScript.whichTurn==2 && unitScript.blueBank>9) 
+			if(unitScript.whichTurn==1 && unitScript.blueBank>9) 
 			{
 				unitScript.blueBank-=10;
 				unitScript.addUnitsGUI(tileTarg);
 				
 			}
-			else if(unitScript.whichTurn==1 && unitScript.redBank>9)
+			else if(unitScript.whichTurn==-1 && unitScript.redBank>9)
 			{
 				unitScript.redBank-=10;
 				unitScript.addUnitsGUI(tileTarg);

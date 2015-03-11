@@ -62,13 +62,14 @@ function Update () {
 
 function OnMouseDown() {
 	isSelected=!isSelected;
+	wipeSelections();
 	overrideInfo = true;
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).currentUnit(this.gameObject);
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).newUnit = true;
 }
 function OnMouseEnter() 
 {
-	wipeSelections();
+	
 	
 }
 function getSelected() {

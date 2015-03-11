@@ -175,8 +175,10 @@ moraleModiferAttk=MoraleModifierR;
 	moraleModiferDef=MoraleModifierB;
 
 }
-if(defIsTile)
+if(defIsTile) {
 		DefScript=def.GetComponent(tileScript);
+		DefScript.sendUnit=false;
+		}
 else 
 	DefScript=def.GetComponent("unit");
 
@@ -292,7 +294,7 @@ while(battleOn)
 		
 			battleOn=false;
 			if(defIsTile)
-				DefScript.whichTeam*=-1;
+				DefScript.whichTeam=whichTurn;
 			//else
 				//attach retreat code here
 		}
@@ -319,7 +321,9 @@ while(battleOn)
 		if(attkScript.UnitsStored<=0)
 			{
 				battleOn=false;
+				
 				Destroy(attk);
+				break;
 				
 				//else
 					//attach retreat code here
@@ -398,5 +402,20 @@ var numUnits : int;
 	
 	  var TilesAndUnits= new Vector2(numUnits,numTiles);
 	  return(TilesAndUnits);
+
+}
+function wipeSelections()
+{
+	tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2");
+	
+	for(var zi=0;zi<tilesArray.length;zi++)
+	{
+	 
+	  tileTargetScript=(tilesArray[zi].GetComponent("tileScript"));
+      
+     
+      tileTargetScript.setSend(false);
+      
+     }
 
 }

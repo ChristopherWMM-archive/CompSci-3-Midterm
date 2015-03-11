@@ -111,7 +111,7 @@ function Update () {
 	      		}
 		      //sendUnit=false;
 	      	
-	      	targetUnitScript.setSelected(false);
+	      	//targetUnitScript.setSelected(false);
 	      }
 	      
 	       if(sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1 && targetUnitScript.UnitColor==-1))
@@ -138,7 +138,7 @@ function Update () {
 	      		}
 		      //sendUnit=false;
 	      	
-	      	targetUnitScript.setSelected(false);
+	      	//targetUnitScript.setSelected(false);
 	      
 	      
 	      }

@@ -85,7 +85,7 @@ function OnGUI() {
 		}
 		
 		GUI.Label(Rect(25,(HUDheight/8)*1,(HUDwidth/8)*1.5,30),"Info",inSetStyle);
-		//GUI.Label(Rect(25,(HUDheight/8)*2,(HUDwidth/8)*1.5,30),"Fort Level = "+FortLevel,inSetStyle);
+		GUI.Label(Rect(25,(HUDheight/8)*2,(HUDwidth/8)*1.5,30),"Fort Level = "+FortLevel,inSetStyle);
 		GUI.Label(Rect(25,(HUDheight/8)*3,(HUDwidth/8)*1.5,30),"Morale = "+morale,inSetStyle);
 		GUI.Label(Rect(25,(HUDheight/8)*4,(HUDwidth/8)*1.5,30),"Units Stored = "+UnitsStored,inSetStyle);
 		GUI.Label(Rect(25,(HUDheight/8)*5,(HUDwidth/8)*1.5,30),"Max Units = "+maxUnits,inSetStyle);
@@ -150,6 +150,7 @@ function OnGUI() {
 	if(GUI.Button(Rect(0,0,80,30),"End Turn",buttonStyle))
 	{
 		GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn *= -1;
+		GameObject.FindWithTag("Master").GetComponent(gameMaster).wipeSelections();
 	}
 	GUI.EndGroup();
 	//Top HUD Items

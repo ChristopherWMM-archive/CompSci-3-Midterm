@@ -137,11 +137,11 @@ function addUnitsGUI(tileTarg: GameObject) {
 		
 		if(whichTurn==1){
 			spawnedUnit.renderer.material = troopBlue;
-			spawnedScript.UnitColor=true;
+			spawnedScript.UnitColor=1;
 		}
 		if(whichTurn==-1){
 			spawnedUnit.renderer.material = troopRed;
-			spawnedScript.UnitColor=false;
+			spawnedScript.UnitColor=-1;
 		}
 	}
 }

@@ -83,38 +83,42 @@ function Update () {
 		 	targetUnit=UnitArray[zi];
 		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
 		   
-	      if(sendUnit && targetUnitScript.getSelected() && ((GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor == 1)))
+	      if(sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor == 1))
 	      {	
 	      		
 	      		 print(" 1 if statement reached");
 	      		 
-	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && 
-	      		(thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 ) {
+	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && (thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 && (whichTeam==1) )
+	      {
+	      		
+	      		
+	      		
 		      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
 		      }
 		      
 		     
 		      
 		      
-		      if((targetUnitScript.UnitColor == 1) && (whichTeam==-1) || (targetUnitScript.UnitColor == -1) && (whichTeam==1) || (whichTeam==0 && (targetUnitScript.UnitColor == 1 || targetUnitScript.UnitColor==-1)))
+		      if((targetUnitScript.UnitColor == 1) && !(whichTeam==1)) 
 	      		{
 	      		
 	      		  print("if statement reached");
 	      		var battleMethod=GameObject.FindWithTag("Master").GetComponent(gameMaster);
+	      		targetUnitScript.setSelected(false);
 	      		battleMethod.battle(UnitArray[zi],thisTile,true);
 	      		
+	      		
 	      		}
-		      sendUnit=false;
+		      //sendUnit=false;
 	      	
 	      	targetUnitScript.setSelected(false);
 	      }
 	      
-	      else if(sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1) && !targetUnitScript.UnitColor)
+	       if(sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1 && targetUnitScript.UnitColor==-1))
 	      {
 	       print(" 1 if statement reached");
 	      		 
-	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && 
-	      		(thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 ) 
+	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && (thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 && (whichTeam==-1) ) 
 	      		{
 	      		
 		      		targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
@@ -123,23 +127,28 @@ function Update () {
 		     
 		      
 		      
-		      if((targetUnitScript.UnitColor == 1) && (whichTeam==2) || !(targetUnitScript.UnitColor == 2) && (whichTeam==2))
+		      if(((targetUnitScript.UnitColor == -1) && !(whichTeam==-1)) )
 	      		{
 	      		
 	      		  print("if statement reached");
 	      		 battleMethod=GameObject.FindWithTag("Master").GetComponent(gameMaster);
+	      		 targetUnitScript.setSelected(false);
 	      		battleMethod.battle(UnitArray[zi],thisTile,true);
 	      		
 	      		}
-		      sendUnit=false;
+		      //sendUnit=false;
 	      	
 	      	targetUnitScript.setSelected(false);
 	      
 	      
 	      }
+	     
+	      
+	      
+	      }
 	     }
 	     
-	}
+	
 	//else
 	//	GameObject.FindWithTag("hud").GetComponent(guiOverlay).closeInfo();
 		

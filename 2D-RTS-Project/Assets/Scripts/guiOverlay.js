@@ -15,7 +15,7 @@ var UnitsStoredInUnit : int;
 var tile:GameObject;
 var unitVar:GameObject;
 var lastTile:GameObject;
-var tileColor:boolean;
+var tileColor:int;
 var unitColor: int;
 var unitLevel;
 var tilesArray;
@@ -73,16 +73,17 @@ function OnGUI() {
 	if(infoScreenActive)
 	{
 		GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.10,HUDheight+5));
-		if(tileColor)
+		if(tileColor==1)
 		{
 			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team1 + " Tile",style);
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles,style);
 		}
-		else
+		if(tileColor==-1)
 		{
 			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team2 + " Tile",style);
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles,style);
 		}
+		
 		GUI.Label(Rect(25,(HUDheight/8)*1,(HUDwidth/8)*1.5,30),"Info",inSetStyle);
 		//GUI.Label(Rect(25,(HUDheight/8)*2,(HUDwidth/8)*1.5,30),"Fort Level = "+FortLevel,inSetStyle);
 		GUI.Label(Rect(25,(HUDheight/8)*3,(HUDwidth/8)*1.5,30),"Morale = "+morale,inSetStyle);
@@ -158,8 +159,7 @@ function OnGUI() {
 	{
 		if(infoScreenActive)
 		{
-			var tilesArrayZ=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")
-			+GameObject.FindGameObjectsWithTag("test3")+GameObject.FindGameObjectsWithTag("test4");
+			var tilesArrayZ=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")+GameObject.FindGameObjectsWithTag("test3")+GameObject.FindGameObjectsWithTag("test4");
 			var tileTarg;
 		
 			for(var zt=0;zt<tilesArrayZ.length;zt++)
@@ -181,12 +181,14 @@ function OnGUI() {
 			{
 				unitScript.blueBank-=10;
 				unitScript.addUnitsGUI(tileTarg);
+				//tileTargetScriptZ.spawnUnit=false;
 				
 			}
 			else if(unitScript.whichTurn==-1 && unitScript.redBank>9)
 			{
 				unitScript.redBank-=10;
 				unitScript.addUnitsGUI(tileTarg);
+				//tileTargetScriptZ.spawnUnit=false;
 			}
 		}
 				
@@ -264,7 +266,7 @@ function infoPopUp() {
 		morale = tile.GetComponent(tileScript).getMorale();
 		UnitsStored = tile.GetComponent(tileScript).getUnitsStored();
 		maxUnits = tile.GetComponent(tileScript).getMaxUnits();
-		tileColor = tile.GetComponent(tileScript).getTileColor();
+		tileColor = tile.GetComponent(tileScript).whichTeam;
 		lastTile = tile;
 	}
 	newPiece = false;

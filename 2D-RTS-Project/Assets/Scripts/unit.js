@@ -23,7 +23,7 @@ UnitsStored=1000;
 
 unitLevel = 1;
 addUnits = 100;
-allocateUnits();
+//allocateUnits();
 //Change color with turn
 }
 

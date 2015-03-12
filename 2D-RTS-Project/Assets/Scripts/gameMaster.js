@@ -294,7 +294,9 @@ while(battleOn)
 		
 			battleOn=false;
 			if(defIsTile)
-				DefScript.whichTeam=whichTurn;
+				DefScript.whichTeam=attkScript.UnitColor;
+				
+				break;
 			//else
 				//attach retreat code here
 		}
@@ -302,12 +304,12 @@ while(battleOn)
 				{
 					battleOn=false;
 					if(defIsTile) {
-						DefScript.whichTeam==attkScript.whichTeam;
+						DefScript.whichTeam=attkScript.UnitColor;
 						DefScript.UnitsStored=200;
 						}
 					else
 						Destroy(def);
-						
+						break;
 						
 				}
 			
@@ -316,6 +318,7 @@ while(battleOn)
 		
 			battleOn=false;
 			attkScript.morale=0;
+			break;
 				//attach retreat code here
 		}
 		if(attkScript.UnitsStored<=0)

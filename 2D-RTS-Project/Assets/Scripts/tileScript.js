@@ -19,7 +19,7 @@ var targetUnitScript;
 var isSelected: boolean;
 var oneTime:boolean;
 var redTiles:int;
-
+var defenseless:int;
 var baseTax: float;
 //var blueTiles:int;
 //var numTiles;
@@ -72,27 +72,27 @@ function Start () {
       	{
       	
       	temp[1]=grass;
-      	baseTax+=economicBoost;
+      	baseTax=4.0+economicBoost;
       	
       	}
       		else if(tileType==2)
       	{
       	
       	temp[1]=stone;
-      	morale+=moraleBoost;
+      	morale=10+moraleBoost;
       	
       	}
       		else if(tileType==3)
       	{
       	
       	temp[1]=desert;
-      	baseTax-=economicBoost;
+      	baseTax=4.0-economicBoost;
       	}
       		else if(tileType==4)
       	{
       	
       temp[1]=snow;
-      	baseTax-=economicBoost;
+      	morale=10-moraleBoost;
       	}
       	
       	renderer.materials=temp;
@@ -222,11 +222,9 @@ function Update () {
 	{
 		thisTile.renderer.material.color=Color.grey;
 		thisTile.tag="test4";
-		tileColor = 2;
-		maxUnits = 0;
-		morale = 0;
+		
 		UnitsStored = 0;
-		FortLevel = 0;
+		
 	}
 	
 }

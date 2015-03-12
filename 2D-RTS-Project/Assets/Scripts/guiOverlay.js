@@ -37,11 +37,19 @@ var Ghandi:String;
 var openTile;
 var lastWin:String;
 
+var gameFeed = Array();
+
 var style:GUIStyle;
 var buttonStyle:GUIStyle;
 var inSetStyle : GUIStyle;
 
 function Start () {
+	gameFeed.length = 4;
+	gameFeed[0] = "hi there";
+	gameFeed[1] = "i am";
+	gameFeed[2] = "aisgoh";
+	gameFeed[3] = "fgnmdf";
+
 	infoScreenActive = false;
 	infoPopUp();
 	newPiece = true;
@@ -260,6 +268,22 @@ function OnGUI() {
 	GUI.Label(Rect(20,(HUDheight/8)*5,HUDwidth/8*1.5,30),"Total Tiles = "+ vec2.y,inSetStyle);
 	//flag
 	GUI.EndGroup();
+	
+	//Game Feed
+	GUI.BeginGroup(Rect(0,(HUDheight/8)*9.5,(HUDwidth/8)*2,HUDheight));
+	GUI.Box(Rect(0,0,(HUDwidth/8)*2,(HUDheight/2)),"Game Feed",style);
+	var zy = 0;
+	for(var zj=gameFeed.length-1;zj>=0;zj--)
+	{
+		var feed = gameFeed[zj];
+		var spacing = (((HUDheight/8)*2)/gameFeed.length)*(zy+1);
+		GUI.Label(Rect(15,spacing,HUDwidth/8*1.5,10),feed,inSetStyle);
+		zy++;
+	}
+	
+	
+	GUI.EndGroup();
+	
 	if(gameOver)
 	{
 		GUI.BeginGroup(Rect(0,0,Screen.width,Screen.height));
@@ -328,4 +352,16 @@ function wipeTileSelections()
       
      }
 
+}
+function newFeedItem(feedItem:String){
+	if(gameFeed.length<9)
+	{
+		gameFeed.length++;
+		for(var zi=0;zi<gameFeed.length;zi++)
+		{
+			if(gameFeed[zi] == null)
+				gameFeed[zi] = feedItem;
+		}
+	}
+	
 }

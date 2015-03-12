@@ -302,7 +302,7 @@ while(battleOn)
 				{
 					battleOn=false;
 					if(defIsTile) {
-						DefScript.whichTeam*=-1;
+						DefScript.whichTeam==attkScript.whichTeam;
 						DefScript.UnitsStored=200;
 						}
 					else

@@ -1,7 +1,10 @@
 ﻿
-var team1Mat: Material;
-var mapType: Material;
-
+var grass: Material;
+var desert: Material;
+var stone: Material;
+var snow: Material;
+var border: Material;
+var tileType: int;
 var moraleBoost:int;
 var economicBoost:int;
 
@@ -52,6 +55,47 @@ function Start () {
  economicBoost = 2;
 // redTiles = 0;
 // blueTiles = 0;
+
+
+	  var rand = Random.Range(0,4);
+	  if(rand < 1)
+      	tileType = 1;
+      else if(rand >= 1 && rand < 2)
+      	tileType = 2;
+      else if(rand >= 2 && rand < 3)
+      	tileType = 3;
+      else if(rand >= 3 && rand < 4)
+      	tileType = 4;
+      	 var temp = renderer.materials;
+      	 temp[1]=border;
+      	if(tileType==1)
+      	{
+      	
+      	temp[1]=grass;
+      	baseTax+=economicBoost;
+      	
+      	}
+      		else if(tileType==2)
+      	{
+      	
+      	temp[1]=stone;
+      	morale+=moraleBoost;
+      	
+      	}
+      		else if(tileType==3)
+      	{
+      	
+      	temp[1]=desert;
+      	baseTax-=economicBoost;
+      	}
+      		else if(tileType==4)
+      	{
+      	
+      temp[1]=snow;
+      	baseTax-=economicBoost;
+      	}
+      	
+      	renderer.materials=temp;
 }
 
 function Update () {

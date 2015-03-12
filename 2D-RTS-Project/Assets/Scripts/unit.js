@@ -11,17 +11,20 @@ var UnitsStored : int;
 var UnitColor : int;
 var addUnits;
 var unitLevel;
+var inYield=false;
+var maxMorale;
 
 //var aniPlay = GetComponent("aniSprite");
 function Start () {
 var aniPlay = GetComponent("aniSprite");
 isSelected=false;
 thisUnit.tag="selectedUnit";
-
+unitLevel = 1;
 morale=10.0;
+maxMorale=10*unitLevel;
 UnitsStored=1000;
 
-unitLevel = 1;
+
 addUnits = 100;
 //allocateUnits();
 //Change color with turn
@@ -30,7 +33,12 @@ addUnits = 100;
 function Update () {
 	var aniPlay = GetComponent("aniSprite");
 	aniPlay.aniSprite(4,4,0,0,4,8,false);
-     
+		maxMorale=10*unitLevel;
+     if(!inYield && morale<maxMorale) 
+		{
+			 addTroops(); 	
+			 
+		}
 	if(isSelected && overrideInfo)
 	{ 
 		
@@ -117,6 +125,12 @@ function getUnitLevel(){
 
 function upgradeUnit() {
 	unitLevel+=1;
+}
+function addTroops() {
+inYield=true;
+yield WaitForSeconds(1);
+ morale+=2;
+ inYield=false;
 }
 function allocateUnits() {
 	unitsArray=GameObject.FindGameObjectsWithTag("selectedUnit");

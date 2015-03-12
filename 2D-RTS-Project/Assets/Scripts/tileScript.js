@@ -1,7 +1,10 @@
 ﻿
-var team1Mat: Material;
-var mapType: Material;
-
+var grass: Material;
+var desert: Material;
+var stone: Material;
+var snow: Material;
+var border: Material;
+var tileType: int;
 var moraleBoost:int;
 var economicBoost:int;
 
@@ -16,7 +19,7 @@ var targetUnitScript;
 var isSelected: boolean;
 var oneTime:boolean;
 var redTiles:int;
-
+var defenseless:int;
 var baseTax: float;
 //var blueTiles:int;
 //var numTiles;
@@ -52,6 +55,47 @@ function Start () {
  economicBoost = 2;
 // redTiles = 0;
 // blueTiles = 0;
+
+
+	  var rand = Random.Range(0,4);
+	  if(rand < 1)
+      	tileType = 1;
+      else if(rand >= 1 && rand < 2)
+      	tileType = 2;
+      else if(rand >= 2 && rand < 3)
+      	tileType = 3;
+      else if(rand >= 3 && rand < 4)
+      	tileType = 4;
+      	 var temp = renderer.materials;
+      	 temp[1]=border;
+      	if(tileType==1)
+      	{
+      	
+      	temp[1]=grass;
+      	baseTax=4.0+economicBoost;
+      	
+      	}
+      		else if(tileType==2)
+      	{
+      	
+      	temp[1]=stone;
+      	morale=10+moraleBoost;
+      	
+      	}
+      		else if(tileType==3)
+      	{
+      	
+      	temp[1]=desert;
+      	baseTax=4.0-economicBoost;
+      	}
+      		else if(tileType==4)
+      	{
+      	
+      temp[1]=snow;
+      	morale=10-moraleBoost;
+      	}
+      	
+      	renderer.materials=temp;
 }
 
 function Update () {
@@ -178,11 +222,9 @@ function Update () {
 	{
 		thisTile.renderer.material.color=Color.grey;
 		thisTile.tag="test4";
-		tileColor = 2;
-		maxUnits = 0;
-		morale = 0;
+		
 		UnitsStored = 0;
-		FortLevel = 0;
+		
 	}
 	
 }

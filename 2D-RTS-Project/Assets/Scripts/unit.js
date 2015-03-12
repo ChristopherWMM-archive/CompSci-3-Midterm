@@ -85,7 +85,8 @@ function setSelected(isSel: boolean)
 
 function wipeSelections()
 {
-	tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2");
+	tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")
+		+GameObject.FindGameObjectsWithTag("test2")+GameObject.FindGameObjectsWithTag("test4");
 	
 	for(var zi=0;zi<tilesArray.length;zi++)
 	{

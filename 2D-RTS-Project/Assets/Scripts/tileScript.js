@@ -1,6 +1,10 @@
 ﻿
 var team1Mat: Material;
 var mapType: Material;
+
+var moraleBoost:int;
+var economicBoost:int;
+
 var whichTeam: int;
 var thisTile: GameObject;
 var inYield : boolean;
@@ -16,7 +20,7 @@ var redTiles:int;
 var baseTax: float;
 //var blueTiles:int;
 //var numTiles;
-var tileColor:boolean;
+var tileColor:int;
 var provinceID:int;
 
 var FortLevel: int;
@@ -44,17 +48,19 @@ function Start () {
  spawnUnit=false;
  baseTax=4.0;
  allocateTiles();
+ moraleBoost = 2;
+ economicBoost = 2;
 // redTiles = 0;
 // blueTiles = 0;
 }
 
 function Update () {
-	
 // Lol I'll look at the project I have that we made for this feature...later
 // if(Time.timeSinceLevelLoad % 60==59)
 
 	UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
- 	maxUnits=1000*FortLevel;
+	if(tileColor != 2)
+ 		maxUnits=1000*FortLevel;
 	if(!inYield && UnitsStored<maxUnits) 
 		{
 			 addTroops(); 	 
@@ -71,10 +77,7 @@ function Update () {
 		}
 		if(Input.GetKeyDown(KeyCode.G))
 		{
-			if(whichTeam == 1)
-				whichTeam = 2;
-			if(whichTeam == 2)
-				whichTeam = 1;
+			whichTeam *= -1;
 			
 			//GameObject.FindWithTag("hud").GetComponent(guiOverlay).updateTilesTaken();
 		}
@@ -156,26 +159,30 @@ function Update () {
 	 {
 		thisTile.renderer.material.color=Color.blue;
 		thisTile.tag="test1";
-		tileColor = true;
+		tileColor = 1;
 	 }
 	
 	if(whichTeam==-1) 
 	{
 		thisTile.renderer.material.color=Color.red;
 		thisTile.tag="test2";
-		tileColor = false;
+		tileColor = -1;
 	}
 	if(whichTeam == 0)
 	{
 		thisTile.renderer.material.color=Color.yellow;
 		thisTile.tag="test3";
-		tileColor = false;
+		tileColor = 0;
 	}
 	if(whichTeam == 2)
 	{
 		thisTile.renderer.material.color=Color.grey;
 		thisTile.tag="test4";
-		tileColor = false;
+		tileColor = 2;
+		maxUnits = 0;
+		morale = 0;
+		UnitsStored = 0;
+		FortLevel = 0;
 	}
 	
 }
@@ -189,8 +196,10 @@ yield WaitForSeconds(3);
 
 function OnMouseDown()
 {
+	wipeSelections();
 	sendUnit=true;
 	spawnUnit=true;
+	
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).newPiece = true;
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).infoScreenActive = true;
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).unitScreenActive = false;
@@ -219,7 +228,8 @@ function getMorale() {
 	return morale;
 }
 function getMaxUnits() {
-	maxUnits = 1000 * FortLevel;
+	if(tileColor != 2)
+		maxUnits = 1000 * FortLevel;
 	return maxUnits;
 }
 
@@ -248,4 +258,21 @@ function allocateTiles() {
       else if(rand >= 3 && rand < 4)
       	tileTargetScript.whichTeam = 2;
     }
+}
+function wipeSelections()
+{
+	tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")
+		+GameObject.FindGameObjectsWithTag("test3")+GameObject.FindGameObjectsWithTag("test4");
+	
+	for(var zi=0;zi<tilesArray.length;zi++)
+	{
+	 
+	  tileTargetScript=(tilesArray[zi].GetComponent("tileScript"));
+      
+     
+      tileTargetScript.setSend(false);
+      tileTargetScript.spawnUnit=false;
+      
+     }
+
 }

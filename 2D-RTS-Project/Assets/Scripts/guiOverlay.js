@@ -34,6 +34,7 @@ var gameOver;
 var Team1:String;
 var Team2:String;
 var Ghandi:String;
+var openTile;
 var lastWin:String;
 
 var style:GUIStyle;
@@ -50,6 +51,7 @@ function Start () {
 	Team2 = PlayerPrefs.GetString("Team2");
 	Ghandi = "Ghandi";
 	unitLevel = 1;
+	openTile = "Unclaimed";
 }
 
 function Update () {
@@ -83,7 +85,16 @@ function OnGUI() {
 			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team2 + " Tile",style);
 		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles,style);
 		}
-		
+		if(tileColor==0)
+		{
+			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Ghandi + " Tile",style);
+		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles,style);
+		}
+		if(tileColor==2)
+		{
+			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),openTile + " Tile",style);
+		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles,style);
+		}
 		GUI.Label(Rect(25,(HUDheight/8)*1,(HUDwidth/8)*1.5,30),"Info",inSetStyle);
 		GUI.Label(Rect(25,(HUDheight/8)*2,(HUDwidth/8)*1.5,30),"Fort Level = "+FortLevel,inSetStyle);
 		GUI.Label(Rect(25,(HUDheight/8)*3,(HUDwidth/8)*1.5,30),"Morale = "+morale,inSetStyle);
@@ -158,38 +169,42 @@ function OnGUI() {
 	GUI.Box(Rect(0,0,HUDwidth,35),"",inSetStyle);
 	if(GUI.Button(Rect((HUDwidth/5)*0,5,HUDwidth/5,25),"Add Units",buttonStyle))
 	{
-		if(infoScreenActive)
+		if(whichTurn == tileColor)
 		{
-			var tilesArrayZ=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")+GameObject.FindGameObjectsWithTag("test3")+GameObject.FindGameObjectsWithTag("test4");
-			var tileTarg;
-		
-			for(var zt=0;zt<tilesArrayZ.length;zt++)
+			if(infoScreenActive)
 			{
-			 
-			   var tileTargetScriptZ=(tilesArrayZ[zt].GetComponent("tileScript"));
-		       if(tileTargetScriptZ.spawnUnit) 
-		       {
-		     		tileTarg=tilesArrayZ[zt];
-		      		tileTargetScriptZ.spawnUnit=false;
-		      	}
-		     }
-		
-		
-			var unitScript=GameObject.FindWithTag("Master").GetComponent("gameMaster");
-			 
-				
-			if(unitScript.whichTurn==1 && unitScript.blueBank>9) 
-			{
-				unitScript.blueBank-=10;
-				unitScript.addUnitsGUI(tileTarg);
-				//tileTargetScriptZ.spawnUnit=false;
-				
-			}
-			else if(unitScript.whichTurn==-1 && unitScript.redBank>9)
-			{
-				unitScript.redBank-=10;
-				unitScript.addUnitsGUI(tileTarg);
-				//tileTargetScriptZ.spawnUnit=false;
+				var tilesArrayZ=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")
+					+GameObject.FindGameObjectsWithTag("test3")+GameObject.FindGameObjectsWithTag("test4");
+				var tileTarg;
+			
+				for(var zt=0;zt<tilesArrayZ.length;zt++)
+				{
+				 
+				   var tileTargetScriptZ=(tilesArrayZ[zt].GetComponent("tileScript"));
+			       if(tileTargetScriptZ.spawnUnit) 
+			       {
+			     		tileTarg=tilesArrayZ[zt];
+			      		tileTargetScriptZ.spawnUnit=false;
+			      	}
+			     }
+			
+			
+				var unitScript=GameObject.FindWithTag("Master").GetComponent("gameMaster");
+				 
+					
+				if(unitScript.whichTurn==1 && unitScript.blueBank>9) 
+				{
+					unitScript.blueBank-=10;
+					unitScript.addUnitsGUI(tileTarg);
+					//tileTargetScriptZ.spawnUnit=false;
+					
+				}
+				else if(unitScript.whichTurn==-1 && unitScript.redBank>9)
+				{
+					unitScript.redBank-=10;
+					unitScript.addUnitsGUI(tileTarg);
+					//tileTargetScriptZ.spawnUnit=false;
+				}
 			}
 		}
 				
@@ -228,16 +243,15 @@ function OnGUI() {
 		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayRedInfo();
 		bankInfo=GameObject.FindWithTag("Master").GetComponent(gameMaster).redBank;
 		}
-	else {
+	else{
 		vec2=GameObject.FindWithTag("Master").GetComponent(gameMaster).displayBlueInfo();
 		bankInfo=GameObject.FindWithTag("Master").GetComponent(gameMaster).blueBank;
 		}
 	GUI.BeginGroup(Rect(0,0,(HUDwidth/8)*2,HUDheight+5));
 	
-	if(whichTurn == 1) {
+	if(whichTurn == 1) 
 		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,HUDheight+5),Team1,style);
 		
-		}
 	else
 		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,HUDheight+5),Team2,style);
 		

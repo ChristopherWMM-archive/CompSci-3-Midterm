@@ -296,13 +296,14 @@ function OnGUI() {
 	
 	//Game Feed
 	GUI.BeginGroup(Rect(0,(HUDheight/8)*9.5,(HUDwidth/8)*4,HUDheight));
-	GUI.Box(Rect(0,0,(HUDwidth/8)*4,(HUDheight/2)),"Game Feed",style);
+	GUI.Box(Rect(0,0,(HUDwidth/8)*4,(HUDheight/2)),"",buttonStyle);
+	GUI.Label(Rect(0,5,(HUDwidth/8)*4,(HUDheight/2)),"Game Feed",style);
 	var zy = 1;
 	for(var zj=gameFeed.length-1;zj>=0;zj--)
 	{
 		var feed = gameFeed[zj];
 		var spacing = ((((HUDheight/8)*3)/9)*(zy))+10;
-		GUI.Label(Rect((HUDwidth/8)*0.35,spacing,(HUDwidth/8)*3.25,10),feed,inSetStyle);
+		GUI.Label(Rect((HUDwidth/8)*0.35,spacing,(HUDwidth/8)*3.25,10),feed,style);
 		zy++;
 	}
 	

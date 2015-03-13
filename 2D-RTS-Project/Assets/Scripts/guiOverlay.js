@@ -38,17 +38,18 @@ var openTile;
 var lastWin:String;
 
 var gameFeed = Array();
+var mostRecentFeed:String;
 
 var style:GUIStyle;
 var buttonStyle:GUIStyle;
 var inSetStyle : GUIStyle;
 
 function Start () {
-	gameFeed.length = 4;
-	gameFeed[0] = "hi there";
-	gameFeed[1] = "i am";
-	gameFeed[2] = "aisgoh";
-	gameFeed[3] = "fgnmdf";
+//	gameFeed.length = 4;
+//	gameFeed[0] = "hi there";
+//	gameFeed[1] = "i am";
+//	gameFeed[2] = "aisgoh";
+//	gameFeed[3] = "fgnmdf";
 
 	infoScreenActive = false;
 	infoPopUp();
@@ -170,6 +171,10 @@ function OnGUI() {
 	{
 		GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn *= -1;
 		GameObject.FindWithTag("Master").GetComponent(gameMaster).wipeSelections();
+		if(whichTurn == 1)
+			newFeedItem(Team2+"'s Turn!");
+		else if(whichTurn == -1)
+			newFeedItem(Team1+"'s Turn!");
 	}
 	GUI.EndGroup();
 	//Top HUD Items
@@ -204,6 +209,7 @@ function OnGUI() {
 				{
 					unitScript.blueBank-=10;
 					unitScript.addUnitsGUI(tileTarg);
+					newFeedItem(Team1+ " added a unit!");
 					//tileTargetScriptZ.spawnUnit=false;
 					
 				}
@@ -211,6 +217,7 @@ function OnGUI() {
 				{
 					unitScript.redBank-=10;
 					unitScript.addUnitsGUI(tileTarg);
+					newFeedItem(Team2+ " added a unit!");
 					//tileTargetScriptZ.spawnUnit=false;
 				}
 			}
@@ -219,19 +226,33 @@ function OnGUI() {
 	}
 	if(GUI.Button(Rect((HUDwidth/5)*1,5,HUDwidth/5,25),"Upgrade Unit",buttonStyle))
 	{
-		if(unitVar != null)
+		if(whichTurn == unitColor)
 		{
-		 	unitVar.GetComponent("unit").upgradeUnit();
-			unitLevel = unitVar.GetComponent(unit).getUnitLevel();
+			if(unitVar != null)
+			{
+			 	unitVar.GetComponent("unit").upgradeUnit();
+				unitLevel = unitVar.GetComponent(unit).getUnitLevel();
+				if(whichTurn == 1)
+					newFeedItem(Team1+" unit upgraded to lvl " + unitLevel + "!");
+				else if(whichTurn == -1)
+					newFeedItem(Team2+" unit upgraded to lvl " + unitLevel + "!");
+			}
 		}
 	}
 	if(GUI.Button(Rect((HUDwidth/5)*2,5,HUDwidth/5,25),"Upgrade Fort",buttonStyle))
 	{
-		if(infoScreenActive)
+		if(whichTurn == tileColor)
 		{
-			lastTile.GetComponent(tileScript).upgradeFort();
-			FortLevel = lastTile.GetComponent(tileScript).getFortLevel();
-			maxUnits = lastTile.GetComponent(tileScript).getMaxUnits();
+			if(infoScreenActive)
+			{
+				lastTile.GetComponent(tileScript).upgradeFort();
+				FortLevel = lastTile.GetComponent(tileScript).getFortLevel();
+				maxUnits = lastTile.GetComponent(tileScript).getMaxUnits();
+				if(whichTurn == 1)
+					newFeedItem(Team1+" fort upgraded to lvl " + FortLevel + "!");
+				else if(whichTurn == -1)
+					newFeedItem(Team2+" fort upgraded to lvl " + FortLevel + "!");
+			}
 		}
 		
 	}
@@ -241,6 +262,10 @@ function OnGUI() {
 	if(GUI.Button(Rect((HUDwidth/5)*4,5,HUDwidth/5,25),"Surrender",buttonStyle))
 	{
 		gameOver = true;	
+		if(whichTurn == 1)
+			newFeedItem(Team2+" surrendered! " + Team1 + " Wins!");
+		else if(whichTurn == -1)
+			newFeedItem(Team1+" surrendered! " + Team2 + " Wins!");
 	}
 	GUI.EndGroup();
 	//Country Display
@@ -270,14 +295,14 @@ function OnGUI() {
 	GUI.EndGroup();
 	
 	//Game Feed
-	GUI.BeginGroup(Rect(0,(HUDheight/8)*9.5,(HUDwidth/8)*2,HUDheight));
-	GUI.Box(Rect(0,0,(HUDwidth/8)*2,(HUDheight/2)),"Game Feed",style);
-	var zy = 0;
+	GUI.BeginGroup(Rect(0,(HUDheight/8)*9.5,(HUDwidth/8)*4,HUDheight));
+	GUI.Box(Rect(0,0,(HUDwidth/8)*4,(HUDheight/2)),"Game Feed",style);
+	var zy = 1;
 	for(var zj=gameFeed.length-1;zj>=0;zj--)
 	{
 		var feed = gameFeed[zj];
-		var spacing = (((HUDheight/8)*2)/gameFeed.length)*(zy+1);
-		GUI.Label(Rect(15,spacing,HUDwidth/8*1.5,10),feed,inSetStyle);
+		var spacing = ((((HUDheight/8)*3)/9)*(zy))+10;
+		GUI.Label(Rect((HUDwidth/8)*0.35,spacing,(HUDwidth/8)*3.25,10),feed,inSetStyle);
 		zy++;
 	}
 	
@@ -360,8 +385,19 @@ function newFeedItem(feedItem:String){
 		for(var zi=0;zi<gameFeed.length;zi++)
 		{
 			if(gameFeed[zi] == null)
+			{
 				gameFeed[zi] = feedItem;
+			}
 		}
+		mostRecentFeed = feedItem;
 	}
-	
+	else if(gameFeed.length >= 9)
+	{
+		for(var zj=0;zj<gameFeed.length-1;zj++)
+		{
+			gameFeed[zj] = gameFeed[zj+1];
+		}
+		gameFeed[8] = feedItem;
+		mostRecentFeed = feedItem;
+	}
 }

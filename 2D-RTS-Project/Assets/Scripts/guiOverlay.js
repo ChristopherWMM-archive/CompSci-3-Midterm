@@ -40,6 +40,16 @@ var lastWin:String;
 var gameFeed = Array();
 var mostRecentFeed:String;
 
+var BStyle :Texture2D;
+var BbuttonStyle :Texture2D;
+var BinsetStyle :Texture2D;
+var Bhover :Texture2D;
+var Rhover :Texture2D;
+
+var RStyle :Texture2D;
+var RbuttonStyle :Texture2D;
+var RinsetStyle :Texture2D;
+
 var style:GUIStyle;
 var buttonStyle:GUIStyle;
 var inSetStyle : GUIStyle;
@@ -64,6 +74,26 @@ function Start () {
 }
 
 function Update () {
+
+if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1)
+{
+style.normal.background=BStyle;
+buttonStyle.normal.background=BbuttonStyle;
+buttonStyle.hover.background=Bhover;
+inSetStyle.normal.background=BinsetStyle;
+
+
+}
+if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1)
+{
+style.normal.background=RStyle;
+buttonStyle.hover.background=Rhover;
+buttonStyle.normal.background=RbuttonStyle;
+inSetStyle.normal.background=RinsetStyle;
+
+
+}
+
 	if(infoScreenActive || newPiece)
 		infoPopUp();
 	if(infoScreenActive && newUnit)
@@ -296,14 +326,14 @@ function OnGUI() {
 	
 	//Game Feed
 	GUI.BeginGroup(Rect(0,(HUDheight/8)*9.5,(HUDwidth/8)*4,HUDheight));
-	GUI.Box(Rect(0,0,(HUDwidth/8)*4,(HUDheight/2)),"",buttonStyle);
-	GUI.Label(Rect(0,5,(HUDwidth/8)*4,(HUDheight/2)),"Game Feed",style);
+	//GUI.Box(Rect(0,0,(HUDwidth/8)*4,(HUDheight/2)),"",buttonStyle);
+	GUI.Label(Rect(0,5,(HUDwidth/10)*4,(HUDheight/2)),"Game Feed",buttonStyle);
 	var zy = 1;
 	for(var zj=gameFeed.length-1;zj>=0;zj--)
 	{
 		var feed = gameFeed[zj];
 		var spacing = ((((HUDheight/8)*3)/9)*(zy))+10;
-		GUI.Label(Rect((HUDwidth/8)*0.35,spacing,(HUDwidth/8)*3.25,10),feed,style);
+		GUI.Label(Rect((HUDwidth/8)*0.35,spacing,(HUDheight/5)*3.25,10),feed,inSetStyle);
 		zy++;
 	}
 	

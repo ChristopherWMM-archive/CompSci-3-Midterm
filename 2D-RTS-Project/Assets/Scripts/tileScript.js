@@ -36,6 +36,7 @@ var sendUnit: boolean;
 var UnitArray;
 var addUnits;
 var spawnUnit: boolean;
+var murderCitizens=false;
 
 function Start () {
 //All this will be pulled from a database later on. 
@@ -104,21 +105,52 @@ function Start () {
 function Update () {
 // Lol I'll look at the project I have that we made for this feature...later
 // if(Time.timeSinceLevelLoad % 60==59)
-var temp = renderer.materials;
+var temp2 = renderer.materials;
       	 
+ var guiP=GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating;
+ var bankR=GameObject.FindWithTag("Master").GetComponent(gameMaster).redBank;
+ var bankB=GameObject.FindWithTag("Master").GetComponent(gameMaster).blueBank;
+ if(guiP && murderCitizens)
+ {
+	 if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && bankB>49) {
+	 isNuked=true;
+	 GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating = false;
+	 murderCitizens=false;
+	GameObject.FindWithTag("Master").GetComponent(gameMaster).blueBank-=50;
+	 }
+	 
+	 
+	 if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1 && bankR>49) {
+	 isNuked=true;
+	 GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating=false;
+	 murderCitizens=false;
+	 GameObject.FindWithTag("Master").GetComponent(gameMaster).redBank-=50;
+	 }
+ 
+ }
+ else if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && bankB<50)
+	 {
+	 
+	 GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating=false;
+	 murderCitizens=false;
+	 }
+	 
+	 else if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1 && bankR<50)
+	 {
+	 
+	 GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating=false;
+	 murderCitizens=false;
+	 }
+ 
  if(isNuked)
  {
  baseTax=0;
  maxUnits=0;
+ UnitsStored=0;
  morale=0;
- temp[1]=radioActive;
+ temp2[1].mainTexture=radioActive.mainTexture;
+ 
  tileType=235;
- 
- }
- if(GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating && isSelected);
- {
- 
- isNuked=true;
  
  }
  
@@ -150,7 +182,7 @@ var temp = renderer.materials;
 		 	targetUnit=UnitArray[zi];
 		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
 		   
-	      if(sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor == 1))
+	      if(!isNuked && sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor == 1))
 	      {	
 	      		
 	      		 print(" 1 if statement reached");
@@ -277,6 +309,7 @@ function OnMouseDown()
 	wipeSelections();
 	sendUnit=true;
 	spawnUnit=true;
+	murderCitizens=true;
 	
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).newPiece = true;
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).infoScreenActive = true;

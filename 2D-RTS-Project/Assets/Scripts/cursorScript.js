@@ -4,6 +4,8 @@ var h : int = 32;
 var cursor : Texture2D;
 var cursorRed : Texture2D;
 var cursorBlue : Texture2D;
+
+var violate : Texture2D;
      
 function Start(){
      Screen.showCursor = false;
@@ -25,4 +27,5 @@ function OnGUI(){
     }
     else
     	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursor);
+    	//GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), violate);
 }

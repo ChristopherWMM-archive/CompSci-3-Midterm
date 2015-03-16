@@ -149,8 +149,9 @@ var temp2 = renderer.materials;
  UnitsStored=0;
  morale=0;
  temp2[1].mainTexture=radioActive.mainTexture;
- 
+ thisTile.renderer.material.color=Color.black;
  tileType=235;
+ whichTeam=69;
  
  }
  
@@ -383,6 +384,7 @@ function wipeSelections()
      
       tileTargetScript.setSend(false);
       tileTargetScript.spawnUnit=false;
+      tileTargetScript.murderCitizens=false;
       
      }
 

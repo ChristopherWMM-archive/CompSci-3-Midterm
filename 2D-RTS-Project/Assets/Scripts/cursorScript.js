@@ -15,11 +15,14 @@ function Update(){
 }
      
 function OnGUI(){
+	if(GetComponent(gameMaster) != null){
 	var turn : int = GetComponent(gameMaster).whichTurn;
+	
 	if(turn == -1)
      	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursorRed);
     else if(turn == 1)
     	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursorBlue);
+    }
     else
     	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursor);
 }

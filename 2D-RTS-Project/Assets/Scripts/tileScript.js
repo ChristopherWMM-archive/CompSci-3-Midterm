@@ -105,7 +105,7 @@ function Update () {
 // Lol I'll look at the project I have that we made for this feature...later
 // if(Time.timeSinceLevelLoad % 60==59)
 var temp = renderer.materials;
-      	 temp[0]=border;
+      	 
  if(isNuked)
  {
  baseTax=0;
@@ -115,6 +115,13 @@ var temp = renderer.materials;
  tileType=235;
  
  }
+ if(GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating && isSelected);
+ {
+ 
+ isNuked=true;
+ 
+ }
+ 
 	UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 	if(tileColor != 2)
  		maxUnits=1000*FortLevel;

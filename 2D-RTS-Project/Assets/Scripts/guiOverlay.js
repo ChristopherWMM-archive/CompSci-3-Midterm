@@ -3,8 +3,29 @@ var infoScreenActive:boolean;
 var newPiece:boolean;
 var newUnit: boolean;
 var infoPos:Vector2;
-var helpScreen:boolean;
 var isViolating:boolean;
+
+var helpScreen:boolean;
+var FortLevelHelp:boolean;
+var moraleHelp:boolean;
+var UnitsStoredHelp:boolean;
+var maxUnitsHelp:boolean;
+var unitLevelHelp:boolean;
+var gameFeedHelp:boolean;
+var addUnitHelp:boolean;
+var upgradeUnitHelp:boolean;
+var violateHelp:boolean;
+var surrenderHelp:boolean;
+var ducatsHelp:boolean;
+var totalTroopsHelp:boolean;
+var totalTilesHelp:boolean;
+var infoScreenHelp:boolean;
+var unitScreenHelp:boolean;
+var closeHelp:boolean;
+var deselectHelp:boolean;
+var endTurnHelp:boolean;
+var tileHelp:boolean;
+var infoHelp:boolean;
 
 var FortLevel;
 var morale;
@@ -115,55 +136,84 @@ function Update () {
 	   
 }
 function OnGUI() {
-	if(infoScreenActive)
+	if(infoScreenActive || (helpScreen && infoScreenHelp))
 	{
-		GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.10,HUDheight+5));
-		if(tileColor==1)
-		{
-			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team1 + " Tile",style);
-		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles,style);
-		}
-		if(tileColor==-1)
-		{
-			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team2 + " Tile",style);
-		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles,style);
-		}
-		if(tileColor==0)
-		{
-			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Ghandi + " Tile",style);
-		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles,style);
-		}
-		if(tileColor==2)
-		{
-			GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),openTile + " Tile",style);
-		//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles,style);
-		}
-		GUI.Label(Rect(25,(HUDheight/8)*1,(HUDwidth/8)*1.5,30),"Info",inSetStyle);
-		GUI.Label(Rect(25,(HUDheight/8)*2,(HUDwidth/8)*1.5,30),"Fort Level = "+FortLevel,inSetStyle);
-		GUI.Label(Rect(25,(HUDheight/8)*3,(HUDwidth/8)*1.5,30),"Morale = "+morale,inSetStyle);
-		GUI.Label(Rect(25,(HUDheight/8)*4,(HUDwidth/8)*1.5,30),"Units Stored = "+UnitsStored,inSetStyle);
-		GUI.Label(Rect(25,(HUDheight/8)*5,(HUDwidth/8)*1.5,30),"Max Units = "+maxUnits,inSetStyle);
-		
-		if(GUI.Button(Rect(35,(HUDheight/8)*6,((HUDwidth/8)*2.15)/2,25),"Close",buttonStyle))
-		{
-			infoScreenActive = false;
-			wipeTileSelections();
-		}
-		if(GUI.Button(Rect(35,(HUDheight/8)*7,((HUDwidth/8)*2.15)/2,25),"Deselect",buttonStyle))
-		{
-			infoScreenActive = false;
-			wipeTileSelections();
-			var zi = 0;
-			for(zi=0;zi<unitsArray.length;zi++)
+	///////////////////// where i left off
+			GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.10,HUDheight+55));
+			if(helpScreen)
 			{
-				unitTargetScript=(unitsArray[zi].GetComponent("unit"));
-      			unitTargetScript.setSelected(false);	
+				if(GUI.Button(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),"InfoScreen",buttonStyle))
+					infoHelp = true;
+				if(GUI.Button(Rect(3,(HUDheight/8)*1,(HUDwidth/8)*2.068,HUDheight+5),"Tile",buttonStyle))
+					tileHelp = true;
+				if(GUI.Button(Rect(25,(HUDheight/8)*2,(HUDwidth/8)*1.5,30),"Info",buttonStyle))
+					infoHelp = true;
+				if(GUI.Button(Rect(25,(HUDheight/8)*3,(HUDwidth/8)*1.5,30),"Fort Level = "+FortLevel,buttonStyle))
+					FortLevelHelp = true;
+				if(GUI.Button(Rect(25,(HUDheight/8)*4,(HUDwidth/8)*1.5,30),"Morale = "+morale,buttonStyle))
+					moraleHelp = true;
+				if(GUI.Button(Rect(25,(HUDheight/8)*5,(HUDwidth/8)*1.5,30),"Units Stored = "+UnitsStored,buttonStyle))
+					UnitsStoredHelp = true;
+				if(GUI.Button(Rect(25,(HUDheight/8)*6,(HUDwidth/8)*1.5,30),"Max Units = "+maxUnits,buttonStyle))
+					maxUnitsHelp = true;
+				if(GUI.Button(Rect(35,(HUDheight/8)*7,((HUDwidth/8)*2.15)/2,25),"Close",buttonStyle))
+					closeHelp = true;
+				if(GUI.Button(Rect(35,(HUDheight/8)*8,((HUDwidth/8)*2.15)/2,25),"Deselect",buttonStyle))
+					deselectHelp = true;
+				if(GUI.Button(Rect(25,(HUDheight/8)*6,(HUDwidth/8)*1.5,30),"Switch Screen"+maxUnits,buttonStyle))
+					maxUnitsHelp = true;
 			}
-		}
+			else
+			{
+				if(tileColor==1)
+				{
+					GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team1 + " Tile",style);
+				//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles,style);
+				}
+				if(tileColor==-1)
+				{
+					GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Team2 + " Tile",style);
+				//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles,style);
+				}
+				if(tileColor==0)
+				{
+					GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),Ghandi + " Tile",style);
+				//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles,style);
+				}
+				if(tileColor==2)
+				{
+					GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+5),openTile + " Tile",style);
+				//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles,style);
+				}
+			
+				GUI.Label(Rect(25,(HUDheight/8)*1,(HUDwidth/8)*1.5,30),"Info",inSetStyle);
+				GUI.Label(Rect(25,(HUDheight/8)*2,(HUDwidth/8)*1.5,30),"Fort Level = "+FortLevel,inSetStyle);
+				GUI.Label(Rect(25,(HUDheight/8)*3,(HUDwidth/8)*1.5,30),"Morale = "+morale,inSetStyle);
+				GUI.Label(Rect(25,(HUDheight/8)*4,(HUDwidth/8)*1.5,30),"Units Stored = "+UnitsStored,inSetStyle);
+				GUI.Label(Rect(25,(HUDheight/8)*5,(HUDwidth/8)*1.5,30),"Max Units = "+maxUnits,inSetStyle);
+			
+				if(GUI.Button(Rect(35,(HUDheight/8)*6,((HUDwidth/8)*2.15)/2,25),"Close",buttonStyle))
+				{
+					infoScreenActive = false;
+					wipeTileSelections();
+				}
+				if(GUI.Button(Rect(35,(HUDheight/8)*7,((HUDwidth/8)*2.15)/2,25),"Deselect",buttonStyle))
+				{
+					infoScreenActive = false;
+					wipeTileSelections();
+					var zi = 0;
+					for(zi=0;zi<unitsArray.length;zi++)
+					{
+						unitTargetScript=(unitsArray[zi].GetComponent("unit"));
+		      			unitTargetScript.setSelected(false);	
+					}
+				}
+			}
+		
 		GUI.EndGroup();
 	}
 	//unit info display
-	if(unitScreenActive)
+	if(unitScreenActive && !helpScreen)
 	{
 		GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.15,HUDheight+5));
 		if(unitVar.GetComponent(unit).getUnitColor() == 2)
@@ -199,11 +249,34 @@ function OnGUI() {
 		}
 		GUI.EndGroup();
 	}
-	//End Turn
+	//Unit and Info Help Screens
+	if(helpScreen)
+	{
+		GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.15,HUDheight+5));
+		GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),"",style);
+		if(GUI.Button(Rect(25,(HUDheight/7)*3,(HUDwidth/8)*1.5,30),"Info Screen Help",buttonStyle))
+		{
+			//Info Screen Help Info
+				GUI.BeginGroup(Rect(0,0,Screen.width,Screen.height));
+				GUI.Box(Rect(Screen.width/3,(Screen.height/3),(Screen.width/8)*3,Screen.height/2),"",style);
+				GUI.Label(Rect(Screen.width/3,(Screen.height/3)*1.05,(Screen.width/8)*3,20),"Select the item you would like to learn more about",style);
+				if(GUI.Button(Rect((Screen.width/3)*1.37,(Screen.height/3)*1.25,(Screen.width/8)*1,30),"Go Back",buttonStyle))
+				{
+					helpScreen = false;
+				}
+				GUI.EndGroup();
+		}
+		if(GUI.Button(Rect(25,(HUDheight/7)*4,(HUDwidth/8)*1.5,30),"Unit Screen Help",buttonStyle))
+		{
+		}
+		GUI.EndGroup();
+	}
+	//End Turn and Help Button
 	GUI.BeginGroup(Rect(Screen.width-115,Screen.height-30,115,50));
 	if(GUI.Button(Rect(0,0,30,30),"",buttonStyle))
 		helpScreen = true;
-	GUI.Label(Rect(15,15,5,5),"?",style);
+		
+	GUI.Label(Rect(13,5,5,5),"?",style);
 	if(GUI.Button(Rect(35,0,80,30),"End Turn",buttonStyle))
 	{
 		GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn *= -1;
@@ -351,7 +424,7 @@ function OnGUI() {
 	
 	
 	GUI.EndGroup();
-	
+	//Initial Help Screen
 	if(helpScreen)
 	{
 		GUI.BeginGroup(Rect(0,0,Screen.width,Screen.height));

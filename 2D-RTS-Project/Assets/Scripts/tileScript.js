@@ -3,6 +3,7 @@ var grass: Material;
 var desert: Material;
 var stone: Material;
 var snow: Material;
+var radioActive : Material;
 var border: Material;
 var tileType: int;
 var moraleBoost:int;
@@ -20,6 +21,7 @@ var isSelected: boolean;
 var oneTime:boolean;
 var redTiles:int;
 var defenseless:int;
+var isNuked :boolean;
 var baseTax: float;
 //var blueTiles:int;
 //var numTiles;
@@ -41,6 +43,7 @@ function Start () {
  FortLevel=1;
  UnitsStored=1000;
  morale=10.0;
+ isNuked=false;
  //Morale is defunct for now
  maxUnits=1000*FortLevel;
  isSelected=false;
@@ -67,7 +70,7 @@ function Start () {
       else if(rand >= 3 && rand < 4)
       	tileType = 4;
       	 var temp = renderer.materials;
-      	 temp[1]=border;
+      	 temp[0]=border;
       	if(tileType==1)
       	{
       	
@@ -101,7 +104,17 @@ function Start () {
 function Update () {
 // Lol I'll look at the project I have that we made for this feature...later
 // if(Time.timeSinceLevelLoad % 60==59)
-
+var temp = renderer.materials;
+      	 temp[0]=border;
+ if(isNuked)
+ {
+ baseTax=0;
+ maxUnits=0;
+ morale=0;
+ temp[1]=radioActive;
+ tileType=235;
+ 
+ }
 	UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 	if(tileColor != 2)
  		maxUnits=1000*FortLevel;
@@ -139,8 +152,11 @@ function Update () {
 	      {
 	      		
 	      		
+	      		var battleMethod2=GameObject.FindWithTag("Master").GetComponent(gameMaster);
 	      		
 		      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
+		      battleMethod2=GameObject.FindWithTag("Master").GetComponent(gameMaster);
+		   
 		      }
 		      
 		     
@@ -152,7 +168,11 @@ function Update () {
 	      		  print("if statement reached");
 	      		var battleMethod=GameObject.FindWithTag("Master").GetComponent(gameMaster);
 	      		targetUnitScript.setSelected(false);
+	      		battleMethod.calculateFinances();
+	      		battleMethod.calculateFinances();
 	      		battleMethod.battle(UnitArray[zi],thisTile,true);
+	      		battleMethod.whichTurn*=-1;
+	      		battleMethod.wipeUnitSelections();
 	      		
 	      		
 	      		}
@@ -169,6 +189,8 @@ function Update () {
 	      		{
 	      		
 		      		targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
+		      		
+		      		
 		      }
 		      
 		     
@@ -181,6 +203,13 @@ function Update () {
 	      		 battleMethod=GameObject.FindWithTag("Master").GetComponent(gameMaster);
 	      		 targetUnitScript.setSelected(false);
 	      		battleMethod.battle(UnitArray[zi],thisTile,true);
+	      		
+	      		
+	      		battleMethod.calculateFinances();
+	      		battleMethod.calculateFinances();
+	      		battleMethod.battle(UnitArray[zi],thisTile,true);
+	      		battleMethod.whichTurn*=-1;
+	      		battleMethod.wipeUnitSelections();
 	      		
 	      		}
 		      //sendUnit=false;

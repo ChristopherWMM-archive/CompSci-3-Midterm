@@ -17,14 +17,14 @@ function Start () {
 }
 
 function Update () {
-timeCount+=Time.deltaTime;
-if(timeCount>= 5)
-{
+//timeCount+=Time.deltaTime;
+//if(timeCount>= 5)
+//{
 
 
-calculateFinances();
-timeCount=0;
-}
+//calculateFinances();
+//timeCount=0;
+//}
 
  if(redBank<=0)
  {
@@ -418,6 +418,21 @@ function wipeSelections()
       
      
       tileTargetScript.setSend(false);
+      
+     }
+
+}
+function wipeUnitSelections()
+{
+	UnitArray=GameObject.FindGameObjectsWithTag("selectedUnit");
+	
+	for(var zi=0;zi<UnitArray.length;zi++)
+	{
+	 
+	  unitTargetScript=(UnitArray[zi].GetComponent("unit"));
+      
+     
+      unitTargetScript.setSelected(false);
       
      }
 

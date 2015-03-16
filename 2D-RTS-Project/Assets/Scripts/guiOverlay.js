@@ -3,6 +3,8 @@ var infoScreenActive:boolean;
 var newPiece:boolean;
 var newUnit: boolean;
 var infoPos:Vector2;
+var helpScreen:boolean;
+var isViolating:boolean;
 
 var FortLevel;
 var morale;
@@ -71,28 +73,29 @@ function Start () {
 	Ghandi = "Ghandi";
 	unitLevel = 1;
 	openTile = "Unclaimed";
+	helpScreen = false;
 }
 
 function Update () {
 
-if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1)
-{
-style.normal.background=BStyle;
-buttonStyle.normal.background=BbuttonStyle;
-buttonStyle.hover.background=Bhover;
-inSetStyle.normal.background=BinsetStyle;
+	if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1)
+	{
+	style.normal.background=BStyle;
+	buttonStyle.normal.background=BbuttonStyle;
+	buttonStyle.hover.background=Bhover;
+	inSetStyle.normal.background=BinsetStyle;
 
 
-}
-if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1)
-{
-style.normal.background=RStyle;
-buttonStyle.hover.background=Rhover;
-buttonStyle.normal.background=RbuttonStyle;
-inSetStyle.normal.background=RinsetStyle;
+	}
+	if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1)
+	{
+	style.normal.background=RStyle;
+	buttonStyle.hover.background=Rhover;
+	buttonStyle.normal.background=RbuttonStyle;
+	inSetStyle.normal.background=RinsetStyle;
 
 
-}
+	}
 
 	if(infoScreenActive || newPiece)
 		infoPopUp();
@@ -109,6 +112,7 @@ inSetStyle.normal.background=RinsetStyle;
 	   HUDwidth = (Screen.width/9)*6;
 	   HUDheight = (Screen.height/5)*3;
 	   whichTurn = GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn;
+	   
 }
 function OnGUI() {
 	if(infoScreenActive)
@@ -196,11 +200,17 @@ function OnGUI() {
 		GUI.EndGroup();
 	}
 	//End Turn
-	GUI.BeginGroup(Rect(Screen.width-80,Screen.height-30,100,50));
-	if(GUI.Button(Rect(0,0,80,30),"End Turn",buttonStyle))
+	GUI.BeginGroup(Rect(Screen.width-115,Screen.height-30,115,50));
+	if(GUI.Button(Rect(0,0,30,30),"",buttonStyle))
+		helpScreen = true;
+	GUI.Label(Rect(15,15,5,5),"?",style);
+	if(GUI.Button(Rect(35,0,80,30),"End Turn",buttonStyle))
 	{
 		GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn *= -1;
 		GameObject.FindWithTag("Master").GetComponent(gameMaster).wipeSelections();
+		var battleMethod = GameObject.FindWithTag("Master").GetComponent(gameMaster);
+		battleMethod.calculateFinances();
+		battleMethod.calculateFinances();
 		if(whichTurn == 1)
 			newFeedItem(Team2+"'s Turn!");
 		else if(whichTurn == -1)
@@ -288,7 +298,9 @@ function OnGUI() {
 	}
 	if(GUI.Button(Rect((HUDwidth/5)*3,5,HUDwidth/5,25),"Violate",buttonStyle))
 	{
+		isViolating = true;
 	}
+		
 	if(GUI.Button(Rect((HUDwidth/5)*4,5,HUDwidth/5,25),"Surrender",buttonStyle))
 	{
 		gameOver = true;	
@@ -325,7 +337,7 @@ function OnGUI() {
 	GUI.EndGroup();
 	
 	//Game Feed
-	GUI.BeginGroup(Rect(0,(HUDheight/8)*9.5,(HUDwidth/8)*4,HUDheight));
+	GUI.BeginGroup(Rect(0,(HUDheight/8)*9.5,(HUDwidth/8)*3.25,HUDheight));
 	//GUI.Box(Rect(0,0,(HUDwidth/8)*4,(HUDheight/2)),"",buttonStyle);
 	GUI.Label(Rect(0,5,(HUDwidth/10)*4,(HUDheight/2)),"Game Feed",buttonStyle);
 	var zy = 1;
@@ -333,13 +345,24 @@ function OnGUI() {
 	{
 		var feed = gameFeed[zj];
 		var spacing = ((((HUDheight/8)*3)/9)*(zy))+10;
-		GUI.Label(Rect((HUDwidth/8)*0.35,spacing,(HUDheight/5)*3.25,10),feed,inSetStyle);
+		GUI.Label(Rect((HUDwidth/8)*0.2,spacing,(HUDwidth/8)*2.75,10),feed,inSetStyle);
 		zy++;
 	}
 	
 	
 	GUI.EndGroup();
 	
+	if(helpScreen)
+	{
+		GUI.BeginGroup(Rect(0,0,Screen.width,Screen.height));
+		GUI.Box(Rect(Screen.width/3,(Screen.height/3),(Screen.width/8)*3,100),"",style);
+		GUI.Label(Rect(Screen.width/3,(Screen.height/3)*1.05,(Screen.width/8)*3,20),"Select the item you would like to learn more about",style);
+		if(GUI.Button(Rect((Screen.width/3)*1.37,(Screen.height/3)*1.25,(Screen.width/8)*1,30),"Go Back",buttonStyle))
+		{
+			helpScreen = false;
+		}
+		GUI.EndGroup();
+	}
 	if(gameOver)
 	{
 		GUI.BeginGroup(Rect(0,0,Screen.width,Screen.height));
@@ -370,15 +393,15 @@ function infoPopUp() {
 
 function unitPopUp() {
 
-if(newUnit)
-{
-	if(unitVar!=null) {
-		 moraleUnit = unitVar.GetComponent(unit).getMorale();
-		 UnitsStoredInUnit = unitVar.GetComponent(unit).getUnitsStored();
-		 unitColor = unitVar.GetComponent(unit).getUnitColor();
-		 unitLevel = unitVar.GetComponent(unit).getUnitLevel();
- }
- newUnit = false;
+	if(newUnit)
+	{
+		if(unitVar!=null) {
+			 moraleUnit = unitVar.GetComponent(unit).getMorale();
+			 UnitsStoredInUnit = unitVar.GetComponent(unit).getUnitsStored();
+			 unitColor = unitVar.GetComponent(unit).getUnitColor();
+			 unitLevel = unitVar.GetComponent(unit).getUnitLevel();
+	 }
+	 newUnit = false;
 
 }
 

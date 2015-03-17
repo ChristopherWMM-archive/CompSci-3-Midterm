@@ -611,7 +611,7 @@ function OnGUI() {
 		else if(helpScreen && moraleHelp)
 		{
 			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			"The effectiveness of your unit  in battle"
 			,style);
 		}
 		else if(helpScreen && UnitsStoredHelp)
@@ -635,7 +635,7 @@ function OnGUI() {
 		else if(helpScreen && gameFeedHelp)
 		{
 			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			"An active list of currently occuring events"
 			,style);
 		}
 		else if(helpScreen && addUnitHelp)
@@ -669,18 +669,6 @@ function OnGUI() {
 			"You gain 10% of the base tax of the \n tiles you own, your costs are your unit and fort levels \n divided by 50. Both occur twice a turn."
 			,style);
 		}
-		else if(helpScreen && totalTroopsHelp)
-		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
-			,style);
-		}
-		else if(helpScreen && totalTilesHelp)
-		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
-			,style);
-		}
 		else if(helpScreen && infoScreenHelp)
 		{
 			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
@@ -690,19 +678,19 @@ function OnGUI() {
 		else if(helpScreen && unitScreenHelp)
 		{
 			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			"This unit screen is used to conveniently \n display useful information about the currently \n selected unit"
 			,style);
 		}
 		else if(helpScreen && closeHelp)
 		{
 			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			"This button closes the info screen \n but leaves the tile or unit still selected"
 			,style);
 		}
 		else if(helpScreen && deselectHelp)
 		{
 			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			"This button closes the info screen \n and deselects the unit or tile in addition"
 			,style);
 		}
 		else if(helpScreen && endTurnHelp)

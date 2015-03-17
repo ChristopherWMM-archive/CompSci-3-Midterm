@@ -148,27 +148,35 @@ function OnGUI() {
 				GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+95),"Info",style);
 					
 				if(GUI.Button(Rect(25,(HUDheight/8)*1,(HUDwidth/8)*1.5,30),"Info Screen",buttonStyle)){
+					newHelp();
 					helpActive = true;
 					infoHelp = true;
 				}if(GUI.Button(Rect(25,(HUDheight/8)*2,(HUDwidth/8)*1.5,30),"Tile",buttonStyle)){
+					newHelp();
 					helpActive = true;
 					tileHelp = true;
 				}if(GUI.Button(Rect(25,(HUDheight/8)*3,(HUDwidth/8)*1.5,30),"Fort Level",buttonStyle)){
+					newHelp();
 					helpActive = true;
 					FortLevelHelp = true;
 				}if(GUI.Button(Rect(25,(HUDheight/8)*4,(HUDwidth/8)*1.5,30),"Morale",buttonStyle)){
+					newHelp();
 					helpActive = true;
 					moraleHelp = true;
 				}if(GUI.Button(Rect(25,(HUDheight/8)*5,(HUDwidth/8)*1.5,30),"Units Stored",buttonStyle)){
+					newHelp();
 					helpActive = true;
 					UnitsStoredHelp = true;
 				}if(GUI.Button(Rect(25,(HUDheight/8)*6,(HUDwidth/8)*1.5,30),"Max Units",buttonStyle)){
+					newHelp();
 					helpActive = true;
 					maxUnitsHelp = true;
 				}if(GUI.Button(Rect(35,(HUDheight/8)*7,((HUDwidth/8)*2.15)/2,25),"Close",buttonStyle)){
+					newHelp();
 					helpActive = true;
 					closeHelp = true;
 				}if(GUI.Button(Rect(35,(HUDheight/8)*8,((HUDwidth/8)*2.15)/2,25),"Deselect",buttonStyle)){
+					newHelp();
 					helpActive = true;
 					deselectHelp = true;
 				}if(GUI.Button(Rect(25,(HUDheight/8)*9,(HUDwidth/8)*1.5,30),"Switch Screen",buttonStyle))
@@ -236,21 +244,27 @@ function OnGUI() {
 			GUI.Box(Rect(0,(HUDheight/7)*0,(HUDwidth/8)*2.15,HUDheight+65),"Unit",style);
 			
 			if(GUI.Button(Rect(25,(HUDheight/7)*1,(HUDwidth/8)*1.5,30),"Unit Screen",buttonStyle)){
+				newHelp();
 				helpActive = true;
 				unitHelp = true;
 			}if(GUI.Button(Rect(25,(HUDheight/7)*2,(HUDwidth/8)*1.5,30),"Unit Level",buttonStyle)){
+				newHelp();
 				helpActive = true;
 				unitLevelHelp = true;
 			}if(GUI.Button(Rect(25,(HUDheight/7)*3,(HUDwidth/8)*1.5,30),"Morale",buttonStyle)){
+				newHelp();
 				helpActive = true;
 				moraleHelp = true;
 			}if(GUI.Button(Rect(25,(HUDheight/7)*4,(HUDwidth/8)*1.5,30),"Number of Units",buttonStyle)){
+				newHelp();
 				helpActive = true;
 				UnitsStoredHelp = true;
 			}if(GUI.Button(Rect(35,(HUDheight/7)*5,((HUDwidth/8)*2.12)/2,25),"Close",buttonStyle)){
+				newHelp();
 				helpActive = true;
 				closeHelp = true;
 			}if(GUI.Button(Rect(35,(HUDheight/7)*6,((HUDwidth/8)*2.12)/2,25),"Deselect",buttonStyle)){
+				newHelp();
 				helpActive = true;
 				deselectHelp = true;
 			}if(GUI.Button(Rect(25,(HUDheight/7)*7,(HUDwidth/8)*1.5,30),"Switch Screen",buttonStyle))
@@ -261,12 +275,12 @@ function OnGUI() {
 		}
 		else
 		{
-			if(unitVar.GetComponent(unit).getUnitColor() == 2)
+			if(unitVar.GetComponent(unit).getUnitColor() == 1)
 			{
 				GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),Team1 + " Unit",style);
 			//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+blueTiles,style);
 			}
-			else if(unitVar.GetComponent(unit).getUnitColor() == 1)
+			else if(unitVar.GetComponent(unit).getUnitColor() == -1)
 			{
 				GUI.Box(Rect(0,(HUDheight/6)*0,(HUDwidth/8)*2.15,HUDheight+5),Team2 + " Unit",style);
 			//	GUI.Label(Rect(10,50,150,30),"Tiles Taken = "+redTiles);
@@ -327,6 +341,7 @@ function OnGUI() {
 	{
 		if(helpScreen)
 		{
+			newHelp();
 			helpActive = true;
 			endTurnHelp = true;
 		}
@@ -352,6 +367,7 @@ function OnGUI() {
 	{
 		if(helpScreen)
 		{
+			newHelp();
 			helpActive = true;
 			addUnitHelp = true;
 		}
@@ -401,6 +417,7 @@ function OnGUI() {
 	{
 		if(helpScreen)
 		{
+			newHelp();
 			helpActive = true;
 			upgradeUnitHelp = true;
 		}
@@ -421,6 +438,7 @@ function OnGUI() {
 	{
 		if(helpScreen)
 		{
+			newHelp();
 			helpActive = true;
 			upgradeFortHelp = true;
 		}
@@ -443,11 +461,13 @@ function OnGUI() {
 	{
 		if(helpScreen)
 		{
+			newHelp();
 			helpActive = true;
 			violateHelp = true;
 		}
 		else
 		{
+			newHelp();
 			isViolating = true;
 			GameObject.FindWithTag("Master").GetComponent("gameMaster").wipeSelections2();
 		}
@@ -458,6 +478,7 @@ function OnGUI() {
 	{
 		if(helpScreen)
 		{
+			newHelp();
 			helpActive = true;
 			surrenderHelp = true;
 		}
@@ -480,15 +501,19 @@ function OnGUI() {
 	{
 		GUI.Box(Rect(0,(HUDheight/8)*0,(HUDwidth/8)*2,HUDheight+5),"Country Name",style);
 		if(GUI.Button(Rect(20,(HUDheight/8)*1,HUDwidth/8*1.5,30),"Country Screen",buttonStyle)){
+			newHelp();
 			helpActive = true;
 			countryScreenHelp = true;
 		}if(GUI.Button(Rect(20,(HUDheight/8)*3,HUDwidth/8*1.5,30),"Ducats",buttonStyle)){
+			newHelp();
 			helpActive = true;
 			ducatsHelp = true;
 		}if(GUI.Button(Rect(20,(HUDheight/8)*4,HUDwidth/8*1.5,30),"Total Troops",buttonStyle)){
+			newHelp();
 			helpActive = true;
 			countryTotalTroopsHelp = true;
 		}if(GUI.Button(Rect(20,(HUDheight/8)*5,HUDwidth/8*1.5,30),"Total Tiles",buttonStyle)){
+			newHelp();
 			helpActive = true;
 			countryTotalTilesHelp = true;
 		}
@@ -575,157 +600,159 @@ function OnGUI() {
 	if(helpScreen && helpActive)
 	{
 		GUI.BeginGroup(Rect(0,0,Screen.width,Screen.height));
+		GUI.Box(Rect((Screen.width/3)*1,(Screen.height/3)*.95,(Screen.width/8)*2.5,Screen.height/3),"",style);
 		if(helpScreen && FortLevelHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"The level of your fort determines the \n max amount of troops you can hold and your \n morale"
 			,style);
 		}
 		else if(helpScreen && moraleHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
 			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
 			,style);
 		}
 		else if(helpScreen && UnitsStoredHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"The amount of troops currently stored in \n a unit or tile"
 			,style);
 		}
 		else if(helpScreen && maxUnitsHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"The total amount of units you can \n currently hold in a unit or tile"
 			,style);
 		}
-		if(helpScreen && unitLevelHelp)
+		else if(helpScreen && unitLevelHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"Your unit level determines the amount of units stored or morale"
 			,style);
 		}
 		else if(helpScreen && gameFeedHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
 			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
 			,style);
 		}
 		else if(helpScreen && addUnitHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"If you have 10 ducats you can click on a \n tile you control followed by the button"
 			,style);
 		}
 		else if(helpScreen && upgradeUnitHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+		//
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"If you have 20 ducats multiplied by the \n next level of your unit you can upgrade it for \n that cost"
 			,style);
 		}
 		else if(helpScreen && violateHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"This allows you to obliterate a tile. \n It costs 50 ducats, you click on the button, then \n on the tile. You may violate yourself :)"
 			,style);
 		}
 		else if(helpScreen && surrenderHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"If you feel like you're really bad \n you can jsut give up :)"
 			,style);
 		}
 		else if(helpScreen && ducatsHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"You gain 10% of the base tax of the \n tiles you own, your costs are your unit and fort levels \n divided by 50. Both occur twice a turn."
 			,style);
 		}
 		else if(helpScreen && totalTroopsHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
 			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
 			,style);
 		}
 		else if(helpScreen && totalTilesHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
 			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
 			,style);
 		}
 		else if(helpScreen && infoScreenHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
 			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
 			,style);
 		}
 		else if(helpScreen && unitScreenHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
 			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
 			,style);
 		}
 		else if(helpScreen && closeHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
 			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
 			,style);
 		}
 		else if(helpScreen && deselectHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
 			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
 			,style);
 		}
 		else if(helpScreen && endTurnHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"This button is used to manually conclude \n your turn, if you attack a unit or a tile it \n will be done so automatically. However you may \n freely move your units as much as you please \n before attacking without ending your turn!"
 			,style);
 		}
 		else if(helpScreen && tileHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"A tile is piece of the map, you use it \n to store troops, gain money, and essentially \n conquer the map"
 			,style);
 		}
 		else if(helpScreen && infoHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
 			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
 			,style);
 		}
 		else if(helpScreen && unitHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"This unit screen is used to conveniently \n display useful information about the currently \n selected unit"
 			,style);
 		}
 		else if(helpScreen && upgradeFortHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"If you have 20 ducats multiplied by the \n next level of your fort you can upgrade it for \n that cost. Just click on the fort \n followed by the button."
 			,style);
 		}
 		else if(helpScreen && countryScreenHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"Displays useful info about your country"
 			,style);
 		}
 		else if(helpScreen && countryTotalTroopsHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"Total amount of troops your country owns"
 			,style);
 		}
 		else if(helpScreen && countryTotalTilesHelp)
 		{
-			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.05,(Screen.width/8)*2.5,40),
-			"This info screen is used to conveniently \n display useful information about the currently \n selected tile"
+			GUI.Label(Rect((Screen.width/3)*1,(Screen.height/3)*1.1,(Screen.width/8)*2.5,40),
+			"The amount of tiles your country owns"
 			,style);
 		}
-		else if(GUI.Button(Rect((Screen.width/3)*1.3,(Screen.height/3)*1.3,(Screen.width/8)*1,20),"Go Back",buttonStyle))
+		if(GUI.Button(Rect((Screen.width/3)*1.3,(Screen.height/3)*1.5,(Screen.width/8)*1,20),"Go Back",buttonStyle))
 		{
 			helpScreen = false;
 		}

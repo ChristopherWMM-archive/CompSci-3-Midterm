@@ -259,7 +259,7 @@ function wipeUnitSelections()
       
      
       unitTargetScript.isSelected=false;
-      
+   
      }
 
 }

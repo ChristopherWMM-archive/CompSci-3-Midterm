@@ -433,6 +433,26 @@ function wipeUnitSelections()
       
      
       unitTargetScript.setSelected(false);
+    
+      
+     }
+
+}
+
+
+
+function wipeUnitSelections3()
+{
+	UnitArray=GameObject.FindGameObjectsWithTag("selectedUnit");
+	
+	for(var zi=0;zi<UnitArray.length;zi++)
+	{
+	 
+	  unitTargetScript=(UnitArray[zi].GetComponent("unit"));
+      
+     
+      unitTargetScript.setSelected(false);
+      unitTargetScript.thisSel=false;
       
      }
 

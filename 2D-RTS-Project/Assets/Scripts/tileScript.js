@@ -199,8 +199,9 @@ var temp2 = renderer.materials;
 	      		battleMethod.calculateFinances();
 	      		battleMethod.calculateFinances();
 	      		battleMethod.battle(UnitArray[zi],thisTile,true);
+	      		battleMethod.wipeUnitSelections3();
 	      		battleMethod.whichTurn*=-1;
-	      		battleMethod.wipeUnitSelections();
+	      		
 	      		
 	      		
 	      		}
@@ -239,8 +240,9 @@ var temp2 = renderer.materials;
 	      		battleMethod.calculateFinances();
 	      		battleMethod.calculateFinances();
 	      		battleMethod.battle(UnitArray[zi],thisTile,true);
+	      		battleMethod.wipeUnitSelections3();
 	      		battleMethod.whichTurn*=-1;
-	      		battleMethod.wipeUnitSelections();
+	      		
 	      		
 	      		}
 	      		else{

@@ -142,10 +142,10 @@ function OnGUI() {
 	//Tile Info Display
 	if(infoScreenActive || (helpScreen && infoScreenHelp))
 	{
-			GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.10,HUDheight+95));
+			GUI.BeginGroup(Rect(HUDwidth+((Screen.width/9)*1.48),0,(HUDwidth/8)*2.10,HUDheight+105));
 			if(helpScreen)
 			{
-				GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+95),"Info",style);
+				GUI.Box(Rect(3,(HUDheight/8)*0,(HUDwidth/8)*2.068,HUDheight+105),"Info",style);
 					
 				if(GUI.Button(Rect(25,(HUDheight/8)*1,(HUDwidth/8)*1.5,30),"Info Screen",buttonStyle)){
 					newHelp();
@@ -349,6 +349,7 @@ function OnGUI() {
 		{
 			GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn *= -1;
 			GameObject.FindWithTag("Master").GetComponent(gameMaster).wipeSelections();
+			GameObject.FindWithTag("Master").GetComponent(gameMaster).wipeUnitSelections3();
 			var battleMethod = GameObject.FindWithTag("Master").GetComponent(gameMaster);
 			battleMethod.calculateFinances();
 			battleMethod.calculateFinances();

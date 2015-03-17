@@ -372,6 +372,8 @@ function OnGUI() {
 	if(GUI.Button(Rect((HUDwidth/5)*3,5,HUDwidth/5,25),"Violate",buttonStyle))
 	{
 		isViolating = true;
+		GameObject.FindWithTag("Master").GetComponent("gameMaster").wipeSelections2();
+		
 	}
 		
 	if(GUI.Button(Rect((HUDwidth/5)*4,5,HUDwidth/5,25),"Surrender",buttonStyle))

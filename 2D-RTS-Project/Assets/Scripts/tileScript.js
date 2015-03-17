@@ -188,21 +188,9 @@ var temp2 = renderer.materials;
 	      		
 	      		 print(" 1 if statement reached");
 	      		 
-	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && (thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 && (whichTeam==1) )
+	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && (thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 )
 	      {
-	      		
-	      		
-	      		var battleMethod2=GameObject.FindWithTag("Master").GetComponent(gameMaster);
-	      		
-		      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
-		      battleMethod2=GameObject.FindWithTag("Master").GetComponent(gameMaster);
-		   
-		      }
-		      
-		     
-		      
-		      
-		      if((targetUnitScript.UnitColor == 1) && !(whichTeam==1)) 
+	      		  if((targetUnitScript.UnitColor == 1) && !(whichTeam==1)) 
 	      		{
 	      		
 	      		  print("if statement reached");
@@ -216,6 +204,18 @@ var temp2 = renderer.materials;
 	      		
 	      		
 	      		}
+	      		else {
+	      		
+	      		
+		      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
+		     
+		   	}
+		      }
+		      
+		     
+		      
+		      
+		    
 		      //sendUnit=false;
 	      	
 	      	//targetUnitScript.setSelected(false);
@@ -225,18 +225,9 @@ var temp2 = renderer.materials;
 	      {
 	       print(" 1 if statement reached");
 	      		 
-	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && (thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 && (whichTeam==-1) ) 
+	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && (thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 ) 
 	      		{
-	      		
-		      		targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
-		      		
-		      		
-		      }
-		      
-		     
-		      
-		      
-		      if(((targetUnitScript.UnitColor == -1) && !(whichTeam==-1)) )
+	      		if(((targetUnitScript.UnitColor == -1) && !(whichTeam==-1)) )
 	      		{
 	      		
 	      		  print("if statement reached");
@@ -252,6 +243,18 @@ var temp2 = renderer.materials;
 	      		battleMethod.wipeUnitSelections();
 	      		
 	      		}
+	      		else{
+		      		targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
+		      		
+		      		}
+		      		
+		      		
+		      }
+		      
+		     
+		      
+		      
+		      
 		      //sendUnit=false;
 	      	
 	      	//targetUnitScript.setSelected(false);

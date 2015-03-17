@@ -352,7 +352,30 @@ function getTileColor(){
 	return tileColor;
 }
 function upgradeFort() {
-	FortLevel+=1;
+if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1)
+{
+ if(GameObject.FindWithTag("Master").GetComponent(gameMaster).blueBank>(20*(FortLevel+1)))
+ 	{
+ 	FortLevel+=1;
+ 	GameObject.FindWithTag("Master").GetComponent(gameMaster).blueBank-=(FortLevel*20);
+ 	}
+}
+
+if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1)
+{
+ if(GameObject.FindWithTag("Master").GetComponent(gameMaster).redBank>(20*(FortLevel+1)))
+ 	{
+ 	FortLevel+=1;
+ 	GameObject.FindWithTag("Master").GetComponent(gameMaster).redBank-=(FortLevel*20);
+ 	}
+}
+
+
+
+
+
+
+	
 }
 function addUnitsGUI() {
 	UnitsStored += addUnits;

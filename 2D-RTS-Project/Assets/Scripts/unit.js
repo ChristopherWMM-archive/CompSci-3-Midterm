@@ -202,7 +202,27 @@ function getUnitLevel(){
 }
 
 function upgradeUnit() {
-	unitLevel+=1;
+if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1)
+{
+ if(GameObject.FindWithTag("Master").GetComponent(gameMaster).blueBank>(20*(unitLevel+1)))
+ 	{
+ 	unitLevel+=1;
+ 	GameObject.FindWithTag("Master").GetComponent(gameMaster).blueBank-=(unitLevel*20);
+ 	}
+}
+
+if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1)
+{
+ if(GameObject.FindWithTag("Master").GetComponent(gameMaster).redBank>(20*(unitLevel+1)))
+ 	{
+ 	unitLevel+=1;
+ 	GameObject.FindWithTag("Master").GetComponent(gameMaster).redBank-=(unitLevel*20);
+ 	}
+}
+
+
+
+	
 }
 function addTroops() {
 inYield=true;

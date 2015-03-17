@@ -1,11 +1,11 @@
 ﻿#pragma strict
-var panSpeed : float = 0.2;
-var zoomSpeed : float = 0.2;
+var panSpeed : float = 1;
+var zoomSpeed : float = 1;
 function Start () {
 }
 function Update () {
 
-	if(((Input.GetAxis("Mouse ScrollWheel") < 0) || Input.GetKey(KeyCode.Minus)) && Camera.main.orthographicSize<=10){
+	if(((Input.GetAxis("Mouse ScrollWheel") < 0) || Input.GetKey(KeyCode.Minus)) && Camera.main.orthographicSize<=30){
      Camera.main.orthographicSize+=zoomSpeed;
  	}
  	else if((Input.GetAxis("Mouse ScrollWheel") > 0  || Input.GetKey(KeyCode.Equals))&& Camera.main.orthographicSize>=4){

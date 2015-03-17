@@ -18,14 +18,18 @@ function Update(){
      
 function OnGUI(){
 	if(GetComponent(gameMaster) != null){
-	var turn : int = GetComponent(gameMaster).whichTurn;
+		var turn : int = GetComponent(gameMaster).whichTurn;
 	
-	if(turn == -1)
+	//if(GameObject.FindWithTag("hud").GetComponent(guiOverlay) != null)
+	var isViolating : boolean = GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating;
+	
+	if(isViolating)
+    	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), violate);
+	else if(turn == -1)
      	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursorRed);
     else if(turn == 1)
     	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursorBlue);
     }
     else
     	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursor);
-    	//GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), violate);
 }

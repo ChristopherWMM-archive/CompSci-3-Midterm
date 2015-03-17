@@ -61,15 +61,15 @@ function Start () {
 // blueTiles = 0;
 
 
-	  var rand = Random.Range(0,4);
-	  if(rand < 1)
-      	tileType = 1;
-      else if(rand >= 1 && rand < 2)
-      	tileType = 2;
-      else if(rand >= 2 && rand < 3)
-      	tileType = 3;
-      else if(rand >= 3 && rand < 4)
-      	tileType = 4;
+//	  var rand = Random.Range(0,4);
+//	  if(rand < 1)
+//      	tileType = 1;
+//      else if(rand >= 1 && rand < 2)
+//      	tileType = 2;
+//      else if(rand >= 2 && rand < 3)
+//      	tileType = 3;
+//      else if(rand >= 3 && rand < 4)
+//      	tileType = 4;
       	 var temp = renderer.materials;
       	 temp[0]=border;
       	if(tileType==1)
@@ -357,19 +357,19 @@ function addUnitsGUI() {
 function allocateTiles() {
 	tilesArray=GameObject.FindGameObjectsWithTag("test0");
 	
-	for(var zi=0;zi<tilesArray.length;zi++)
-	{
-	  tileTargetScript=(tilesArray[zi].GetComponent("tileScript"));
-	  var rand = Random.Range(0,4);
-	  if(rand < 1)
-      	tileTargetScript.whichTeam = -1;
-      else if(rand >= 1 && rand < 2)
-      	tileTargetScript.whichTeam = 0;
-      else if(rand >= 2 && rand < 3)
-      	tileTargetScript.whichTeam = 1;
-      else if(rand >= 3 && rand < 4)
-      	tileTargetScript.whichTeam = 2;
-    }
+//	for(var zi=0;zi<tilesArray.length;zi++)
+//	{
+//	  tileTargetScript=(tilesArray[zi].GetComponent("tileScript"));
+//	  var rand = Random.Range(0,8);
+//	  if(rand < 1)
+//      	tileTargetScript.whichTeam = 0;
+//      else if(rand >= 1 && rand < 3)
+//      	tileTargetScript.whichTeam = -1;
+//      else if(rand >= 3 && rand < 6)
+//      	tileTargetScript.whichTeam = 1;
+//      else if(rand >= 6 && rand < 8)
+//      	tileTargetScript.whichTeam = 2;
+//    }
 }
 function wipeSelections()
 {

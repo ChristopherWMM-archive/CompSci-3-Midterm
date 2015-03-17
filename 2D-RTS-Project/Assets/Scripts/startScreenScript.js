@@ -47,8 +47,8 @@ else if(whichMenu == 2)
 {
 	GUI.BeginGroup(Rect((Screen.width/8)*3,Screen.height/4,titleWidth,titleHeight));
 	GUI.Box(Rect(0,(titleHeight/5)*0,titleWidth,titleHeight),"Menu",style);
-	Team1 = GUI.TextField(Rect(titleWidth/4,(titleHeight/5)*1,titleWidth/2,titleHeight/7),Team1,buttonStyle);
-	Team2 = GUI.TextField(Rect(titleWidth/4,(titleHeight/5)*2,titleWidth/2,titleHeight/7),Team2,buttonStyle);
+	Team1 = GUI.TextField(Rect(titleWidth/4,(titleHeight/5)*1,titleWidth/2,titleHeight/7),Team1,10,buttonStyle);
+	Team2 = GUI.TextField(Rect(titleWidth/4,(titleHeight/5)*2,titleWidth/2,titleHeight/7),Team2,10,buttonStyle);
 	if(GUI.Button(Rect(titleWidth/4,(titleHeight/5)*4,titleWidth/2,titleHeight/5),"Back",buttonStyle))
 		whichMenu = 1;
 	GUI.EndGroup();

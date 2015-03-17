@@ -13,6 +13,7 @@ var addUnits;
 var unitLevel;
 var inYield=false;
 var maxMorale;
+var thisSel;
 
 //var aniPlay = GetComponent("aniSprite");
 function Start () {
@@ -48,6 +49,79 @@ function Update () {
 		overrideInfo = false;
 		
 	}
+	var UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
+	
+	if(thisSel) {
+	for( zi=0;zi<UnitArray.length;zi++)
+		{
+		 	//targetUnit=UnitArray[zi];
+		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
+		   
+	      if(targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor == -1))
+	      {	
+	      		
+	      		 
+	      		 
+	   
+		      
+		     
+		      
+		      
+		      if((targetUnitScript.UnitColor == -1) && (UnitColor==1)) 
+	      		{
+	      		
+	      		  print("if statement reached");
+	      		var battleMethod=GameObject.FindWithTag("Master").GetComponent(gameMaster);
+	      		
+	      		
+	      	
+	      		battleMethod.whichTurn*=-1;
+	      		battleMethod.wipeUnitSelections();
+	      		isSel=false;
+	      			battleMethod.battle(UnitArray[zi],thisUnit,false);
+	      		
+	      		}
+		      //sendUnit=false;
+	      	
+	      	//targetUnitScript.setSelected(false);
+	      }
+	      
+	      
+	      
+	      
+	        if(targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1 && targetUnitScript.UnitColor == 1))
+	      {	
+	      		
+	      		 
+	      		 
+	   
+		      
+		     
+		      
+		      
+		      if((targetUnitScript.UnitColor == 1) && (UnitColor==-1)) 
+	      		{
+	      		
+	      		  print("if statement reached");
+	      		 battleMethod=GameObject.FindWithTag("Master").GetComponent(gameMaster);
+	      		
+	      		
+	      		isSel=false;
+	      		battleMethod.whichTurn*=-1;
+	      		battleMethod.wipeUnitSelections();
+	      		battleMethod.battle(thisUnit,UnitArray[zi],false);
+	      		
+	      		}
+		      //sendUnit=false;
+	      	
+	      	//targetUnitScript.setSelected(false);
+	      }
+	      
+	      
+	      
+	      }
+	      }
+	
 	if(isSelected){
 		var screenPos = Camera.main.ScreenToWorldPoint (Vector3 (Input.mousePosition.x , Input.mousePosition.y , 0));
 			if(screenPos.x > transform.position.x){
@@ -59,6 +133,7 @@ function Update () {
 			
 		}
 		
+		
 	
 	
 		
@@ -69,8 +144,11 @@ function Update () {
 }
 
 function OnMouseDown() {
+wipeUnitSelections();
 	isSelected=!isSelected;
 	wipeSelections();
+	
+	thisSel=true;
 	overrideInfo = true;
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).currentUnit(this.gameObject);
 	GameObject.FindWithTag("hud").GetComponent(guiOverlay).newUnit = true;
@@ -148,4 +226,20 @@ function allocateUnits() {
       else if(rand >= 3 && rand < 4)
       	unitTargetScript.UnitColor = 2;
     }
+}
+
+function wipeUnitSelections()
+{
+	UnitArray=GameObject.FindGameObjectsWithTag("selectedUnit");
+	
+	for(var zi=0;zi<UnitArray.length;zi++)
+	{
+	 
+	  unitTargetScript=(UnitArray[zi].GetComponent("unit"));
+      
+     
+      unitTargetScript.isSelected=false;
+      
+     }
+
 }

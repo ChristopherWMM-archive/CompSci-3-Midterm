@@ -1,22 +1,29 @@
-Initialize engine version: 4.6.2f1 (bd99309c2ad7)
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: Intel(R) HD Graphics Family (ID=0xa16)
-    Vendor:   Intel
-    VRAM:     128 MB
+    Renderer: AMD Radeon HD 7470 (ID=0x6778)
+    Vendor:   ATI
+    VRAM:     1010 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\Matthew\Desktop\Unity Projects\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\Matthew\Desktop\Unity Projects\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\Matthew\Desktop\Unity Projects\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\Matthew\Desktop\Unity Projects\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\Matthew\Desktop\Unity Projects\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
-Loading C:\Users\Matthew\Desktop\Unity Projects\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-Platform assembly: C:\Users\Matthew\Desktop\Unity Projects\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\Matthew\Desktop\Unity Projects\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.055 seconds
-desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.046 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Platform assembly: C:\Users\Matthew\Desktop\Unity Projects\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\Matthew\Desktop\Unity Projects\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Boo.Lang.dll (this message is harmless)
+Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Boo.Lang.dll (this message is harmless)
+Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityScript.Lang.dll (this message is harmless)
+UnloadTime: 0.239573 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 2946.
+Total: 0.720324 ms (FindLiveObjects: 0.074726 ms CreateObjectMapping: 0.014752 ms MarkObjects: 0.247270 ms  DeleteObjects: 0.023732 ms)
+

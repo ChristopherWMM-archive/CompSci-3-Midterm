@@ -14,7 +14,7 @@ var unitLevel;
 var inYield=false;
 var maxMorale;
 var thisSel;
-
+var isSurrendered:boolean;
 //var aniPlay = GetComponent("aniSprite");
 function Start () {
 var aniPlay = GetComponent("aniSprite");
@@ -32,6 +32,11 @@ addUnits = 100;
 }
 
 function Update () {
+if(isSurrendered)
+{
+	thisSel = false;
+	isSelected = false;
+}
 	var aniPlay = GetComponent("aniSprite");
 	aniPlay.aniSprite(4,4,0,0,4,8,false);
 		maxMorale=10*unitLevel;
@@ -54,7 +59,7 @@ function Update () {
 	if(thisSel) {
 	for( zi=0;zi<UnitArray.length;zi++)
 		{
-		 	//targetUnit=UnitArray[zi];
+		 	targetUnit=UnitArray[zi];
 		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
 		   
 	      if(targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor == -1))
@@ -66,7 +71,7 @@ function Update () {
 		      
 		     
 		      
-		      
+		    if(((gameObject.transform.position.x-targetUnit.transform.position.x)<6 && (gameObject.transform.position.x-targetUnit.transform.position.x)>-6) && (gameObject.transform.position.z-targetUnit.transform.position.z)<6 && (gameObject.transform.position.z-targetUnit.transform.position.z)>-6)
 		      if((targetUnitScript.UnitColor == -1) && (UnitColor==1)) 
 	      		{
 	      		
@@ -75,11 +80,11 @@ function Update () {
 	      		
 	      		
 	      	
-	      		battleMethod.whichTurn*=-1;
+	      		
 	      		battleMethod.wipeUnitSelections();
 	      		isSel=false;
 	      			battleMethod.battle(UnitArray[zi],thisUnit,false);
-	      		
+	      		battleMethod.whichTurn*=-1;
 	      		}
 		      //sendUnit=false;
 	      	
@@ -93,12 +98,12 @@ function Update () {
 	      {	
 	      		
 	      		 
-	      		 
+	      		
 	   
 		      
 		     
 		      
-		      
+		     if(((gameObject.transform.position.x-targetUnit.transform.position.x)<6 && (gameObject.transform.position.x-targetUnit.transform.position.x)>-6) && (gameObject.transform.position.z-targetUnit.transform.position.z)<6 && (gameObject.transform.position.z-targetUnit.transform.position.z)>-6) 
 		      if((targetUnitScript.UnitColor == 1) && (UnitColor==-1)) 
 	      		{
 	      		
@@ -107,10 +112,10 @@ function Update () {
 	      		
 	      		
 	      		isSel=false;
-	      		battleMethod.whichTurn*=-1;
+	      		
 	      		battleMethod.wipeUnitSelections();
 	      		battleMethod.battle(thisUnit,UnitArray[zi],false);
-	      		
+	      		battleMethod.whichTurn*=-1;
 	      		}
 		      //sendUnit=false;
 	      	
@@ -144,7 +149,7 @@ function Update () {
 }
 
 function OnMouseDown() {
-wipeUnitSelections();
+	wipeUnitSelections();
 	isSelected=!isSelected;
 	wipeSelections();
 	
@@ -261,5 +266,9 @@ function wipeUnitSelections()
       unitTargetScript.isSelected=false;
    
      }
+
+}
+function setIsSurrendered(isSurr:boolean){
+	isSurrendered = isSurr;
 
 }

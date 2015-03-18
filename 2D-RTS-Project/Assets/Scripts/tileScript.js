@@ -37,7 +37,6 @@ var UnitArray;
 var addUnits;
 var spawnUnit: boolean;
 var murderCitizens=false;
-
 function Start () {
 //All this will be pulled from a database later on. 
  thisTile.tag = "test0";
@@ -100,6 +99,7 @@ function Start () {
       	}
       	
       	renderer.materials=temp;
+      	
 }
 
 function Update () {
@@ -165,19 +165,7 @@ var temp2 = renderer.materials;
 	if(isSelected)
 	{
 		GameObject.FindWithTag("hud").GetComponent(guiOverlay).currentTile(this.gameObject);
-		if(Input.GetKeyDown(KeyCode.F))
-		{
-		  // morale=morale-0.5;
-		  //Morale is defunct for now
-		   UnitsStored=UnitsStored-50;
 		
-		}
-		if(Input.GetKeyDown(KeyCode.G))
-		{
-			whichTeam *= -1;
-			
-			//GameObject.FindWithTag("hud").GetComponent(guiOverlay).updateTilesTaken();
-		}
 		for( zi=0;zi<UnitArray.length;zi++)
 		{
 		 	targetUnit=UnitArray[zi];

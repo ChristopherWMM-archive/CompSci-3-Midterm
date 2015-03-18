@@ -183,6 +183,56 @@ else
 	DefScript=def.GetComponent("unit");
 
 var battleOn=true;
+
+if(DefScript.morale<=0)
+		{
+		
+			battleOn=false;
+			if(defIsTile)
+				DefScript.whichTeam=attkScript.UnitColor;
+				attkScript.UnitsStored=1000;
+				
+			//else
+				//attach retreat code here
+		}
+			if(DefScript.UnitsStored<=0)
+				{
+					battleOn=false;
+					if(defIsTile) {
+						DefScript.whichTeam=attkScript.UnitColor;
+						DefScript.UnitsStored=200;
+						attkScript.UnitsStored=1000;
+						
+						}
+					else
+						Destroy(def);
+					
+						
+				}
+			
+		if(attkScript.morale<=0)
+		{
+		
+			battleOn=false;
+			attkScript.morale=0;
+		
+				//attach retreat code here
+		}
+		if(attkScript.UnitsStored<=0)
+			{
+				battleOn=false;
+				
+				Destroy(attk);
+			
+				
+				//else
+					//attach retreat code here
+			}
+
+
+
+
+
 while(battleOn)
 {
 	//Defender Vars
@@ -190,6 +240,7 @@ while(battleOn)
 	//var defUp=DefScript.getRollUp;
 	//var defDown=DefScript.getRollDown;
 	var defRoll=(Random.Range((DefScript.morale*moraleModiferDef-3),(DefScript.morale*moraleModiferDef+3))*defEffective);
+	
 	//Attacker Vars
 	var attkEffective=attkScript.UnitsStored/baseEffective;
 	//var attkUp=attkScript.getRollUp;

@@ -41,5 +41,27 @@ function Update () {
  		}
  	}
  	
- 	//if(Input.GetKey(KeyCode.A))
+ 		var height : float = 35.0;
+		var width : float = 35.0;
+		var vec : Vector3 = Camera.main.transform.position;
+		
+		if(Camera.main.transform.position.z > height)
+		{
+			transform.position.z = vec.z-panSpeed;
+		}
+		else if(Camera.main.transform.position.z < -height)
+		{
+			transform.position.z = vec.z+panSpeed;
+
+		}
+		
+		if(Camera.main.transform.position.x > width)
+		{
+			transform.position.x = vec.x-panSpeed;
+		}
+		else if(Camera.main.transform.position.x < -width)
+		{
+			transform.position.x = vec.x+panSpeed;
+		}
+
 }

@@ -14,16 +14,16 @@ Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Proje
 Loading C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-- Completed reload, in  0.046 seconds
+- Completed reload, in  0.041 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\Boo.Lang.dll (this message is harmless)
 Platform assembly: C:\Users\147003016\Desktop\GitHub\2D-RTS-Project\2D-RTS-Project\2D-RTS-exe_Data\Managed\UnityScript.Lang.dll (this message is harmless)
-UnloadTime: 0.239573 ms
+UnloadTime: 0.242140 ms
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 2946.
-Total: 0.720324 ms (FindLiveObjects: 0.074726 ms CreateObjectMapping: 0.014752 ms MarkObjects: 0.247270 ms  DeleteObjects: 0.023732 ms)
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 2947.
+Total: 0.722251 ms (FindLiveObjects: 0.081141 ms CreateObjectMapping: 0.015394 ms MarkObjects: 0.239895 ms  DeleteObjects: 0.009300 ms)
 

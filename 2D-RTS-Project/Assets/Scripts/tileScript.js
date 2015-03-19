@@ -164,7 +164,7 @@ var temp2 = renderer.materials;
  thisTile.renderer.material.color=Color.black;
  tileType=235;
  whichTeam=69;
- 
+ GameObject.FindWithTag("MainCamera").GetComponent(audioSwitch).playV=true;
  }
  
 	UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");

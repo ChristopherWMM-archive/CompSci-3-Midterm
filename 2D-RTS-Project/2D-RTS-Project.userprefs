@@ -1,13 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\startScreenScript.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\audioSwitch.js">
     <Files>
-      <File FileName="Assets\Scripts\guiOverlay.js" Line="815" Column="81" />
+      <File FileName="Assets\Scripts\guiOverlay.js" Line="1" Column="1" />
       <File FileName="Assets\Scripts\startScreenScript.js" Line="50" Column="76" />
-      <File FileName="Assets\Scripts\gameMaster.js" Line="18" Column="16" />
-      <File FileName="Assets\Scripts\tileScript.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\gameMaster.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\tileScript.js" Line="167" Column="76" />
       <File FileName="Assets\Scripts\unit.js" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\cursorScript.js" Line="35" Column="2" />
+      <File FileName="Assets\Scripts\cursorScript.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\audioSwitch.js" Line="16" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

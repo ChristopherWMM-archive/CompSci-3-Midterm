@@ -59,7 +59,8 @@ var HUDwidth;
 var HUDheight;
 
 var whichTurn;
-var gameOver;
+var gameOver:boolean;
+var isSurrendered:boolean;
 
 var Team1:String;
 var Team2:String;
@@ -493,7 +494,7 @@ function OnGUI() {
 		}
 		else
 		{
-				gameOver = true;	
+				isSurrendered = gameOver = true;	
 				surrendered();
 				if(whichTurn == 1)
 					newFeedItem(Team2+" surrendered! " + Team1 + " Wins!");
@@ -804,24 +805,25 @@ function wipeTileSelections()
 
 }
 function surrendered()
-{
-	GameObject.FindWithTag("Master").GetComponent(gameMaster).setIsSurrendered(true);
-	GameObject.FindWithTag("MainCamera").GetComponent(cursorScript).setIsSurrendered(true);
+{	
+	var unitArr = GameObject.FindGameObjectsWithTag("selectedUnit");
 	
-	UnitArray=GameObject.FindGameObjectsWithTag("selectedUnit");
-	
-	for(var zi=0;zi<UnitArray.length;zi++)
+	for(var zi=0;zi<unitArr.length;zi++)
 	{	 
-		UnitArray[zi].GetComponent("unit").setIsSurrendered(true);
+		unitArr[zi].GetComponent("unit").isSurrendered = true;
     }
     
-    tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")
+    var tilesArr = GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")
 	+GameObject.FindGameObjectsWithTag("test3")+GameObject.FindGameObjectsWithTag("test4");
 	
-	for(var zz=0;zz<tilesArray.length;zz++)
+	for(var zz=0;zz<tilesArr.length;zz++)
 	{
-	 	tilesArray[zz].GetComponent(tileScript).setIsSurrendered(true); 
-     }
+	 	tilesArr[zz].GetComponent(tileScript).isSurrendered = true; 
+    }
+	GameObject.FindWithTag("Master").GetComponent(gameMaster).isSurrendered = true;
+	GameObject.FindWithTag("MainCamera").GetComponent(cursorScript).isSurrendered = true;
+	
+	
 }
 function newFeedItem(feedItem:String){
 	if(gameFeed.length<9)

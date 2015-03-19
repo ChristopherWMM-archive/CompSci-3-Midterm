@@ -190,7 +190,7 @@ var temp2 = renderer.materials;
 	      		 
 	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && (thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 )
 	      {
-	      		  if((targetUnitScript.UnitColor == 1) && !(whichTeam==1)) 
+	      		  if((targetUnitScript.UnitColor == 1) && !(whichTeam==1) && !isSurrendered) 
 	      		{
 	      		
 	      		  print("if statement reached");
@@ -205,7 +205,7 @@ var temp2 = renderer.materials;
 	      		
 	      		
 	      		}
-	      		else {
+	      		else if(!isSurrendered){
 		      		targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
 					
 		   			}
@@ -226,7 +226,7 @@ var temp2 = renderer.materials;
 	      		 
 	      if(((thisTile.transform.position.x-targetUnit.transform.position.x)<3 && (thisTile.transform.position.x-targetUnit.transform.position.x)>-3) && (thisTile.transform.position.z-targetUnit.transform.position.z)<3 && (thisTile.transform.position.z-targetUnit.transform.position.z)>-3 ) 
 	      		{
-	      		if(((targetUnitScript.UnitColor == -1) && !(whichTeam==-1)) )
+	      		if(((targetUnitScript.UnitColor == -1) && !(whichTeam==-1)) && !isSurrendered)
 	      		{
 	      		
 	      		  print("if statement reached");
@@ -243,7 +243,7 @@ var temp2 = renderer.materials;
 	      		
 	      		
 	      		}
-	      		else{
+	      		else if(!isSurrendered){
 		      		targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
 		      		
 		      		}

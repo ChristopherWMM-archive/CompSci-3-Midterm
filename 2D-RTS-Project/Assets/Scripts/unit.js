@@ -127,7 +127,7 @@ if(isSurrendered)
 	      }
 	      }
 	
-	if(isSelected && !isSurrendered){
+	if(isSelected){
 		var screenPos = Camera.main.ScreenToWorldPoint (Vector3 (Input.mousePosition.x , Input.mousePosition.y , 0));
 			if(screenPos.x > transform.position.x){
 				aniPlay.aniSprite(4,4,0,2,4,8,false);

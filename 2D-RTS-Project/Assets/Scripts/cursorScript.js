@@ -6,7 +6,7 @@ var cursorRed : Texture2D;
 var cursorBlue : Texture2D;
 
 var violate : Texture2D;
-     
+var isSurrendered:boolean;
 function Start(){
      Screen.showCursor = false;
 }
@@ -21,11 +21,14 @@ function OnGUI(){
 		var turn : int = GetComponent(gameMaster).whichTurn;
 	
 	//if(GameObject.FindWithTag("hud").GetComponent(guiOverlay) != null)
-	var isViolating : boolean = GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating;
-	
-	if(isViolating)
-    	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), violate);
-	else if(turn == -1)
+	if(isSurrendered)
+	{
+		var isViolating : boolean = GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating;
+		
+		if(isViolating)
+	    	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), violate);
+    }
+	if(turn == -1)
      	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursorRed);
     else if(turn == 1)
     	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursorBlue);
@@ -33,3 +36,6 @@ function OnGUI(){
     else
     	GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursor);
 }
+function setIsSurrendered(isSurr:boolean){
+	isSurrendered = isSurr;
+	}

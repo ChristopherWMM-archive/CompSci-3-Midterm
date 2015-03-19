@@ -56,13 +56,13 @@ if(isSurrendered)
 	}
 	var UnitArray = GameObject.FindGameObjectsWithTag("selectedUnit");
 	
-	if(thisSel) {
+	if(thisSel && !isSurrendered) {
 	for( zi=0;zi<UnitArray.length;zi++)
 		{
 		 	targetUnit=UnitArray[zi];
 		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
 		   
-	      if(targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor == -1))
+	      if(targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor == -1) && !isSurrendered)
 	      {	
 	      		
 	      		 
@@ -94,7 +94,7 @@ if(isSurrendered)
 	      
 	      
 	      
-	        if(targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1 && targetUnitScript.UnitColor == 1))
+	        if(targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1 && targetUnitScript.UnitColor == 1) && !isSurrendered)
 	      {	
 	      		
 	      		 
@@ -127,7 +127,7 @@ if(isSurrendered)
 	      }
 	      }
 	
-	if(isSelected){
+	if(isSelected && !isSurrendered){
 		var screenPos = Camera.main.ScreenToWorldPoint (Vector3 (Input.mousePosition.x , Input.mousePosition.y , 0));
 			if(screenPos.x > transform.position.x){
 				aniPlay.aniSprite(4,4,0,2,4,8,false);

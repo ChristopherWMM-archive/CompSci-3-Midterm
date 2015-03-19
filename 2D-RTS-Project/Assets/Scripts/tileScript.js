@@ -37,6 +37,8 @@ var UnitArray;
 var addUnits;
 var spawnUnit: boolean;
 var murderCitizens=false;
+
+var isSurrendered:boolean;
 function Start () {
 //All this will be pulled from a database later on. 
  thisTile.tag = "test0";
@@ -53,7 +55,6 @@ function Start () {
  addUnits = 100;
  spawnUnit=false;
  baseTax=4.0;
- allocateTiles();
  moraleBoost = 2;
  economicBoost = 2;
 // redTiles = 0;
@@ -103,6 +104,17 @@ function Start () {
 }
 
 function Update () {
+
+	if(isSurrendered)
+	{
+		wipeSelections();
+		sendUnit=false;
+		spawnUnit=false;
+		murderCitizens=false;
+	}
+
+
+
 // Lol I'll look at the project I have that we made for this feature...later
 // if(Time.timeSinceLevelLoad % 60==59)
 var temp2 = renderer.materials;
@@ -110,7 +122,7 @@ var temp2 = renderer.materials;
  var guiP=GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating;
  var bankR=GameObject.FindWithTag("Master").GetComponent(gameMaster).redBank;
  var bankB=GameObject.FindWithTag("Master").GetComponent(gameMaster).blueBank;
- if(guiP && murderCitizens)
+ if(guiP && murderCitizens && !isSurrendered)
  {
 	 if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && bankB>49) {
 	 isNuked=true;
@@ -128,7 +140,7 @@ var temp2 = renderer.materials;
 	 }
  
  }
- else if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && bankB<50)
+ else if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && bankB<50 && !isSurrendered)
 	 {
 	 
 	 GameObject.FindWithTag("hud").GetComponent(guiOverlay).isViolating=false;
@@ -162,7 +174,7 @@ var temp2 = renderer.materials;
 		{
 			 addTroops(); 	 
 	}
-	if(isSelected)
+	if(isSelected && !isSurrendered)
 	{
 		GameObject.FindWithTag("hud").GetComponent(guiOverlay).currentTile(this.gameObject);
 		
@@ -171,7 +183,7 @@ var temp2 = renderer.materials;
 		 	targetUnit=UnitArray[zi];
 		  targetUnitScript=(UnitArray[zi].GetComponent("unit"));
 		   
-	      if(!isNuked && sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor == 1))
+	      if(!isNuked && sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==1 && targetUnitScript.UnitColor == 1) && !isSurrendered)
 	      {	
 	      		
 	      		 print(" 1 if statement reached");
@@ -194,11 +206,9 @@ var temp2 = renderer.materials;
 	      		
 	      		}
 	      		else {
-	      		
-	      		
-		      targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
-		     
-		   	}
+		      		targetUnit.transform.position= Vector3(thisTile.transform.position.x,targetUnit.transform.position.y,thisTile.transform.position.z);
+					
+		   			}
 		      }
 		      
 		     
@@ -210,7 +220,7 @@ var temp2 = renderer.materials;
 	      	//targetUnitScript.setSelected(false);
 	      }
 	      
-	       if(sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1 && targetUnitScript.UnitColor==-1))
+	       if(sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1 && targetUnitScript.UnitColor==-1) && !isSurrendered)
 	      {
 	       print(" 1 if statement reached");
 	      		 
@@ -359,34 +369,12 @@ if(GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1)
  	GameObject.FindWithTag("Master").GetComponent(gameMaster).redBank-=(FortLevel*20);
  	}
 }
-
-
-
-
-
-
 	
 }
 function addUnitsGUI() {
 	UnitsStored += addUnits;
 }
-function allocateTiles() {
-	tilesArray=GameObject.FindGameObjectsWithTag("test0");
-	
-//	for(var zi=0;zi<tilesArray.length;zi++)
-//	{
-//	  tileTargetScript=(tilesArray[zi].GetComponent("tileScript"));
-//	  var rand = Random.Range(0,8);
-//	  if(rand < 1)
-//      	tileTargetScript.whichTeam = 0;
-//      else if(rand >= 1 && rand < 3)
-//      	tileTargetScript.whichTeam = -1;
-//      else if(rand >= 3 && rand < 6)
-//      	tileTargetScript.whichTeam = 1;
-//      else if(rand >= 6 && rand < 8)
-//      	tileTargetScript.whichTeam = 2;
-//    }
-}
+
 function wipeSelections()
 {
 	tilesArray=GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")
@@ -403,5 +391,9 @@ function wipeSelections()
       tileTargetScript.murderCitizens=false;
       
      }
+
+}
+function setIsSurrendered(isSurr:boolean){
+	isSurrendered = isSurr;
 
 }

@@ -812,17 +812,7 @@ function surrendered()
 	{	 
 		unitArr[zi].GetComponent("unit").isSurrendered = true;
     }
-    
-    var tilesArr = GameObject.FindGameObjectsWithTag("test1")+GameObject.FindGameObjectsWithTag("test2")
-	+GameObject.FindGameObjectsWithTag("test3")+GameObject.FindGameObjectsWithTag("test4");
-	
-	for(var zz=0;zz<tilesArr.length;zz++)
-	{
-	 	tilesArr[zz].GetComponent(tileScript).isSurrendered = true; 
-    }
 	GameObject.FindWithTag("Master").GetComponent(gameMaster).isSurrendered = true;
-	GameObject.FindWithTag("MainCamera").GetComponent(cursorScript).isSurrendered = true;
-	
 	
 }
 function newFeedItem(feedItem:String){

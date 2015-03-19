@@ -220,7 +220,7 @@ var temp2 = renderer.materials;
 	      	//targetUnitScript.setSelected(false);
 	      }
 	      
-	       if(sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1 && targetUnitScript.UnitColor==-1) && !isSurrendered)
+	       if(!isNuked && sendUnit && targetUnitScript.getSelected() && (GameObject.FindWithTag("Master").GetComponent(gameMaster).whichTurn==-1 && targetUnitScript.UnitColor==-1) && !isSurrendered)
 	      {
 	       print(" 1 if statement reached");
 	      		 
